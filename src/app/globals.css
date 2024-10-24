@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 400;
+  src: url("../../public/fonts/gilroy/Gilroy-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 500;
+  src: url("../../public/fonts/gilroy/Gilroy-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 600;
+  src: url("../../public/fonts/gilroy/Gilroy-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 700;
+  src: url("../../public/fonts/gilroy/Gilroy-Bold.ttf");
+}
+
+
 @layer base {
   :root {
     --background: 26, 37%, 96%;
@@ -63,6 +88,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
