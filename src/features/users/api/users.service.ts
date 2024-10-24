@@ -1,5 +1,5 @@
-import { User } from "@/app/payload-types";
 import { apiPayload } from "@/lib/axios";
+import { User } from "@/types";
 import { UpdateById, UpdateByIdResponse } from "@/types/api";
 import { isAxiosError } from "axios";
 

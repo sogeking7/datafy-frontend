@@ -5,15 +5,16 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center leading-none whitespace-nowrap rounded-md text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
-      neo: {
-        true: "border border-border",
+      light: {
+        true: "!bg-white !text-accent-foreground",
         false: "",
       },
       variant: {
-        default: "bg-white text-primary-foreground hover:bg-primary/90",
+        default: "bg-primary text-white hover:bg-primary/90",
+        primary2: "bg-[#852EBA] text-white",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
@@ -33,7 +34,7 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: "default",
       size: "default",
-      neo: false,
+      light: false,
     },
   }
 );
@@ -45,11 +46,11 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, neo, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, light, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className, neo }))}
+        className={cn(buttonVariants({ variant, size, className, light }))}
         ref={ref}
         {...props}
       />

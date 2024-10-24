@@ -29,15 +29,20 @@
 
 @layer base {
   :root {
-    --background: 26, 37%, 96%;
+    /* ui colors */
+    --primary: 262, 63%, 21%;
+    --primary-foreground: 60, 3%, 18%;
+
+    --primary-two: 277, 60%, 45%;
+    --primary-two-foreground: 60, 3%, 18%;
+    --background: 0, 0%, 96%;
+
     --foreground: 60, 3%, 18%;
     --card: 0 0% 100%;
     --card-foreground: 60, 3%, 18%;
     --popover: 0 0% 100%;
     --popover-foreground: 60, 3%, 18%;
-    --primary: 45, 92%, 62%;
-    --primary-foreground: 60, 3%, 18%;
-    --secondary: 0 0% 96.1%;
+    --secondary: 0 0% 60%;
     --secondary-foreground: 60, 3%, 18%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
@@ -92,4 +97,17 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.background-image {
+  background-image: url('../../public/bg-image.webp');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  /* background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(223,157,14,1) 100%); */
+  align-items: center;
 }
