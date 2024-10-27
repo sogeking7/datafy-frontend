@@ -22,7 +22,7 @@ const list = [
 export const ServiceCore = () => {
   return (
     <Container>
-      <button className="font-semibold rounded-lg text-xl py-3 px-4  uppercase bg-background text-[#5255FF]">
+      <button className="font-semibold rounded-lg text-lg py-2 px-4  uppercase bg-background text-[#5255FF]">
         data.fy
       </button>
       <h1 className="font-semibold text-5xl mt-8 mb-12">

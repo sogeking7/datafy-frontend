@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <section className="background-image">
         <SalesHeader />
-        <main className="bg-background-gray min-h-[calc(100vh-100px)] pt-[12vh]">
+        <main className="bg-background-gray pb-[250px] pt-[150px]">
           <Hero />
         </main>
       </section>

@@ -20,10 +20,16 @@ export function SalesHeader() {
         </div>
         <div className="flex gap-5">
           <Link href={"/auth/login"}>
-            <Button light>Войти</Button>
+            <Button className="px-6 font-sans" variant={'light'}>Войти</Button>
           </Link>
           <Link href={"/auth/create-account"}>
-            <Button light>Регистрация</Button>
+            <Button variant={'light'} className="gap-3 pl-2 pr-4">
+              <div className="bg-[#f4f4f4] rounded-md p-1">
+
+              <Image src="/iconly/user.svg" width={20} height={20} alt="user" />
+              </div>
+              Регистрация
+            </Button>
           </Link>
         </div>
       </Container>
