@@ -10,16 +10,6 @@ type FormType = {
 };
 
 export const Hero = () => {
-  const form = useForm<FormType>({
-    defaultValues: {
-      q: "",
-    },
-  });
-
-  function onSubmit(values: FormType) {
-    console.log(values);
-  }
-
   return (
     <Container>
       <div className="w-full flex justify-center">
@@ -37,30 +27,45 @@ export const Hero = () => {
               недобросовестных партнеров
             </p>
           </div>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full max-w-4xl bg-white p-3 rounded-2xl flex justify-between gap-10"
-          >
-            <div className="w-full relative">
-              <Image
-                alt="serach"
-                className="absolute top-3 left-3"
-                src="/iconly/search.svg"
-                width={20}
-                height={20}
-              />
-              <input
-                {...form.register("q")}
-                className="pl-12 h-12 text-lg bg-transparent border-none ring-none outline-none w-full"
-                placeholder="Введите ИИН, БИН, ФИО, название компании"
-              />
-            </div>
-            <Button size={"lg"} className="min-w-44">
-              Найти
-            </Button>
-          </form>
+          <SearchData />
         </div>
       </div>
     </Container>
+  );
+};
+
+export const SearchData = () => {
+  const form = useForm<FormType>({
+    defaultValues: {
+      q: "",
+    },
+  });
+
+  function onSubmit(values: FormType) {
+    console.log(values);
+  }
+  return (
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="w-full max-w-4xl bg-white p-3 rounded-2xl flex justify-between gap-10"
+    >
+      <div className="w-full relative">
+        <Image
+          alt="serach"
+          className="absolute top-3 left-3"
+          src="/iconly/search.svg"
+          width={20}
+          height={20}
+        />
+        <input
+          {...form.register("q")}
+          className="pl-12 h-12 text-lg bg-transparent border-none ring-none outline-none w-full"
+          placeholder="Введите ИИН, БИН, ФИО, название компании"
+        />
+      </div>
+      <Button size={"lg"} className="min-w-44">
+        Найти
+      </Button>
+    </form>
   );
 };

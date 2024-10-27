@@ -1,6 +1,8 @@
 import { DiscounCard } from "@/features/pricing/DiscountCard";
 import { Tariffs } from "@/features/pricing/Tariffs";
+import { Faq } from "@/features/sales/Faq";
 import { Features } from "@/features/sales/Features";
+import { Footer } from "@/features/sales/Footer";
 import { SalesHeader } from "@/features/sales/Header";
 import { Hero } from "@/features/sales/Hero";
 import { ServiceCore } from "@/features/sales/ServiceCore";
@@ -26,6 +28,10 @@ export default function Home() {
       <section className="bg-white py-20">
         <Tariffs />
       </section>
+      <section className="py-20">
+        <Faq />
+      </section>
+      <Footer />
     </>
   );
 }

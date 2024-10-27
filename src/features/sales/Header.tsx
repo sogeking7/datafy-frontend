@@ -12,7 +12,7 @@ export function SalesHeader() {
       >
         <div>
           <Image
-            alt="indi.codes logo"
+            alt="datafy.kz logo"
             src="/logo.svg"
             width="110"
             height="50"

@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-gilroy">
         <Providers>
-          <div className="relative flex min-h-screen flex-col bg-background">
+          <div className="relative flex min-h-screen pb-[calc(460px)] flex-col bg-background">
             {children}
           </div>
         </Providers>
