@@ -2,36 +2,48 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/ui/Container";
 import Image from "next/image";
 import Link from "next/link";
+import { LoginBtn, RegisterBtn } from "../auth/components/Buttons";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { AlignLeftIcon } from "lucide-react";
 
 export function SalesHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full border-border/40 bg-white/60 h-20">
+    <header className="sticky top-0 z-50 w-full border-border/40 bg-white/60 h-16 md:h-20">
       <Container
         variant="constrainedPadded"
-        className="flex justify-between py-4 items-center"
+        className="flex justify-between py-3 items-center"
       >
         <Link href="/">
-          <Image alt="datafy.kz logo" src="/logo.svg" width="110" height="50" />
+          <img
+            alt="datafy.kz logo"
+            src="/logo.svg"
+            className="w-[84px] md:w-[110px] h-[36px] md:h-[50px]"
+          />
         </Link>
         <div className="flex gap-5">
-          <Link href={"/auth/login"}>
-            <Button className="px-6 font-sans" variant={"light"}>
-              Войти
-            </Button>
-          </Link>
-          <Link href={"/auth/create-account"}>
-            <Button variant={"light"} className="gap-3 pl-2 pr-4">
-              <div className="bg-[#f4f4f4] rounded-md p-1">
-                <Image
-                  src="/iconly/user.svg"
-                  width={20}
-                  height={20}
-                  alt="user"
-                />
-              </div>
-              Регистрация
-            </Button>
-          </Link>
+          <LoginBtn />
+          <div className="max-md:hidden">
+            <RegisterBtn />
+          </div>
+          <Sheet>
+            <SheetTrigger className="md:hidden" asChild>
+              <Button size={"icon"} variant={"light"}>
+                <AlignLeftIcon className="w-5 h-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <nav className="mt-7 flex-col flex gap-3 md:gap-9 list-none">
+                <li>
+                  <RegisterBtn  className="w-full" />
+                </li>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </Container>
     </header>

@@ -33,13 +33,13 @@ export const Faq = () => {
   return (
     <Container>
       <div className="grid grid-cols-3 gap-8">
-        <div className="col-span-1">
-          <h1 className="text-5xl font-semibold">Часто задаваемые вопросы</h1>
-          <h2 className="font-semibold text-xl mt-5 text-secondary">
+        <div className="col-span-full md:col-span-1">
+          <h1 className="text-4xl md:text-5xl font-semibold">Часто задаваемые вопросы</h1>
+          <h2 className="font-semibold text-sm md:text-xl mt-5 text-secondary">
             Проверьте контрагентов уже сейчас!
           </h2>
           <Link href="#start">
-            <Button className="mt-6 gap-3 relative right-4 text-accent-foreground" variant={"link"}>
+            <Button size={'lg'} className="mt-6 gap-3 relative right-8 md:right-8 text-accent-foreground" variant={"link"}>
               Начать проверку
               <ChevronRight className="size-5" />
             </Button>
@@ -48,7 +48,7 @@ export const Faq = () => {
         <Accordion
           type="multiple"
           defaultValue={["item-0"]}
-          className="col-span-2 flex gap-3 flex-col"
+          className="col-span-3 md:col-span-2 flex gap-3 flex-col"
         >
           {faqData.map((item, index) => (
             <AccordionItem key={index} value={`item-${index}`} className={""}>

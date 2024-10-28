@@ -22,10 +22,10 @@ export default function Home() {
       <section id="services" className="bg-white py-16">
         <ServiceCore />
       </section>
-      <section id="counterparties" className="py-20">
+      <section id="counterparties" className="bg-background py-20">
         <Features />
       </section>
-      <section id="tariffs" className="py-20">
+      <section id="tariffs" className="bg-background py-20">
         <Tariffs />
       </section>
       <section id="faq" className="py-20 bg-white">

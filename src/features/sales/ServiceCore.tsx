@@ -22,13 +22,13 @@ const list = [
 export const ServiceCore = () => {
   return (
     <Container>
-      <button className="font-semibold rounded-lg text-lg py-2 px-4  uppercase bg-[#F2F1FF] text-primary">
+      <button className="font-semibold rounded-lg text-base md:text-lg py-2 px-4  uppercase bg-[#F2F1FF] text-primary">
         data.fy
       </button>
-      <h1 className="font-semibold text-5xl mt-8 mb-12">
+      <h1 className="font-semibold text-4xl md:text-5xl mt-8 mb-12">
         Что предлагает сервис
       </h1>
-      <div className="flex flex-row gap-10">
+      <div className="flex flex-col items-center md:flex-row gap-10">
         {list.map((i) => (
           <ServiceCoreCard key={i.n} data={i} />
         ))}
@@ -47,16 +47,15 @@ const ServiceCoreCard = ({
   };
 }) => {
   return (
-    <div className="w-[33%] ">
-      <div className="rounded-xl aspect-square bg-background flex py-items-center justify-center">
-        <Image
-          alt=""
-          width={300}
-          height={300}
+    <div className="md:w-[33%] max-w-sm">
+      <div className="rounded-xl aspect-square bg-background flex items-center justify-center">
+        <img
+          alt="photo"
+          className="size-[300px] aspect-square"
           src={`/service-core-${data.id}.svg`}
         />
       </div>
-      <h1 className="mt-6 text-3xl font-semibold">{data.n}</h1>
+      <h1 className="mt-6 text-2xl md:text-3xl font-semibold">{data.n}</h1>
       <p className="mt-3 text-secondary text-balance">{data.d}</p>
     </div>
   );

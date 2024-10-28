@@ -16,14 +16,14 @@ export const Footer = () => {
           </Link>
           <hr className="w-full bg-[#333333] h-[2px] " />
         </div>
-        <nav className="grid  gap-10 grid-cols-8 mt-12">
-          <p className="text-secondary font-semibold col-span-2 text-balance">
+        <nav className="grid gap-10 grid-cols-8 mt-12">
+          <p className="text-secondary font-semibold col-span-full md:col-span-2 text-balance">
             ТОО «СБ24»,БИН: 231040033967  Алматы, г. Бостандыкский Район,
             Проспект Нұрсұлтан Назарбаев, Дом 223, Н.П. 404 © 2024. Все права
             защищены
           </p>
-          <ul className="gap-3 text-[#838383] col-span-2 flex flex-col justify-center">
-            <h1 className="text-white font-semibold text-lg">Главная</h1>
+          <ul className="gap-3 text-[#838383] col-span-full md:col-span-2 flex flex-col justify-center">
+            <h1 className="text-white font-semibold text-2xl md:text-lg">Главная</h1>
             <li>
               <Link className="hover:underline" href="#start">
                 Главный экран
@@ -55,7 +55,7 @@ export const Footer = () => {
               </Link>
             </li>
           </ul>
-          <div className="col-span-4">
+          <div className="col-span-full max-md:hidden md:col-span-4">
             <SearchData />
           </div>
         </nav>
@@ -81,9 +81,9 @@ export const SearchData = () => {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="w-full max-w-4xl bg-white p-2 rounded-2xl flex justify-between gap-10"
+      className="w-full max-w-4xl bg-white p-2 rounded-xl flex justify-between gap-3"
     >
-      <div className="w-full relative">
+      <div className="w-full relative flex items-center">
         <Image
           alt="serach"
           className="absolute top-3 left-3"
@@ -97,7 +97,7 @@ export const SearchData = () => {
           placeholder="Введите ИИН, БИН, ФИО, название компании"
         />
       </div>
-      <Button className="px-10">Найти</Button>
+      <Button className="!px-10">Найти</Button>
     </form>
   );
 };
