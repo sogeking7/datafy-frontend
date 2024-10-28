@@ -14,12 +14,13 @@ export const Hero = () => {
     <Container>
       <div className="w-full flex justify-center">
         <div className=" flex flex-col items-center gap-[50px]">
-          <div className="h-10 px-5 py-2 text-center rounded-md bg-white font-semibold">
+          <div className="h-10 px-5 py-2 text-center text-primary rounded-md bg-white font-semibold">
             Проверка контрагента
           </div>
           <div className="flex flex-col gap-8 items-center">
             <h1 className="max-w-3xl text-6xl font-semibold text-center">
-              Быстрая и удобная проверка контрагентов
+              Быстрая и удобная <span className="text-primary">проверка</span>{" "}
+              контрагентов
             </h1>
             <p className="max-w-4xl text-xl text-center">
               Помогаем быстро и эффективно оценить надежность

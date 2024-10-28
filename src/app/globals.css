@@ -30,14 +30,10 @@
 @layer base {
   :root {
     /* ui colors */
-    --primary: 262, 63%, 21%;
+    --primary: 241, 86%, 59%;
     --primary-foreground: 60, 3%, 18%;
     --prime: 277, 60%, 45%;
-
-    --primary-two: 277, 60%, 45%;
-    --primary-two-foreground: 60, 3%, 18%;
     --background: 0, 0%, 96%;
-
     --foreground: 60, 3%, 18%;
     --card: 0 0% 100%;
     --card-foreground: 60, 3%, 18%;
@@ -64,6 +60,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border;
   }

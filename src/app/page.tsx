@@ -10,25 +10,25 @@ import { ServiceCore } from "@/features/sales/ServiceCore";
 export default function Home() {
   return (
     <>
-      <section className="background-image">
+      <section id="start" className="background-image">
         <SalesHeader />
         <main className="bg-background-gray pb-[250px] pt-[150px]">
           <Hero />
         </main>
       </section>
-      <section className="bg-white pt-16">
+      <section id="bonuses" className="bg-white pt-16">
         <DiscounCard />
       </section>
-      <section className="bg-white py-16">
+      <section id="services" className="bg-white py-16">
         <ServiceCore />
       </section>
-      <section className="py-20">
+      <section id="counterparties" className="py-20">
         <Features />
       </section>
-      <section className="bg-white py-20">
+      <section id="tariffs" className="py-20">
         <Tariffs />
       </section>
-      <section className="py-20">
+      <section id="faq" className="py-20 bg-white">
         <Faq />
       </section>
       <Footer />

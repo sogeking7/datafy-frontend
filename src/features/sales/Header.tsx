@@ -10,23 +10,24 @@ export function SalesHeader() {
         variant="constrainedPadded"
         className="flex justify-between py-4 items-center"
       >
-        <div>
-          <Image
-            alt="datafy.kz logo"
-            src="/logo.svg"
-            width="110"
-            height="50"
-          />
-        </div>
+        <Link href="/">
+          <Image alt="datafy.kz logo" src="/logo.svg" width="110" height="50" />
+        </Link>
         <div className="flex gap-5">
           <Link href={"/auth/login"}>
-            <Button className="px-6 font-sans" variant={'light'}>Войти</Button>
+            <Button className="px-6 font-sans" variant={"light"}>
+              Войти
+            </Button>
           </Link>
           <Link href={"/auth/create-account"}>
-            <Button variant={'light'} className="gap-3 pl-2 pr-4">
+            <Button variant={"light"} className="gap-3 pl-2 pr-4">
               <div className="bg-[#f4f4f4] rounded-md p-1">
-
-              <Image src="/iconly/user.svg" width={20} height={20} alt="user" />
+                <Image
+                  src="/iconly/user.svg"
+                  width={20}
+                  height={20}
+                  alt="user"
+                />
               </div>
               Регистрация
             </Button>

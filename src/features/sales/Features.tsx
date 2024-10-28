@@ -12,7 +12,7 @@ export const Features = () => {
         поставщик или заказчик. Проверьте на наличие в реестрах недобросовестных
         поставщиков.
       </p>
-      <div className="grid grid-cols-2 mt-10 gap-8">
+      <div className="grid grid-cols-2 mt-10 gap-8 text-balance">
         <div className="col-span-2 bg-white rounded-2xl flex flex-row pt-12 px-12 gap-12">
           <div className="h-full flex justify-center flex-col pb-12">
             <h1 className="font-semibold text-3xl">Скорость и эффективность</h1>

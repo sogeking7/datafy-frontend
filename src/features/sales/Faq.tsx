@@ -7,6 +7,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const faqData: { q: string; a?: string }[] = [
   {
@@ -36,15 +38,17 @@ export const Faq = () => {
           <h2 className="font-semibold text-xl mt-5 text-secondary">
             Проверьте контрагентов уже сейчас!
           </h2>
-          <button className="mt-6 font-semibold flex gap-3 items-center text-black text-base">
-            Начать проверку
-            <ChevronRight className="size-5" />
-          </button>
+          <Link href="#start">
+            <Button className="mt-6 gap-3 relative right-4 text-accent-foreground" variant={"link"}>
+              Начать проверку
+              <ChevronRight className="size-5" />
+            </Button>
+          </Link>
         </div>
         <Accordion
           type="multiple"
           defaultValue={["item-0"]}
-          className="col-span-2 flex gap-2 flex-col"
+          className="col-span-2 flex gap-3 flex-col"
         >
           {faqData.map((item, index) => (
             <AccordionItem key={index} value={`item-${index}`} className={""}>

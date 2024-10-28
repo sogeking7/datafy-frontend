@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "@/ui/Container";
 import Image from "next/image";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 
 export const Footer = () => {
@@ -10,7 +11,9 @@ export const Footer = () => {
     <footer className="absolute bottom-0 w-full bg-[#151515] py-12">
       <Container>
         <div className=" flex gap-10 items-center">
-          <Image src={"/logo-light.svg"} alt="logo" width="110" height="50" />
+          <Link href="/">
+            <Image src={"/logo-light.svg"} alt="logo" width="110" height="50" />
+          </Link>
           <hr className="w-full bg-[#333333] h-[2px] " />
         </div>
         <nav className="grid  gap-10 grid-cols-8 mt-12">
@@ -21,12 +24,36 @@ export const Footer = () => {
           </p>
           <ul className="gap-3 text-[#838383] col-span-2 flex flex-col justify-center">
             <h1 className="text-white font-semibold text-lg">Главная</h1>
-            <li>Главный экран</li>
-            <li>Бонусы</li>
-            <li>Что предлагает сервис</li>
-            <li>Проверка контрагентов</li>
-            <li>Тарифные планы</li>
-            <li>Часто задаваемые вопросы</li>
+            <li>
+              <Link className="hover:underline" href="#start">
+                Главный экран
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="#bonuses">
+                Бонусы
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="#services">
+                Что предлагает сервис
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="#counterparties">
+                Проверка контрагентов
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="#tariffs">
+                Тарифные планы
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="#faq">
+                Часто задаваемые вопросы
+              </Link>
+            </li>
           </ul>
           <div className="col-span-4">
             <SearchData />
