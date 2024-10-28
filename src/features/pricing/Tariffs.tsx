@@ -7,8 +7,8 @@ export const Tariffs = () => {
       <h1 className="font-semibold text-4xl md:text-5xl text-center">
         Тарифные планы
       </h1>
-      <div className="mt-12 grid grid-cols-3 gap-8 md:gap-10">
-        <div className="md:col-span-1 col-span-full">
+      <div className="mt-12 grid grid-cols-3 gap-8 md:gap-10 max-lg:max-w-sm m-auto">
+        <div className="lg:col-span-1 col-span-full">
           <div className="relative bg-white p-4 rounded-lg">
             <div className="gap-6 flex flex-col p-4">
               <div className="bg-[#f4f4f4] text-sm rounded-sm text-[#333] font-semibold px-6 py-1 w-max">
@@ -31,7 +31,7 @@ export const Tariffs = () => {
             </Button>
           </div>
         </div>
-        <div className="max-md:row-start-3 md:col-span-1 col-span-full">
+        <div className="max-lg:row-start-3 lg:col-span-1 col-span-full">
           <div className="relative bg-primary rounded-lg p-4">
             <div className="gap-6 flex flex-col p-4">
               <div className="bg-[#f4f4f4] text-sm rounded-sm text-[#333] font-semibold px-6 py-1 w-max">
@@ -59,7 +59,7 @@ export const Tariffs = () => {
             </Button>
           </div>
         </div>
-        <div className="md:col-span-1 col-span-full">
+        <div className="lg:col-span-1 col-span-full">
           <div className="relative  bg-white p-4 rounded-lg">
             <div className="gap-6 flex flex-col p-4">
               <div className="bg-[#f4f4f4]  text-sm rounded-sm text-[#333] font-semibold px-6 py-1 w-max">
@@ -84,7 +84,7 @@ export const Tariffs = () => {
             </Button>
           </div>
         </div>
-        <div className="md:hidden md:col-span-1 col-span-full">
+        <div className="lg:hidden lg:col-span-1 col-span-full">
           <div className="relative  bg-white p-4 rounded-lg">
             <div className="gap-6 flex flex-col p-4">
               <div className="bg-[#f4f4f4]  text-sm rounded-sm text-[#333] font-semibold px-6 py-1 w-max">
@@ -107,7 +107,7 @@ export const Tariffs = () => {
           </div>
         </div>
       </div>
-      <div className="max-md:hidden bg-white mt-10 p-9 rounded-lg">
+      <div className="max-lg:hidden bg-white mt-10 p-9 rounded-lg">
         <div className="bg-[#f4f4f4] text-sm rounded-sm text-secondary font-semibold px-6 py-1 w-max">
           Для всех пользователей
         </div>

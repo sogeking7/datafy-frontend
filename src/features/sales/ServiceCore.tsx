@@ -28,7 +28,7 @@ export const ServiceCore = () => {
       <h1 className="font-semibold text-4xl md:text-5xl mt-8 mb-12">
         Что предлагает сервис
       </h1>
-      <div className="flex flex-col items-center md:flex-row gap-10">
+      <div className="flex flex-col items-center lg:flex-row gap-10 max-lg:max-w-sm m-auto">
         {list.map((i) => (
           <ServiceCoreCard key={i.n} data={i} />
         ))}
@@ -47,7 +47,7 @@ const ServiceCoreCard = ({
   };
 }) => {
   return (
-    <div className="md:w-[33%] max-w-sm">
+    <div className="lg:w-[33%] ">
       <div className="rounded-xl aspect-square bg-background flex items-center justify-center">
         <img
           alt="photo"
