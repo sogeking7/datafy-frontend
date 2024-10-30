@@ -21,7 +21,7 @@ export default function SearchPage() {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/components">
+              <BreadcrumbLink href="/search">
                 Результаты поиска
               </BreadcrumbLink>
             </BreadcrumbItem>

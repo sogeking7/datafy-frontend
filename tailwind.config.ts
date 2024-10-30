@@ -22,6 +22,15 @@ const config = {
     },
     extend: {
       colors: {
+        "legal-entity": {
+          DEFAULT: "hsl(var(--legal-entity))",
+        },
+        "individual-entrepreneur": {
+          DEFAULT: "hsl(var(--individual-entrepreneur))",
+        },
+        individual: {
+          DEFAULT: "hsl(var(--individual))",
+        },
         prime: "hsl(var(--prime))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
