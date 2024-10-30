@@ -53,13 +53,7 @@ export const AccountForm: React.FC = () => {
     resolver: zodResolver(accountSchema),
     defaultValues: user
       ? {
-          username: user.username,
-          email: user.email,
-          profile: {
-            name: user.profile.name,
-            about: user.profile.about,
-            city: user.profile.city || "",
-          },
+
           password: "",
           passwordConfirm: "",
         }
@@ -80,8 +74,10 @@ export const AccountForm: React.FC = () => {
   const onSubmit = useCallback(
     async (values: FormData) => {
       if (user) {
+        // TODO: fix it
         const { data, success } = await UsersService().updateUser(
-          user.id,
+          // user.id,
+          "example-id",
           values,
         );
         if (success) {
@@ -92,12 +88,6 @@ export const AccountForm: React.FC = () => {
           setChangePassword(false);
           reset({
             // username: updated_user.username,
-            email: updated_user.email,
-            profile: {
-              name: updated_user.profile.name,
-              about: updated_user.profile.about,
-              city: updated_user.profile.city || "",
-            },
             password: "",
             passwordConfirm: "",
           });
@@ -253,7 +243,8 @@ export const AccountForm: React.FC = () => {
       </form>
       <div>
         You cannot change your username{" "}
-        <span className="underline">{user?.username}</span>. It will be added in
+        {/* TODO:fix it */}
+        {/* <span className="underline">{user?.username}</span>. It will be added in */}
         future.
       </div>
     </Form>
