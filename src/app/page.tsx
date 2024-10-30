@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <section id="start" className="background-image">
-        <SalesHeader />
+        <SalesHeader variant="constrainedPadded"/>
         <main className="bg-background-gray pb-[250px] pt-[150px]">
           <Hero />
         </main>

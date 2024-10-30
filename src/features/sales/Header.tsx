@@ -10,15 +10,33 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { AlignLeftIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export function SalesHeader() {
+export function SalesHeader({
+  variant,
+  className,
+}: {
+  className?: string;
+  variant:
+    | "largePadded"
+    | "fullMobileConstrainedPadded"
+    | "constrainedPadded"
+    | "fullMobileBreakpointPadded"
+    | "breakpointPadded"
+    | "narrowConstrainedPadded";
+}) {
   return (
-    <header className="sticky top-0 z-50 w-full border-border/40 bg-white/60 h-16 md:h-20">
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full border-border/40 bg-white/60 h-16 md:h-[74px]",
+        className
+      )}
+    >
       <Container
-        variant="constrainedPadded"
+        variant={variant}
         className="flex justify-between py-3 items-center"
       >
-        <Link href="/">
+        <Link href="/" className="relative -left-[5px] md:-left-[7px]">
           <img
             alt="datafy.kz logo"
             src="/logo.svg"
@@ -39,7 +57,7 @@ export function SalesHeader() {
             <SheetContent>
               <nav className="mt-7 flex-col flex gap-3 md:gap-9 list-none">
                 <li>
-                  <RegisterBtn  className="w-full" />
+                  <RegisterBtn className="w-full" />
                 </li>
               </nav>
             </SheetContent>

@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "@/ui/Container";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 type FormType = {
@@ -36,6 +37,8 @@ export const Hero = () => {
 };
 
 export const SearchData = () => {
+  const router = useRouter();
+
   const form = useForm<FormType>({
     defaultValues: {
       q: "",
@@ -43,7 +46,7 @@ export const SearchData = () => {
   });
 
   function onSubmit(values: FormType) {
-    console.log(values);
+    router.push(`/search?q=${values.q}`);
   }
   return (
     <form

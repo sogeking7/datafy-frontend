@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 const containerVariants = cva("mx-auto px-4 sm:px-6 lg:px-8", {
   variants: {
     variant: {
+      largePadded: "px-4 container sm:px-6 lg:px-8",
       fullMobileConstrainedPadded: "max-w-7xl sm:px-6 lg:px-8",
       constrainedPadded: "max-w-7xl px-4 sm:px-6 lg:px-8",
       fullMobileBreakpointPadded: "container mx-auto sm:px-6 lg:px-8",
@@ -19,7 +20,7 @@ const containerVariants = cva("mx-auto px-4 sm:px-6 lg:px-8", {
 
 export interface ContainerProps
   extends React.HTMLAttributes<HTMLDivElement>,
-  VariantProps<typeof containerVariants> {
+    VariantProps<typeof containerVariants> {
   asChild?: boolean;
 }
 
