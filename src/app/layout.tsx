@@ -16,11 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-gilroy">
-        <Providers>
-          <div className="relative flex min-h-screen pb-[600px] md:pb-[calc(470px)] lg:pb-[calc(430px)] flex-col bg-white">
-            {children}
-          </div>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

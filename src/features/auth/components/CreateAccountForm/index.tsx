@@ -31,23 +31,32 @@ import { useAuth } from "../../providers/client";
 
 const createAccountSchema = z
   .object({
-    profile: z.object({
-      name: z.string().trim().min(1),
-      about: z.string().trim().min(1),
-      city: z.string().trim().optional(),
-    }),
-    username: z.string().trim().min(1),
-    email: z.string().email(),
+    fullname: z
+      .string()
+      .trim()
+      .min(1, { message: "Поле обязательно для заполнения" }),
+    about: z
+      .string()
+      .trim()
+      .min(1, { message: "Поле обязательно для заполнения" }),
+    city: z.string().trim().optional(),
+    username: z
+      .string()
+      .trim()
+      .min(1, { message: "Поле обязательно для заполнения" }),
+    email: z
+      .string()
+      .email("Неверный адрес электронной почты"),
     password: z
       .string()
-      .min(6, { message: "Password must be at least 6 characters" }),
+      .min(6, { message: "Пароль должен содержать минимум 6 символов" }),
     passwordConfirm: z
       .string()
-      .min(6, { message: "Password must be at least 6 characters" }),
+      .min(6, { message: "Пароль должен содержать минимум 6 символов" }),
   })
   .refine((data) => data.password === data.passwordConfirm, {
     path: ["passwordConfirm"],
-    message: "Passwords do not match",
+    message: "Пароли не совпадают",
   });
 
 type FormData = z.infer<typeof createAccountSchema>;
@@ -64,6 +73,15 @@ export const CreateAccountForm: React.FC = () => {
 
   const form = useForm<FormData>({
     resolver: zodResolver(createAccountSchema),
+    defaultValues: {
+      about: "",
+      city: "",
+      email: "",
+      password: "",
+      passwordConfirm: "",
+      fullname: "",
+      username: "",
+    }
   });
 
   const onSubmit = useCallback(
@@ -71,7 +89,7 @@ export const CreateAccountForm: React.FC = () => {
       const { success, data } = await AuthService().create(values);
 
       if (!success) {
-        const message = data || "There was an error creating the account.";
+        const message = data || "Произошла ошибка при создании аккаунта.";
         setError(message);
         return;
       }
@@ -89,13 +107,13 @@ export const CreateAccountForm: React.FC = () => {
         else
           router.push(
             `/account?success=${encodeURIComponent(
-              "Account created successfully",
+              "Аккаунт успешно создан",
             )}`,
           );
       } else {
         clearTimeout(timer);
         setError(
-          "There was an error with the credentials provided. Please try again.",
+          "Произошла ошибка с указанными данными. Пожалуйста, попробуйте снова.",
         );
       }
     },
@@ -106,7 +124,7 @@ export const CreateAccountForm: React.FC = () => {
     <Card className="max-w-md w-full">
       <CardHeader className="flex flex-row items-center gap-2">
         <ArrowLeft onClick={() => router.back()} />
-        <h1 className="text-3xl">Authorization</h1>
+        <h1 className="text-3xl">Авторизация</h1>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -118,12 +136,12 @@ export const CreateAccountForm: React.FC = () => {
 
             <FormField
               control={form.control}
-              name="profile.name"
+              name="fullname"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Полное имя</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your name" {...field} />
+                    <Input placeholder="Введите ваше полное имя" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -132,14 +150,14 @@ export const CreateAccountForm: React.FC = () => {
 
             <FormField
               control={form.control}
-              name="profile.about"
+              name="about"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>About</FormLabel>
+                  <FormLabel>О себе</FormLabel>
                   <FormControl>
                     <Textarea
                       className="resize-none"
-                      placeholder="Enter your bio"
+                      placeholder="Введите информацию о себе"
                       {...field}
                     />
                   </FormControl>
@@ -150,12 +168,12 @@ export const CreateAccountForm: React.FC = () => {
 
             <FormField
               control={form.control}
-              name="profile.city"
+              name="city"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>City</FormLabel>
+                  <FormLabel>Город</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your city" {...field} />
+                    <Input placeholder="Введите ваш город" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -167,9 +185,9 @@ export const CreateAccountForm: React.FC = () => {
               name="username"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>Имя пользователя</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your username" {...field} />
+                    <Input placeholder="Введите ваше имя пользователя" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -181,9 +199,9 @@ export const CreateAccountForm: React.FC = () => {
               name="email"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Email Address</FormLabel>
+                  <FormLabel>Электронная почта</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your email" {...field} />
+                    <Input placeholder="Введите вашу почту" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -195,10 +213,10 @@ export const CreateAccountForm: React.FC = () => {
               name="password"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>Пароль</FormLabel>
                   <FormControl>
                     <PasswordInput
-                      placeholder="Enter your password"
+                      placeholder="Введите ваш пароль"
                       {...field}
                     />
                   </FormControl>
@@ -212,10 +230,10 @@ export const CreateAccountForm: React.FC = () => {
               name="passwordConfirm"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Confirm Password</FormLabel>
+                  <FormLabel>Подтверждение пароля</FormLabel>
                   <FormControl>
                     <PasswordInput
-                      placeholder="Confirm your password"
+                      placeholder="Подтвердите ваш пароль"
                       {...field}
                     />
                   </FormControl>
@@ -225,16 +243,16 @@ export const CreateAccountForm: React.FC = () => {
             />
 
             <Button type="submit" className="mt-4">
-              {loading ? "Processing" : "Create Account"}
+              {loading ? "Обработка" : "Создать аккаунт"}
             </Button>
           </form>
         </Form>
       </CardContent>
       <CardFooter>
         <div className="text-sm">
-          {"Already have an account? "}
+          {"Уже есть аккаунт? "}
           <Link className="hover:underline" href={`/auth/login${allParams}`}>
-            Login
+            Войти
           </Link>
         </div>
       </CardFooter>

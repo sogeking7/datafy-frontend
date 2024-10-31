@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Cookies from "js-cookie";
 import {
   Form,
   FormField,
@@ -29,8 +28,10 @@ import { AuthService } from "../../api/auth.service";
 import { useAuth } from "../../providers/client";
 
 const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(1),
+  email: z.string().email("Неверный адрес электронной почты"),
+  password: z
+    .string()
+    .min(6, { message: "Пароль должен содержать минимум 6 символов" }),
 });
 
 type FormData = z.infer<typeof loginSchema>;
@@ -62,7 +63,7 @@ export const LoginForm: React.FC = () => {
         else router.push("/account");
       } else {
         setError(
-          "There was an error with the credentials provided. Please try again.",
+          "Произошла ошибка при вводе данных. Пожалуйста, попробуйте еще раз.",
         );
       }
     },
@@ -73,7 +74,7 @@ export const LoginForm: React.FC = () => {
     <Card className="max-w-md w-full">
       <CardHeader className="flex flex-row items-center gap-2">
         <ArrowLeft onClick={() => router.back()} />
-        <h1 className="text-3xl">Login</h1>
+        <h1 className="text-3xl">Вход</h1>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -89,7 +90,7 @@ export const LoginForm: React.FC = () => {
                 <FormItem className="w-full">
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your email" {...field} />
+                    <Input placeholder="Введите ваш email" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -101,10 +102,10 @@ export const LoginForm: React.FC = () => {
               name="password"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>Пароль</FormLabel>
                   <FormControl>
                     <PasswordInput
-                      placeholder="Enter your password"
+                      placeholder="Введите ваш пароль"
                       {...field}
                     />
                   </FormControl>
@@ -118,7 +119,7 @@ export const LoginForm: React.FC = () => {
               disabled={form.formState.isSubmitting}
               className="mt-4"
             >
-              {form.formState.isSubmitting ? "Processing..." : "Login"}
+              {form.formState.isSubmitting ? "В процессе..." : "Войти"}
             </Button>
           </form>
         </Form>
@@ -129,15 +130,9 @@ export const LoginForm: React.FC = () => {
             className="text-sm hover:underline"
             href={`/auth/create-account${allParams}`}
           >
-            Create an account
+            Создать аккаунт
           </Link>
           <br />
-          {/* <Link
-            className="text-sm hover:underline"
-            href={`/auth/recovery-password${allParams}`}
-          >
-            Recover your password
-          </Link> */}
         </div>
       </CardFooter>
     </Card>

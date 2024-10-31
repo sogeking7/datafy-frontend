@@ -9,7 +9,7 @@ import { SalesTariffs } from "@/features/sales/SalesTariffs";
 
 export default function Home() {
   return (
-    <>
+    <div className="relative flex min-h-screen pb-[600px] md:pb-[calc(470px)] lg:pb-[calc(430px)] flex-col bg-white">
       <section id="start" className="background-image">
         <SalesHeader variant="constrainedPadded" />
         <div className="bg-background-gray pb-[250px] pt-[150px]">
@@ -32,6 +32,6 @@ export default function Home() {
         <SalesFaq />
       </section>
       <SalesFooter />
-    </>
+    </div>
   );
 }
