@@ -19,7 +19,7 @@ const list = [
   },
 ];
 
-export const ServiceCore = () => {
+export const SalesService = () => {
   return (
     <Container>
       <button className="font-semibold rounded-lg text-base md:text-lg py-2 px-4  uppercase bg-[#F2F1FF] text-primary">
@@ -30,14 +30,14 @@ export const ServiceCore = () => {
       </h1>
       <div className="flex flex-col items-center lg:flex-row gap-10 max-lg:max-w-sm m-auto">
         {list.map((i) => (
-          <ServiceCoreCard key={i.n} data={i} />
+          <SalesServiceCard key={i.n} data={i} />
         ))}
       </div>
     </Container>
   );
 };
 
-const ServiceCoreCard = ({
+const SalesServiceCard = ({
   data,
 }: {
   data: {
@@ -49,10 +49,13 @@ const ServiceCoreCard = ({
   return (
     <div className="lg:w-[33%] ">
       <div className="rounded-xl aspect-square bg-background flex items-center justify-center">
-        <img
+        <Image
           alt="photo"
-          className="size-[300px] aspect-square"
           src={`/service-core-${data.id}.svg`}
+          width={300}
+          height={300}
+          className="aspect-square"
+          priority
         />
       </div>
       <h1 className="mt-6 text-2xl md:text-3xl font-semibold">{data.n}</h1>

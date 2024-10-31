@@ -4,11 +4,11 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { SearchForm } from "@/features/search/components/SearchForm";
 import { SearchResults } from "@/features/search/components/SearchResults";
+import { Suspense } from "react";
 
 export default function SearchPage() {
   return (
@@ -21,14 +21,14 @@ export default function SearchPage() {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/search">
-                Результаты поиска
-              </BreadcrumbLink>
+              <BreadcrumbLink href="/search">Результаты поиска</BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <SearchForm />
-        <SearchResults />
+        <Suspense>
+          <SearchForm />
+          <SearchResults />
+        </Suspense>
       </Container>
     </main>
   );

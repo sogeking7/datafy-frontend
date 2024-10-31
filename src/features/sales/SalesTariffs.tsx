@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "@/ui/Container";
 
-export const Tariffs = () => {
+export const SalesTariffs = () => {
   return (
     <Container>
       <h1 className="font-semibold text-4xl md:text-5xl text-center">

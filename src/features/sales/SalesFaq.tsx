@@ -33,7 +33,7 @@ const faqData: { q: string; a?: string }[] = [
   },
 ] as const;
 
-export const Faq = () => {
+export const SalesFaq = () => {
   return (
     <Container>
       <div className="grid grid-cols-3 gap-8">
@@ -44,7 +44,7 @@ export const Faq = () => {
           <h2 className="font-semibold text-sm md:text-xl mt-5 text-secondary">
             Проверьте контрагентов уже сейчас!
           </h2>
-          <Link href="#start">
+          <Link href="/search">
             <Button
               size={"lg"}
               className="mt-6 gap-3 relative right-8 md:right-8 text-accent-foreground"

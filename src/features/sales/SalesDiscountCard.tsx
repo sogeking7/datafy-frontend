@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "@/ui/Container";
 
-export const DiscounCard = () => {
+export const SalesDiscounCard = () => {
   return (
     <Container>
       <div className="bg-[#222] p-8 rounded-xl relative flex flex-col gap-5 justify-between">

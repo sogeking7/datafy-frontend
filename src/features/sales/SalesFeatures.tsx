@@ -1,7 +1,7 @@
 import { Container } from "@/ui/Container";
 import Image from "next/image";
 
-export const Features = () => {
+export const SalesFeatures = () => {
   return (
     <Container>
       <h1 className="font-semibold text-4xl md:text-5xl md:text-center">

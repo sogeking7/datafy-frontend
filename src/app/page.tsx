@@ -1,37 +1,37 @@
-import { DiscounCard } from "@/features/pricing/DiscountCard";
-import { Tariffs } from "@/features/pricing/Tariffs";
-import { Faq } from "@/features/sales/Faq";
-import { Features } from "@/features/sales/Features";
-import { Footer } from "@/features/sales/Footer";
-import { SalesHeader } from "@/features/sales/Header";
-import { Hero } from "@/features/sales/Hero";
-import { ServiceCore } from "@/features/sales/ServiceCore";
+import { SalesDiscounCard } from "@/features/sales/SalesDiscountCard";
+import { SalesFaq } from "@/features/sales/SalesFaq";
+import { SalesFeatures } from "@/features/sales/SalesFeatures";
+import { SalesFooter } from "@/features/sales/SalesFooter";
+import { SalesHeader } from "@/features/sales/SalesHeader";
+import { SalesHero } from "@/features/sales/SalesHero";
+import { SalesService } from "@/features/sales/SalesService";
+import { SalesTariffs } from "@/features/sales/SalesTariffs";
 
 export default function Home() {
   return (
     <>
       <section id="start" className="background-image">
-        <SalesHeader variant="constrainedPadded"/>
-        <main className="bg-background-gray pb-[250px] pt-[150px]">
-          <Hero />
-        </main>
+        <SalesHeader variant="constrainedPadded" />
+        <div className="bg-background-gray pb-[250px] pt-[150px]">
+          <SalesHero />
+        </div>
       </section>
       <section id="bonuses" className="bg-white pt-16">
-        <DiscounCard />
+        <SalesDiscounCard />
       </section>
       <section id="services" className="bg-white py-16">
-        <ServiceCore />
+        <SalesService />
       </section>
       <section id="counterparties" className="bg-background py-20">
-        <Features />
+        <SalesFeatures />
       </section>
       <section id="tariffs" className="bg-background py-20">
-        <Tariffs />
+        <SalesTariffs />
       </section>
       <section id="faq" className="py-20 bg-white">
-        <Faq />
+        <SalesFaq />
       </section>
-      <Footer />
+      <SalesFooter />
     </>
   );
 }

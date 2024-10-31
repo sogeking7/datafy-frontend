@@ -1,5 +1,5 @@
-import { Footer } from "@/features/sales/Footer";
-import { SalesHeader } from "@/features/sales/Header";
+import { SalesFooter } from "@/features/sales/SalesFooter";
+import { SalesHeader } from "@/features/sales/SalesHeader";
 
 export default function RootLayout({
   children,
@@ -8,11 +8,11 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <SalesHeader variant="largePadded" className="bg-white"/>
+      <SalesHeader variant="largePadded" className="bg-white" />
       <div className="bg-background md:min-h-[calc(100vh-74px)] min-h-[calc(100vh-64px)]">
         {children}
       </div>
-      <Footer />
+      <SalesFooter />
     </>
   );
 }

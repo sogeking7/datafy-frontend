@@ -6,7 +6,6 @@ import { LoginBtn, RegisterBtn } from "../auth/components/Buttons";
 import {
   Sheet,
   SheetContent,
-  SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { AlignLeftIcon } from "lucide-react";
@@ -37,10 +36,13 @@ export function SalesHeader({
         className="flex justify-between py-3 items-center"
       >
         <Link href="/" className="relative -left-[5px] md:-left-[7px]">
-          <img
+          <Image
             alt="datafy.kz logo"
             src="/logo.svg"
+            width={110}
+            height={50}
             className="w-[84px] md:w-[110px] h-[36px] md:h-[50px]"
+            priority
           />
         </Link>
         <div className="flex gap-5">
