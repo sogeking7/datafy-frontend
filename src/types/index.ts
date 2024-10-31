@@ -6,5 +6,8 @@ export type Counterparty = {
   data: string;
   author: string;
   map: string;
+  current_type: string;
+  country_name: string;
+  country_code: string;
   date: string;
 };

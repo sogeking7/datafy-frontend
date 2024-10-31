@@ -57,9 +57,9 @@ export const SearchForm = () => {
       <Tabs
         value={activeTab}
         onValueChange={(value) => handleTabChange(value)}
-        className="mt-5 w-[605px]"
+        className="mt-5 md:w-[605px] max-md:overflow-x-scroll "
       >
-        <TabsList className="w-full">
+        <TabsList className="">
           <TabsTrigger value="all">Все</TabsTrigger>
           <TabsTrigger value="legal-entity">Юр. лицо</TabsTrigger>
           <TabsTrigger value="individual-entrepreneur">
