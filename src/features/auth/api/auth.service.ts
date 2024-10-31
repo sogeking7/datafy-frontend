@@ -1,9 +1,8 @@
 import { apiPayload } from "@/lib/axios";
-import { Create, CreateResponse, Response } from "@/types/api";
 import { isAxiosError } from "axios";
 import {
-  ForgotPassword,
-  ForgotPasswordResponse,
+  CreateUser,
+  CreateUserResponse,
   GetMe,
   GetMeResponse,
   Login,
@@ -12,11 +11,11 @@ import {
   LogoutResponse,
   Refresh,
   RefreshResponse,
-} from "@/types/auth";
+} from "@/features/auth/api/auth.service.types";
 import { User } from "@/types";
 
 export const AuthService = () => {
-  const url = "/users";
+  const url = "/user";
 
   const getMe: GetMe = async () => {
     try {
@@ -33,11 +32,11 @@ export const AuthService = () => {
     }
   };
 
-  const login: Login = async (args) => {
+  const login: Login = async (body) => {
     try {
       const { data } = await apiPayload().post<LoginResponse>(
-        `${url}/login`,
-        args
+        `${url}/token`,
+        body
       );
       return {
         success: true,
@@ -51,15 +50,15 @@ export const AuthService = () => {
     }
   };
 
-  const create: Create<User> = async (args) => {
+  const create: CreateUser = async (body) => {
     try {
-      const { data } = await apiPayload().post<CreateResponse<User>>(
-        `${url}`,
-        args
+      const { data } = await apiPayload().post<CreateUserResponse>(
+        `${url}/register`,
+        body
       );
       return {
         success: true,
-        data: data.doc,
+        data,
       };
     } catch (e: unknown) {
       return {
@@ -72,24 +71,6 @@ export const AuthService = () => {
   const logout: Logout = async () => {
     try {
       const { data } = await apiPayload().post<LogoutResponse>(`${url}/logout`);
-      return {
-        success: true,
-        data,
-      };
-    } catch (e: unknown) {
-      return {
-        success: false,
-        data: isAxiosError(e) ? e.message : (e as Error).message,
-      };
-    }
-  };
-
-  const forgotPassword: ForgotPassword = async (args) => {
-    try {
-      const { data } = await apiPayload().post<ForgotPasswordResponse>(
-        `${url}/forgot-password`,
-        args
-      );
       return {
         success: true,
         data,
@@ -123,7 +104,6 @@ export const AuthService = () => {
     login,
     create,
     logout,
-    forgotPassword,
     getMe,
     refreshToken,
   };

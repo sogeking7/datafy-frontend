@@ -1,5 +1,20 @@
-import { User } from ".";
-import { Response } from "./api";
+import { User } from "@/types";
+import { Response } from "@/types/api";
+
+export type CreateUser = (body: {
+  fullname: string;
+  username: string;
+  about: string;
+  city: string;
+  email: string;
+  password: string;
+}) => Promise<Response<CreateUserResponse>>;
+
+export type CreateUserResponse = {
+  uuid: string;
+  email: string;
+  is_active: boolean;
+};
 
 export type Login = (body: {
   email: string;
@@ -7,10 +22,8 @@ export type Login = (body: {
 }) => Promise<Response<LoginResponse>>;
 
 export type LoginResponse = {
-  message: string;
-  user: User;
-  token: string;
-  exp: number;
+  access_token: string;
+  token_type: string;
 };
 
 export type Logout = () => Promise<Response<LogoutResponse>>;
@@ -26,20 +39,6 @@ export type GetMeResponse = {
   collection: string;
   token: string;
   exp: number;
-};
-
-export type ForgotPassword = (body: {
-  email: string;
-}) => Promise<Response<ForgotPasswordResponse>>;
-
-export type ForgotPasswordResponse = {
-  message: string;
-};
-
-export type VerifyUser = () => Promise<Response<VerifyUserResponse>>;
-
-export type VerifyUserResponse = {
-  message: string;
 };
 
 export type Refresh = () => Promise<Response<RefreshResponse>>;

@@ -1,20 +1,16 @@
 import { apiPayload } from "@/lib/axios";
-import { User } from "@/types";
-import { UpdateById, UpdateByIdResponse } from "@/types/api";
 import { isAxiosError } from "axios";
+import { UpdateUserById } from "./users.service.types";
 
 export const UsersService = () => {
   const url = "/users";
 
-  const updateUser: UpdateById<User> = async (id, body) => {
+  const updateUser: UpdateUserById = async (id, body) => {
     try {
-      const { data } = await apiPayload().patch<UpdateByIdResponse<User>>(
-        `${url}/${id}`,
-        body,
-      );
+      const { data } = await apiPayload().patch<any>(`${url}/${id}`, body);
       return {
         success: true,
-        data: data.doc,
+        data,
       };
     } catch (e: unknown) {
       return {
