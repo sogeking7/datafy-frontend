@@ -5,7 +5,7 @@ export type CreateUser = (body: {
   fullname: string;
   username: string;
   about: string;
-  city: string;
+  city?: string;
   email: string;
   password: string;
 }) => Promise<Response<CreateUserResponse>>;

@@ -5,7 +5,7 @@ import { SalesSearch } from "./SalesSearch";
 
 export const SalesFooter = () => {
   return (
-    <footer className="absolute bottom-0 w-full bg-[#151515] py-12">
+    <footer className="absolute bottom-0 max-sm:bottom-[90px] w-full bg-[#151515] py-12">
       <Container>
         <div className=" flex gap-10 items-center">
           <Link href="/">
@@ -14,7 +14,7 @@ export const SalesFooter = () => {
           <hr className="w-full bg-[#333333] h-[2px] " />
         </div>
         <nav className="grid gap-10 grid-cols-8 mt-12">
-          <p className="text-secondary font-semibold col-span-full md:col-span-2 text-balance">
+          <p className="text-secondary font-semibold max-md:w-[320px] max-md:text-sm col-span-full md:col-span-2 text-balance">
             ТОО «СБ24»,БИН: 231040033967  Алматы, г. Бостандыкский Район,
             Проспект Нұрсұлтан Назарбаев, Дом 223, Н.П. 404 © 2024. Все права
             защищены

@@ -86,7 +86,8 @@ export const CreateAccountForm: React.FC = () => {
 
   const onSubmit = useCallback(
     async (values: FormData) => {
-      const { success, data } = await AuthService().create(values);
+      const {passwordConfirm, ...restValues} =  values;
+      const { success, data } = await AuthService().create(restValues);
 
       if (!success) {
         const message = data || "Произошла ошибка при создании аккаунта.";
@@ -101,7 +102,8 @@ export const CreateAccountForm: React.FC = () => {
 
       const res = await AuthService().login(values);
       if (res.success) {
-        login(res.data);
+        // TODO: fix
+        // login(res.data);
         clearTimeout(timer);
         if (redirect) router.push(redirect as string);
         else

@@ -58,7 +58,8 @@ export const LoginForm: React.FC = () => {
     async (values: FormData) => {
       const { success, data } = await AuthService().login(values);
       if (success) {
-        login(data);
+        // TODO: fix
+        // login(data);
         if (redirect?.current) router.push(redirect.current as string);
         else router.push("/account");
       } else {
