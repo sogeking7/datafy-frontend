@@ -10,3 +10,13 @@ export const isClient = () => {
   }
   return true;
 };
+
+export function createGoogleMapsLink(address: string): string {
+  const formattedAddress = encodeURIComponent(address);
+  return `https://www.google.com/maps/search/?api=1&query=${formattedAddress}`;
+}
+
+export function createYandexMapsLink(address: string): string {
+  const formattedAddress = encodeURIComponent(address);
+  return `https://yandex.com/maps/?text=${formattedAddress}`;
+}

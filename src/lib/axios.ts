@@ -1,20 +1,18 @@
 import axios from "axios";
-import { getPayloadToken } from "./cookies";
 
-const urlPayload = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const api = (token: string | null | undefined) =>
+const api = (access_token: string | null | undefined) =>
   axios.create({
-    baseURL: urlPayload,
+    baseURL: API_URL,
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      Authorization: token ? `JWT ${token}` : undefined,
+      Authorization: access_token ? `Bearer ${access_token}` : undefined,
     },
     withCredentials: true,
   });
 
 export const apiPayload = () => {
-  const token = getPayloadToken();
-  return api(token);
+  const access_token = localStorage.getItem("access-token");
+  return api(access_token);
 };

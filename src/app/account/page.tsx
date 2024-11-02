@@ -2,7 +2,7 @@ import { AccountForm } from "@/features/users/components/AccountForm";
 import { Container } from "@/ui/Container";
 import { LogoutBtn } from "@/features/auth/components/LogoutBtn";
 
-export default async function Account() {
+export default function Account() {
   return (
     <main>
       <Container>

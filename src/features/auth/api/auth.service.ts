@@ -12,14 +12,13 @@ import {
   Refresh,
   RefreshResponse,
 } from "@/features/auth/api/auth.service.types";
-import { User } from "@/types";
 
 export const AuthService = () => {
   const url = "/user";
 
   const getMe: GetMe = async () => {
     try {
-      const { data } = await apiPayload().get<GetMeResponse>(`${url}/me`);
+      const { data } = await apiPayload().get<GetMeResponse>(`${url}/me/`);
       return {
         success: true,
         data: data,
@@ -36,7 +35,12 @@ export const AuthService = () => {
     try {
       const { data } = await apiPayload().post<LoginResponse>(
         `${url}/token`,
-        body
+        body,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       return {
         success: true,

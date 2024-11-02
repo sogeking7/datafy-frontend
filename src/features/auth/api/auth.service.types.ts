@@ -5,7 +5,7 @@ export type CreateUser = (body: {
   fullname: string;
   username: string;
   about: string;
-  city?: string;
+  city: string;
   email: string;
   password: string;
 }) => Promise<Response<CreateUserResponse>>;
@@ -16,10 +16,7 @@ export type CreateUserResponse = {
   is_active: boolean;
 };
 
-export type Login = (body: {
-  email: string;
-  password: string;
-}) => Promise<Response<LoginResponse>>;
+export type Login = (body: FormData) => Promise<Response<LoginResponse>>;
 
 export type LoginResponse = {
   access_token: string;
@@ -34,12 +31,7 @@ export type LogoutResponse = {
 
 export type GetMe = (token?: string) => Promise<Response<GetMeResponse>>;
 
-export type GetMeResponse = {
-  user: User;
-  collection: string;
-  token: string;
-  exp: number;
-};
+export type GetMeResponse = User;
 
 export type Refresh = () => Promise<Response<RefreshResponse>>;
 

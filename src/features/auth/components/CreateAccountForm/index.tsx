@@ -39,14 +39,15 @@ const createAccountSchema = z
       .string()
       .trim()
       .min(1, { message: "Поле обязательно для заполнения" }),
-    city: z.string().trim().optional(),
+    city: z
+      .string()
+      .trim()
+      .min(1, { message: "Поле обязательно для заполнения" }),
     username: z
       .string()
       .trim()
       .min(1, { message: "Поле обязательно для заполнения" }),
-    email: z
-      .string()
-      .email("Неверный адрес электронной почты"),
+    email: z.string().email("Неверный адрес электронной почты"),
     password: z
       .string()
       .min(6, { message: "Пароль должен содержать минимум 6 символов" }),
@@ -81,12 +82,12 @@ export const CreateAccountForm: React.FC = () => {
       passwordConfirm: "",
       fullname: "",
       username: "",
-    }
+    },
   });
 
   const onSubmit = useCallback(
     async (values: FormData) => {
-      const {passwordConfirm, ...restValues} =  values;
+      const { passwordConfirm, ...restValues } = values;
       const { success, data } = await AuthService().create(restValues);
 
       if (!success) {
@@ -100,26 +101,24 @@ export const CreateAccountForm: React.FC = () => {
         setLoading(true);
       }, 1000);
 
-      const res = await AuthService().login(values);
-      if (res.success) {
-        // TODO: fix
-        // login(res.data);
-        clearTimeout(timer);
-        if (redirect) router.push(redirect as string);
-        else
-          router.push(
-            `/account?success=${encodeURIComponent(
-              "Аккаунт успешно создан",
-            )}`,
-          );
-      } else {
-        clearTimeout(timer);
-        setError(
-          "Произошла ошибка с указанными данными. Пожалуйста, попробуйте снова.",
-        );
-      }
+      // const res = await AuthService().login(values);
+      // if (res.success) {
+      //   // TODO: fix
+      //   // login(res.data);
+      //   clearTimeout(timer);
+      //   if (redirect) router.push(redirect as string);
+      //   else
+      //     router.push(
+      //       `/account?success=${encodeURIComponent("Аккаунт успешно создан")}`
+      //     );
+      // } else {
+      //   clearTimeout(timer);
+      //   setError(
+      //     "Произошла ошибка с указанными данными. Пожалуйста, попробуйте снова."
+      //   );
+      // }
     },
-    [login, router, searchParams],
+    [login, router, searchParams]
   );
 
   return (
@@ -189,7 +188,10 @@ export const CreateAccountForm: React.FC = () => {
                 <FormItem className="w-full">
                   <FormLabel>Имя пользователя</FormLabel>
                   <FormControl>
-                    <Input placeholder="Введите ваше имя пользователя" {...field} />
+                    <Input
+                      placeholder="Введите ваше имя пользователя"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

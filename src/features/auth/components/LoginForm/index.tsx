@@ -25,7 +25,6 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthService } from "../../api/auth.service";
-import { useAuth } from "../../providers/client";
 
 const loginSchema = z.object({
   email: z.string().email("Неверный адрес электронной почты"),
@@ -42,7 +41,6 @@ export const LoginForm: React.FC = () => {
     ? `?${searchParams.toString()}`
     : "";
   const redirect = useRef(searchParams.get("redirect"));
-  const { login } = useAuth();
   const router = useRouter();
   const [error, setError] = React.useState<string | null>(null);
 
@@ -54,22 +52,24 @@ export const LoginForm: React.FC = () => {
     },
   });
 
-  const onSubmit = useCallback(
-    async (values: FormData) => {
-      const { success, data } = await AuthService().login(values);
-      if (success) {
-        // TODO: fix
-        // login(data);
-        if (redirect?.current) router.push(redirect.current as string);
-        else router.push("/account");
-      } else {
-        setError(
-          "Произошла ошибка при вводе данных. Пожалуйста, попробуйте еще раз.",
-        );
+  const onSubmit = async (values: FormData) => {
+    const formData = new FormData();
+    formData.append("email", values.email);
+    formData.append("password", values.password);
+
+    const { success, data } = await AuthService().login(formData);
+    if (success) {
+      localStorage.setItem("access-token", data.access_token);
+      if (redirect?.current) router.push(redirect.current as string);
+      else {
+        router.push("/account");
       }
-    },
-    [login, router],
-  );
+    } else {
+      setError(
+        "Произошла ошибка при вводе данных. Пожалуйста, попробуйте еще раз."
+      );
+    }
+  };
 
   return (
     <Card className="max-w-md w-full">

@@ -1,13 +1,13 @@
 import * as React from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { AuthProviderServer } from "@/features/auth/providers/server";
 import { ProviderTanstack } from "@/features/auth/providers/tanstack";
+import { ProviderAuth } from "@/features/auth/providers/client";
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <ProviderTanstack>
       {process.env.DEV && <ReactQueryDevtools />}
-      <AuthProviderServer>{children}</AuthProviderServer>
+      <ProviderAuth>{children}</ProviderAuth>
     </ProviderTanstack>
   );
 };

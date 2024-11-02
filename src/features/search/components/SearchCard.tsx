@@ -5,6 +5,7 @@ import Image from "next/image";
 import getUnicodeFlagIcon from "country-flag-icons/unicode";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { cn, createGoogleMapsLink, createYandexMapsLink } from "@/lib/utils";
 
 const cardType = {
   individual: "ФЛ",
@@ -24,15 +25,18 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
         className={`bg-${data.type} absolute left-0 top-0 rounded-l-xl w-1 md:w-[10px] h-full`}
       ></div>
       <div className="w-full">
-        <h1 className="text-xl leading-none font-semibold">{data.title}</h1>
+        <h1 className="text-xl leading-none font-semibold">{data.name}</h1>
+        <h2 className="text-base mt-2 leading-none font-semibold text-secondary">
+          {data.oked_name}
+        </h2>
         <ul className="flex gap-2 mt-4 flex-wrap">
-          <Badge variant={data.type}>{cardType[data.type]}</Badge>
-          <Badge variant={"current"}>{data.current_type}</Badge>
+          {/* <Badge variant={data.type}>{cardType[data.type]}</Badge> */}
+          <Badge variant={"current"}>{data.krp_name}</Badge>
           <Badge variant={"country"}>
             <span className="mr-2 leading-none">
-              {getUnicodeFlagIcon(data.country_code)}
+              {getUnicodeFlagIcon("KZ")}
             </span>
-            {data.country_name}
+            {data.country_name || "Казахстан"}
           </Badge>
         </ul>
         <hr className="w-full my-3 border-[#F5F5F5]" />
@@ -45,7 +49,7 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
                 width={20}
                 height={20}
               />
-              <span className="font-semibold text-sm">{data.data}</span>
+              <span className="font-semibold text-sm">БИН: {data.bin}</span>
             </div>
           </li>
           <li>
@@ -56,7 +60,9 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
                 width={20}
                 height={20}
               />
-              <span className="font-semibold text-sm">{data.date}</span>
+              <span className="font-semibold text-sm">
+                {data.date_registration}
+              </span>
             </div>
           </li>
           <li>
@@ -67,7 +73,16 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
                 width={20}
                 height={20}
               />
-              <span className="font-semibold text-sm">{data.author}</span>
+              <span
+                className={cn(
+                  "font-semibold text-sm",
+                  data.fullname_director ? "" : "text-secondary"
+                )}
+              >
+                {data.fullname_director !== " "
+                  ? data.fullname_director
+                  : "Неизвестно"}
+              </span>
             </div>
           </li>
           <li className="col-span-full">
@@ -78,25 +93,33 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
                 width={20}
                 height={20}
               />
-              <span className="font-semibold text-sm">{data.map}</span>
+              <span className="font-semibold text-sm">
+                {data.legal_address + " " + data.judical_address}
+              </span>
             </div>
           </li>
         </ul>
       </div>
       <div className="md:border-l-[1px] md:ml-6 md:pl-6 max-md:mt-6 max-md:pt-6 max-md:border-t-[1px] max-md:border-t-[#F5F5F5] md:border-l-[#F5F5F5] max-md:gap-6 md:min-h-max flex flex-col justify-between">
         <ul className="flex gap-2 justify-end">
-          <Link
-            href={"#"}
+          <a
+            target="_blank"
+            href={createGoogleMapsLink(
+              data.legal_address + " " + data.judical_address
+            )}
             className="size-9 flex items-center justify-center hover:bg-gray-200 bg-gray-100 rounded-md"
           >
             <Image alt="map" src="/iconly/google.svg" width={20} height={20} />
-          </Link>
-          <Link
-            href={"#"}
+          </a>
+          <a
+            target="_blank"
+            href={createYandexMapsLink(
+              data.legal_address + " " + data.judical_address
+            )}
             className="size-9 flex items-center justify-center hover:bg-gray-200 bg-gray-100 rounded-md"
           >
             <Image alt="map" src="/iconly/yandex.svg" width={20} height={20} />
-          </Link>
+          </a>
         </ul>
         <Button size={"sm"} className="self-bottom">
           Подробнее
