@@ -48,7 +48,7 @@ export const ProviderAuth: React.FC<{
     const fetchMe = async () => {
       const { success, data } = await AuthService().getMe();
       if (success) {
-        console.log('user', data);
+        // console.log('user', data);
         setUser(data);
       } else {
         setUser(null);

@@ -1,16 +1,33 @@
 import { AccountForm } from "@/features/users/components/AccountForm";
 import { Container } from "@/ui/Container";
 import { LogoutBtn } from "@/features/auth/components/LogoutBtn";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Suspense } from "react";
 
 export default function Account() {
   return (
     <main>
       <Container>
-        <h1 className="text-xl font-semibold mb-2">Account</h1>
-        <p className="text-sm">
-          {`This is your account dashboard. Here you can update your account information and more.`}
-        </p>
-        <AccountForm />
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">Главная</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/account">Аккаунт</BreadcrumbLink>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <Suspense>
+          <AccountForm />
+        </Suspense>
         <LogoutBtn />
       </Container>
     </main>

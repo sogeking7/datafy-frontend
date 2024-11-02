@@ -1,6 +1,12 @@
 "use client";
 
-import React, { Fragment, useCallback, useRef, useState } from "react";
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,28 +23,28 @@ import {
 } from "@/components/ui/form";
 import { UsersService } from "@/features/users/api/users.service";
 import { PasswordInput } from "@/components/ui/password-input";
-import { Textarea } from "@/components/ui/textarea";
 import { useAuth } from "@/features/auth/providers/client";
 
 const accountSchema = z
   .object({
-    profile: z.object({
-      name: z.string().trim().min(1),
-      about: z.string().trim().min(1),
-      city: z.string().trim().optional(),
-    }),
-    username: z.string().trim().min(1),
-    email: z.string().email(),
+    fullname: z
+      .string()
+      .trim()
+      .min(1, { message: "Поле обязательно для заполнения" }),
+    username: z
+      .string()
+      .trim()
+      .min(1, { message: "Поле обязательно для заполнения" }),
+    email: z.string().email("Неверный адрес электронной почты"),
     password: z
       .string()
-      .min(6, "Password must be at least 6 characters")
+      .min(6, { message: "Пароль должен содержать минимум 6 символов" })
       .optional()
       .or(z.literal("")),
     passwordConfirm: z.string().optional().or(z.literal("")),
   })
   .refine((data) => !data.password || data.password === data.passwordConfirm, {
-    message: "Passwords do not match",
-    path: ["passwordConfirm"],
+    message: "Пароли не совпадают",
   });
 
 type FormData = z.infer<typeof accountSchema>;
@@ -53,7 +59,6 @@ export const AccountForm: React.FC = () => {
     resolver: zodResolver(accountSchema),
     defaultValues: user
       ? {
-
           password: "",
           passwordConfirm: "",
         }
@@ -62,7 +67,6 @@ export const AccountForm: React.FC = () => {
 
   const {
     handleSubmit,
-    // TODO: errors show on frontend
     formState: { errors, isSubmitting },
     reset,
     watch,
@@ -74,11 +78,10 @@ export const AccountForm: React.FC = () => {
   const onSubmit = useCallback(
     async (values: FormData) => {
       if (user) {
-        // TODO: fix it
         const { data, success } = await UsersService().updateUser(
           // user.id,
           "example-id",
-          values,
+          values
         );
         if (success) {
           const updated_user = data;
@@ -96,35 +99,34 @@ export const AccountForm: React.FC = () => {
         }
       }
     },
-    [user, updateUser, reset],
+    [user, updateUser, reset]
   );
 
-  // useEffect(() => {
-  //   if (user) {
-  //     reset({
-  //       username: user.username,
-  //       email: user.email,
-  //       profile: {
-  //         name: user.profile.name,
-  //         about: user.profile.about,
-  //         city: user.profile.city || "",
-  //       },
-  //       password: "",
-  //       passwordConfirm: "",
-  //     });
-  //   }
-  // }, [user, router, reset, changePassword]);
+  useEffect(() => {
+    if (user) {
+      reset({
+        username: user.username,
+        email: user.email,
+        fullname: user.fullname,
+        password: "",
+        passwordConfirm: "",
+      });
+    }
+  }, [user, reset, changePassword]);
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="my-5 pspace-y-4 bg-white p-6 md:rounded-xl rounded-md"
+      >
         {error && <FormMessage>{error}</FormMessage>}
         {success && (
           <FormMessage className="text-green-400">{success}</FormMessage>
         )}
         {!changePassword ? (
           <Fragment>
-            <p className="text-sm">
+            {/* <p className="text-sm">
               {"To change your password, "}
               <button
                 type="button"
@@ -134,30 +136,30 @@ export const AccountForm: React.FC = () => {
                 click here
               </button>
               .
-            </p>
+            </p> */}
             <FormField
               control={form.control}
-              name="profile.name"
+              name="fullname"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
+                <FormItem className="w-full">
+                  <FormLabel>Полное имя</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your name" {...field} />
+                    <Input placeholder="Введите ваше полное имя" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
-              name="profile.about"
+              name="username"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>About</FormLabel>
+                <FormItem className="w-full">
+                  <FormLabel>Имя пользователя</FormLabel>
                   <FormControl>
-                    <Textarea
-                      className="resize-none"
-                      placeholder="Enter your bio"
+                    <Input
+                      placeholder="Введите ваше имя пользователя"
                       {...field}
                     />
                   </FormControl>
@@ -165,27 +167,15 @@ export const AccountForm: React.FC = () => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="profile.city"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>City</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter your city" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email Address</FormLabel>
+                <FormItem className="w-full">
+                  <FormLabel>Электронная почта</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your email" {...field} />
+                    <Input placeholder="Введите вашу почту" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -233,20 +223,14 @@ export const AccountForm: React.FC = () => {
             />
           </Fragment>
         )}
-        <Button type="submit" className="mt-4" disabled={isSubmitting}>
+        {/* <Button type="submit" className="mt-4" disabled={isSubmitting}>
           {isSubmitting
             ? "Processing"
             : changePassword
-              ? "Change password"
-              : "Update account"}
-        </Button>
+            ? "Change password"
+            : "Update account"}
+        </Button> */}
       </form>
-      <div>
-        You cannot change your username{" "}
-        {/* TODO:fix it */}
-        {/* <span className="underline">{user?.username}</span>. It will be added in */}
-        future.
-      </div>
     </Form>
   );
 };

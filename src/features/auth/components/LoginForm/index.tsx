@@ -62,6 +62,8 @@ export const LoginForm: React.FC = () => {
       localStorage.setItem("access-token", data.access_token);
       if (redirect?.current) router.push(redirect.current as string);
       else {
+        // router.refresh();
+        window.location.reload()
         router.push("/account");
       }
     } else {

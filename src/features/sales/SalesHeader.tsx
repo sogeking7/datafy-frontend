@@ -3,13 +3,10 @@ import { Container } from "@/ui/Container";
 import Image from "next/image";
 import Link from "next/link";
 import { LoginBtn, RegisterBtn } from "../auth/components/Buttons";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { AlignLeftIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { UserBtn } from "../users/components/UserBtn";
 
 export function SalesHeader({
   variant,
@@ -46,10 +43,7 @@ export function SalesHeader({
           />
         </Link>
         <div className="flex gap-5">
-          <LoginBtn />
-          <div className="max-md:hidden">
-            <RegisterBtn />
-          </div>
+          <UserBtn />
           <Sheet>
             <SheetTrigger className="md:hidden" asChild>
               <Button size={"icon"} variant={"light"}>
@@ -59,6 +53,7 @@ export function SalesHeader({
             <SheetContent>
               <nav className="mt-7 flex-col flex gap-3 md:gap-9 list-none">
                 <li>
+                  {/* <UserBtn /> */}
                   <RegisterBtn className="w-full" />
                 </li>
               </nav>

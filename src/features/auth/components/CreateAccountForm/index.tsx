@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,14 +31,6 @@ import { useAuth } from "../../providers/client";
 const createAccountSchema = z
   .object({
     fullname: z
-      .string()
-      .trim()
-      .min(1, { message: "Поле обязательно для заполнения" }),
-    about: z
-      .string()
-      .trim()
-      .min(1, { message: "Поле обязательно для заполнения" }),
-    city: z
       .string()
       .trim()
       .min(1, { message: "Поле обязательно для заполнения" }),
@@ -75,8 +66,6 @@ export const CreateAccountForm: React.FC = () => {
   const form = useForm<FormData>({
     resolver: zodResolver(createAccountSchema),
     defaultValues: {
-      about: "",
-      city: "",
       email: "",
       password: "",
       passwordConfirm: "",
@@ -88,7 +77,11 @@ export const CreateAccountForm: React.FC = () => {
   const onSubmit = useCallback(
     async (values: FormData) => {
       const { passwordConfirm, ...restValues } = values;
-      const { success, data } = await AuthService().create(restValues);
+      const { success, data } = await AuthService().create({
+        ...restValues,
+        about: "",
+        city: "",
+      });
 
       if (!success) {
         const message = data || "Произошла ошибка при создании аккаунта.";
@@ -101,22 +94,27 @@ export const CreateAccountForm: React.FC = () => {
         setLoading(true);
       }, 1000);
 
-      // const res = await AuthService().login(values);
-      // if (res.success) {
-      //   // TODO: fix
-      //   // login(res.data);
-      //   clearTimeout(timer);
-      //   if (redirect) router.push(redirect as string);
-      //   else
-      //     router.push(
-      //       `/account?success=${encodeURIComponent("Аккаунт успешно создан")}`
-      //     );
-      // } else {
-      //   clearTimeout(timer);
-      //   setError(
-      //     "Произошла ошибка с указанными данными. Пожалуйста, попробуйте снова."
-      //   );
-      // }
+      const formData = new FormData();
+      formData.append("email", values.email);
+      formData.append("password", values.password);
+
+      const res = await AuthService().login(formData);
+      if (res.success) {
+        localStorage.setItem("access-token", res.data.access_token);
+        // clearTimeout(timer);
+        window.location.reload();
+        router.push("/account");
+        if (redirect) router.push(redirect as string);
+        else
+          router.push(
+            `/account?success=${encodeURIComponent("Аккаунт успешно создан")}`
+          );
+      } else {
+        clearTimeout(timer);
+        setError(
+          "Произошла ошибка с указанными данными. Пожалуйста, попробуйте снова."
+        );
+      }
     },
     [login, router, searchParams]
   );
@@ -143,38 +141,6 @@ export const CreateAccountForm: React.FC = () => {
                   <FormLabel>Полное имя</FormLabel>
                   <FormControl>
                     <Input placeholder="Введите ваше полное имя" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="about"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>О себе</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      className="resize-none"
-                      placeholder="Введите информацию о себе"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="city"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Город</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Введите ваш город" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
