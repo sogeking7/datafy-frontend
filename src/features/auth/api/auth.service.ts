@@ -18,7 +18,7 @@ export const AuthService = () => {
 
   const getMe: GetMe = async () => {
     try {
-      const { data } = await apiPayload().get<GetMeResponse>(`${url}/me/`);
+      const { data } = await apiPayload().get<GetMeResponse>(`${url}/me`);
       return {
         success: true,
         data: data,
