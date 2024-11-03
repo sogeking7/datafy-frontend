@@ -24,7 +24,7 @@ export function SalesHeader({
   return (
     <header
       className={cn(
-        "sticky top-0 z-10 w-full border-border/40 bg-white/60 h-16 md:h-[74px]",
+        "sticky top-0 z-10 shadow-sm w-full border-border/40 bg-white/60 h-16 md:h-[74px]",
         className
       )}
     >

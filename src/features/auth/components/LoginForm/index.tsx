@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useRef } from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -20,7 +20,6 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
 import { PasswordInput } from "@/components/ui/password-input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -75,15 +74,17 @@ export const LoginForm: React.FC = () => {
 
   return (
     <Card className="max-w-md w-full">
-      <CardHeader className="flex flex-row items-center gap-2">
-        <ArrowLeft onClick={() => router.back()} />
-        <h1 className="text-3xl">Вход</h1>
+      <CardHeader>
+        <h1 className="text-2xl sm:text-3xl font-semibold">Вход</h1>
+        <p className="text-secondary text-sm mt-2 text-balance leading-tight">
+          Введите свой адрес электронной почты ниже, чтобы войти
+        </p>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-1 items-end"
+            className="flex flex-col gap-2 items-end"
           >
             <FormMessage className="mb-2">{error}</FormMessage>
             <FormField

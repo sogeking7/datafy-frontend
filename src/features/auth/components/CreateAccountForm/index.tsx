@@ -22,9 +22,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
 import { PasswordInput } from "@/components/ui/password-input";
-import { Textarea } from "@/components/ui/textarea";
 import { AuthService } from "../../api/auth.service";
 import { useAuth } from "../../providers/client";
 
@@ -121,15 +119,17 @@ export const CreateAccountForm: React.FC = () => {
 
   return (
     <Card className="max-w-md w-full">
-      <CardHeader className="flex flex-row items-center gap-2">
-        <ArrowLeft onClick={() => router.back()} />
-        <h1 className="text-3xl">Авторизация</h1>
+      <CardHeader>
+        <h1 className="text-2xl sm:text-3xl font-semibold">Авторизация</h1>
+        <p className="text-secondary text-sm mt-2 text-balance leading-tight">
+          Введите свои данные ниже, чтобы создать учетную запись
+        </p>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-1 items-end"
+            className="flex flex-col gap-2 items-end"
           >
             <FormMessage className="mb-2">{error}</FormMessage>
 
@@ -138,9 +138,9 @@ export const CreateAccountForm: React.FC = () => {
               name="fullname"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Полное имя</FormLabel>
+                  <FormLabel>ФИО</FormLabel>
                   <FormControl>
-                    <Input placeholder="Введите ваше полное имя" {...field} />
+                    <Input placeholder="Введите ваше ФИО" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -169,9 +169,9 @@ export const CreateAccountForm: React.FC = () => {
               name="email"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Электронная почта</FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Введите вашу почту" {...field} />
+                    <Input placeholder="Введите ваш email" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -142,9 +142,9 @@ export const AccountForm: React.FC = () => {
               name="fullname"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Полное имя</FormLabel>
+                  <FormLabel>ФИО</FormLabel>
                   <FormControl>
-                    <Input placeholder="Введите ваше полное имя" {...field} />
+                    <Input placeholder="Введите ваше ФИО" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -173,9 +173,9 @@ export const AccountForm: React.FC = () => {
               name="email"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Электронная почта</FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Введите вашу почту" {...field} />
+                    <Input placeholder="Введите ваш email" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
