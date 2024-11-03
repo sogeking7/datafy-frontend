@@ -24,32 +24,32 @@ export const SalesFooter = () => {
               Главная
             </h1>
             <li>
-              <Link className="hover:underline" href="#start">
+              <Link className="hover:underline" href="/">
                 Главный экран
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="#bonuses">
+              <Link className="hover:underline" href="/#bonuses">
                 Бонусы
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="#services">
+              <Link className="hover:underline" href="/#services">
                 Что предлагает сервис
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="#counterparties">
+              <Link className="hover:underline" href="/#counterparties">
                 Проверка контрагентов
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="#tariffs">
+              <Link className="hover:underline" href="/#tariffs">
                 Тарифные планы
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="#faq">
+              <Link className="hover:underline" href="/#faq">
                 Часто задаваемые вопросы
               </Link>
             </li>

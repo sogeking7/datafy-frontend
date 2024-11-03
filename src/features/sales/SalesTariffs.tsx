@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "@/ui/Container";
+import Link from "next/link";
 
 export const SalesTariffs = () => {
   return (
@@ -26,9 +27,11 @@ export const SalesTariffs = () => {
               <hr className="h-[1px] border-none w-full bg-gradient-to-r from-secondary " />
               <p className="text-primary font-semibold text-3xl">10,000 ₸</p>
             </div>
-            <Button className="w-full mt-2" size={"lg"} variant={"light"}>
-              Приобрести
-            </Button>
+            <Link href={"/auth/create-account"}>
+              <Button className="w-full mt-2" size={"lg"} variant={"light"}>
+                Приобрести
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="max-lg:row-start-3 lg:col-span-1 col-span-full">
@@ -53,10 +56,11 @@ export const SalesTariffs = () => {
                 1 500 000 ₸
               </p>
             </div>
-
-            <Button size={"lg"} variant={"light"} className="w-full">
-              Приобрести
-            </Button>
+            <Link href={"/auth/create-account"}>
+              <Button size={"lg"} variant={"light"} className="w-full">
+                Приобрести
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="lg:col-span-1 col-span-full">
@@ -79,9 +83,11 @@ export const SalesTariffs = () => {
               <hr className="h-[1px] border-none w-full bg-gradient-to-r from-secondary " />
               <p className="text-primary font-semibold text-3xl">30,000 ₸</p>
             </div>
-            <Button className="w-full mt-2" size={"lg"} variant={"light"}>
-              Приобрести
-            </Button>
+            <Link href={"/auth/create-account"}>
+              <Button className="w-full mt-2" size={"lg"} variant={"light"}>
+                Приобрести
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="lg:hidden lg:col-span-1 col-span-full">
@@ -101,9 +107,11 @@ export const SalesTariffs = () => {
               </div>
               <hr className="h-[1px] border-none w-full bg-gradient-to-r from-secondary " />
             </div>
-            <Button className="w-full mt-2" size={"lg"} variant={"light"}>
-              Бесплатно ₸
-            </Button>
+            <Link href={"/auth/create-account"}>
+              <Button className="w-full mt-2" size={"lg"} variant={"light"}>
+                Бесплатно ₸
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -118,9 +126,11 @@ export const SalesTariffs = () => {
               Ограниченный просмотр, до 5 запросов в день
             </p>
           </div>
-          <Button size={"lg"} className="px-24">
-            Бесплатно ₸
-          </Button>
+          <Link href={"/auth/create-account"}>
+            <Button size={"lg"} className="px-24">
+              Бесплатно ₸
+            </Button>
+          </Link>
         </div>
       </div>
     </Container>

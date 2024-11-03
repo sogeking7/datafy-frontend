@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "@/ui/Container";
+import Link from "next/link";
 
 export const SalesDiscounCard = () => {
   return (
@@ -13,9 +14,11 @@ export const SalesDiscounCard = () => {
           средства можно использовать для покупки одного из наших тарифов,
           снижая стоимость вашего выбора.
         </p>
-        <Button className="w-full md:max-w-60" size={"lg"} variant={"light"}>
-          Зарегистрироваться
-        </Button>
+        <Link href={"/auth/create-account"}>
+          <Button className="w-full md:max-w-60" size={"lg"} variant={"light"}>
+            Зарегистрироваться
+          </Button>
+        </Link>
       </div>
     </Container>
   );
