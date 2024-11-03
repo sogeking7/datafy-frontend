@@ -212,7 +212,7 @@ export const CreateAccountForm: React.FC = () => {
               )}
             />
 
-            <Button type="submit" className="mt-4">
+            <Button type="submit" className="mt-4" size={"sm"}>
               {loading ? "Обработка" : "Создать аккаунт"}
             </Button>
           </form>

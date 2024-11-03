@@ -63,7 +63,7 @@ export const LoginForm: React.FC = () => {
       if (redirect?.current) router.push(redirect.current as string);
       else {
         // router.refresh();
-        window.location.reload()
+        window.location.reload();
         router.push("/account");
       }
     } else {
@@ -121,6 +121,7 @@ export const LoginForm: React.FC = () => {
               type="submit"
               disabled={form.formState.isSubmitting}
               className="mt-4"
+              size={"sm"}
             >
               {form.formState.isSubmitting ? "В процессе..." : "Войти"}
             </Button>
