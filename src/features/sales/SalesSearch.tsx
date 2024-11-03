@@ -11,7 +11,7 @@ export const SalesSearch = ({
   return (
     <form
       action="/search"
-      className={`w-full max-w-4xl bg-white p-2 ${
+      className={`w-full max-w-4xl border border-input bg-white p-2 ${
         isLarge
           ? "md:p-3 rounded-xl md:rounded-2xl gap-2 md:gap-10"
           : "rounded-xl gap-3"
