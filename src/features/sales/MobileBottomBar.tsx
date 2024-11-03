@@ -9,19 +9,19 @@ export default function MobileBottomBar() {
   const isActive = (route: string) => pathname === route;
 
   return (
-    <nav className="sm:hidden fixed bottom-0 shadow-[0_-4px_10px_rgba(0,0,0,0.08)] z-10 w-full h-[90px] bg-white dark:bg-gray-900 dark:border-gray-800 flex items-center justify-between px-4 md:px-6">
+    <nav className="sm:hidden fixed bottom-0 shadow-[0_-4px_10px_rgba(0,0,0,0.08)] z-10 w-full h-16 bg-white dark:bg-gray-900 dark:border-gray-800 flex items-center justify-between px-4 md:px-6">
       <Link
         href="/"
         className="flex flex-col items-center w-full text-center py-2"
         prefetch={false}
       >
         <HomeIcon
-          fill={isActive("/") ? "#3672A8" : "#999"}
-          className="h-6 w-6"
+          fill={isActive("/") ? "#403df0" : "#E9E9E9"}
+          className="size-5"
         />
         <span
-          className={`text-xs mt-2 font-semibold ${
-            isActive("/") ? "text-[#3672A8]" : "text-[#999]"
+          className={`text-xs mt-1 font-semibold ${
+            isActive("/") ? "text-primary" : "text-[#999]"
           }`}
         >
           Главная
@@ -34,12 +34,12 @@ export default function MobileBottomBar() {
         prefetch={false}
       >
         <SearchIcon
-          fill={isActive("/search") ? "#3672A8" : "#E9E9E9"}
-          className="h-6 w-6"
+          fill={isActive("/search") ? "#403df0" : "#E9E9E9"}
+          className="size-5"
         />
         <span
-          className={`text-xs mt-2 font-semibold ${
-            isActive("/search") ? "text-[#3672A8]" : "text-[#999]"
+          className={`text-xs mt-1 font-semibold ${
+            isActive("/search") ? "text-primary" : "text-[#999]"
           }`}
         >
           Поиск
@@ -52,12 +52,12 @@ export default function MobileBottomBar() {
         prefetch={false}
       >
         <UserIcon
-          fill={isActive("/account") ? "#3672A8" : "#E9E9E9"}
-          className="h-6 w-6"
+          fill={isActive("/account") ? "#403df0" : "#E9E9E9"}
+          className="size-5"
         />
         <span
-          className={`text-xs mt-2 font-semibold ${
-            isActive("/account") ? "text-[#3672A8]" : "text-[#999]"
+          className={`text-xs mt-1 font-semibold ${
+            isActive("/account") ? "text-primary" : "text-[#999]"
           }`}
         >
           Профиль
