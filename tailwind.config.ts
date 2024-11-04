@@ -22,6 +22,7 @@ const config = {
     },
     extend: {
       colors: {
+        "sidebar": "hsl(var(--sidebar))",
         "legal-entity": {
           DEFAULT: "hsl(var(--legal-entity))",
         },

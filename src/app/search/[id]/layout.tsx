@@ -7,9 +7,12 @@ export default function SearchPageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Container variant={"breakpointPadded"} className="grid grid-cols-12 gap-6 my-5">
-      <SearchSideBar className="col-span-3" />
-      <div className="col-span-9">{children}</div>
+    <Container
+      variant={"largePadded"}
+      className="grid grid-cols-[340px_1fr] grid-rows-1 gap-6 my-5"
+    >
+      <SearchSideBar />
+      {children}
     </Container>
   );
 }

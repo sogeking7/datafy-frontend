@@ -12,7 +12,7 @@ import { Suspense } from "react";
 
 export default function SearchPage() {
   return (
-    <Container>
+    <Container variant={"largePadded"}>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

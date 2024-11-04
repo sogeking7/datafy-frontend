@@ -9,7 +9,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        "search-side-bar" : "justify-start text-[#00848C]",
+        "search-side-bar":
+          "stroke-sidebar stroke-[1.5] gap-3 font-medium justify-start text-[#00848C]",
         light:
           "bg-white border border-input shadow-sm hover:bg-accent hover:text-accent-foreground",
         default: "bg-primary text-white shadow hover:bg-[#403EF1]/90",
@@ -22,7 +23,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "md:h-11 md:px-4 md:py-3 py-2 px-3 h-10 md:text-base !text-sm",
+        default: "md:h-11 md:px-4 md:py-3 py-2 px-3 h-10 text-sm",
         sm: "h-10 rounded-md px-6 py-2 text-sm",
         lg: "h-12 rounded-md px-8 py-3",
         icon: "md:h-11 h-10 w-10 md:w-11",

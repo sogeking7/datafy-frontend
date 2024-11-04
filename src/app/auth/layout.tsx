@@ -6,11 +6,11 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <>
       <SalesHeader variant="constrainedPadded" />
       <main className="min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-74px)] w-full flex justify-center items-center">
         {children}
       </main>
-    </div>
+    </>
   );
 }
