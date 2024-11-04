@@ -9,6 +9,7 @@ import {
 import { SearchForm } from "@/features/search/components/SearchForm";
 import { SearchResults } from "@/features/search/components/SearchResults";
 import { Suspense } from "react";
+import Link from "next/link";
 
 export default function SearchPage() {
   return (
@@ -16,11 +17,15 @@ export default function SearchPage() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Главная</BreadcrumbLink>
+            <BreadcrumbLink asChild>
+              <Link href="/">Главная</Link>
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/search">Результаты поиска</BreadcrumbLink>
+            <BreadcrumbLink asChild>
+              <Link href="/search">Результаты поиска</Link>
+            </BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

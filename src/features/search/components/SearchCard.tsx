@@ -4,7 +4,6 @@ import { Counterparty } from "@/types";
 import Image from "next/image";
 import getUnicodeFlagIcon from "country-flag-icons/unicode";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { cn, createGoogleMapsLink, createYandexMapsLink } from "@/lib/utils";
 
 const cardType = {
@@ -94,7 +93,7 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
                 height={20}
               />
               <span className="font-semibold text-sm">
-                {data.legal_address + " " + data.judical_address}
+                {data.legal_address}
               </span>
             </div>
           </li>

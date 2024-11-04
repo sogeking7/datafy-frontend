@@ -1,7 +1,6 @@
 "use client";
 
 import { AccountForm } from "@/features/users/components/AccountForm";
-import { LogoutBtn } from "@/features/auth/components/LogoutBtn";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,6 +11,7 @@ import {
 import { Suspense } from "react";
 import { useAuth } from "@/features/auth/providers/client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Account() {
   const router = useRouter();
@@ -30,11 +30,15 @@ export default function Account() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Главная</BreadcrumbLink>
+            <BreadcrumbLink asChild>
+              <Link href="/">Главная</Link>
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/account">Личный кабинет</BreadcrumbLink>
+            <BreadcrumbLink asChild>
+              <Link href="/account">Личный кабинет</Link>
+            </BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
