@@ -13,7 +13,7 @@ export function SalesHeader({
   className,
 }: {
   className?: string;
-  variant:
+  variant?:
     | "largePadded"
     | "fullMobileConstrainedPadded"
     | "constrainedPadded"
