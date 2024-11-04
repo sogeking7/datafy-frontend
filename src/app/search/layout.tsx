@@ -1,6 +1,7 @@
 import MobileBottomBar from "@/features/sales/MobileBottomBar";
 import { SalesFooter } from "@/features/sales/SalesFooter";
 import { SalesHeader } from "@/features/sales/SalesHeader";
+import { Container } from "@/ui/Container";
 
 export default function SearchLayout({
   children,

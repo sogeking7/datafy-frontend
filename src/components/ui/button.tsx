@@ -9,6 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        "search-side-bar" : "justify-start text-[#00848C]",
         light:
           "bg-white border border-input shadow-sm hover:bg-accent hover:text-accent-foreground",
         default: "bg-primary text-white shadow hover:bg-[#403EF1]/90",

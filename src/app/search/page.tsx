@@ -12,24 +12,22 @@ import { Suspense } from "react";
 
 export default function SearchPage() {
   return (
-    <main>
-      <Container>
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">Главная</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/search">Результаты поиска</BreadcrumbLink>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-        <Suspense>
-          <SearchForm />
-          <SearchResults />
-        </Suspense>
-      </Container>
-    </main>
+    <Container>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Главная</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/search">Результаты поиска</BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+      <Suspense>
+        <SearchForm />
+        <SearchResults />
+      </Suspense>
+    </Container>
   );
 }
