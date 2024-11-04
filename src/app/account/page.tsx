@@ -41,7 +41,6 @@ export default function Account() {
       <Suspense>
         <AccountForm />
       </Suspense>
-      <LogoutBtn />
     </>
   );
 }

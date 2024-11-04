@@ -113,25 +113,40 @@ export const AccountForm: React.FC = () => {
     <Form {...form}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="my-5 pspace-y-4 bg-white p-6 md:rounded-xl rounded-md"
+        className="my-5 gap-6 flex flex-col items-start bg-white p-6 md:rounded-xl rounded-md"
       >
         {error && <FormMessage>{error}</FormMessage>}
         {success && (
           <FormMessage className="text-green-400">{success}</FormMessage>
         )}
         {!changePassword ? (
-          <Fragment>
-            {/* <p className="text-sm">
-              {"To change your password, "}
-              <button
-                type="button"
-                className="text-blue-500 underline"
-                onClick={() => setChangePassword(!changePassword)}
-              >
-                click here
-              </button>
-              .
-            </p> */}
+          <p className="text-sm">
+            {"Чтобы изменить свой пароль, "}
+            <button
+              type="button"
+              className="text-blue-500 underline"
+              onClick={() => setChangePassword(!changePassword)}
+            >
+              нажмите сюда
+            </button>
+            .
+          </p>
+        ) : (
+          <p className="text-sm">
+            {"Измените свой пароль ниже, или "}
+            <button
+              type="button"
+              className="text-blue-500 underline"
+              onClick={() => setChangePassword(!changePassword)}
+            >
+              отмена
+            </button>
+            .
+          </p>
+        )}
+
+        {!changePassword ? (
+          <div className="space-y-2 max-w-md w-full">
             <FormField
               control={form.control}
               name="fullname"
@@ -176,55 +191,51 @@ export const AccountForm: React.FC = () => {
                 </FormItem>
               )}
             />
-          </Fragment>
+          </div>
         ) : (
-          <Fragment>
-            <p className="text-sm">
-              {"Change your password below, or "}
-              <button
-                type="button"
-                className="text-blue-500 underline"
-                onClick={() => setChangePassword(!changePassword)}
-              >
-                cancel
-              </button>
-              .
-            </p>
+          <div className="space-y-2 max-w-md w-full">
             <FormField
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
+                <FormItem className="w-full">
+                  <FormLabel>Новый пароль</FormLabel>
                   <FormControl>
-                    <PasswordInput {...field} />
+                    <PasswordInput
+                      placeholder="Введите новый пароль"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="passwordConfirm"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Confirm Password</FormLabel>
+                <FormItem className="w-full">
+                  <FormLabel>Подтверждение пароля</FormLabel>
                   <FormControl>
-                    <PasswordInput {...field} />
+                    <PasswordInput
+                      placeholder="Подтвердите новый пароль"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          </Fragment>
+          </div>
         )}
-        {/* <Button type="submit" className="mt-4" disabled={isSubmitting}>
+        <Button size="sm" type="submit" disabled={isSubmitting}>
           {isSubmitting
-            ? "Processing"
+            ? "Обработка..."
             : changePassword
-            ? "Change password"
-            : "Update account"}
-        </Button> */}
+            ? "Изменить пароль"
+            : "Обновить профиль"}
+        </Button>
       </form>
     </Form>
   );

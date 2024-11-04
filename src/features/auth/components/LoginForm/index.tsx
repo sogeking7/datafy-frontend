@@ -61,6 +61,7 @@ export const LoginForm: React.FC = () => {
     const { success, data } = await AuthService().login(formData);
     if (success) {
       localStorage.setItem("access-token", data.access_token);
+      localStorage.setItem("refresh-token", data.refresh_token);
       const me = await AuthService().getMe();
       if (me.success) {
         setError("");

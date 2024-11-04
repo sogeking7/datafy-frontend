@@ -21,6 +21,7 @@ export type Login = (body: FormData) => Promise<Response<LoginResponse>>;
 export type LoginResponse = {
   access_token: string;
   token_type: string;
+  refresh_token: string;
 };
 
 export type Logout = () => Promise<Response<LogoutResponse>>;
