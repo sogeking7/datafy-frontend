@@ -24,6 +24,7 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthService } from "../../api/auth.service";
+import { useAuth } from "../../providers/client";
 
 const loginSchema = z.object({
   email: z.string().email("Неверный адрес электронной почты"),
@@ -39,9 +40,10 @@ export const LoginForm: React.FC = () => {
   const allParams = searchParams.toString()
     ? `?${searchParams.toString()}`
     : "";
-  const redirect = useRef(searchParams.get("redirect"));
   const router = useRouter();
   const [error, setError] = React.useState<string | null>(null);
+
+  const { user, updateUser } = useAuth();
 
   const form = useForm<FormData>({
     resolver: zodResolver(loginSchema),
@@ -59,11 +61,13 @@ export const LoginForm: React.FC = () => {
     const { success, data } = await AuthService().login(formData);
     if (success) {
       localStorage.setItem("access-token", data.access_token);
-      if (redirect?.current) router.push(redirect.current as string);
-      else {
-        // router.refresh();
-        window.location.reload();
+      const me = await AuthService().getMe();
+      if (me.success) {
+        setError("");
+        updateUser(me.data);
         router.push("/account");
+      } else {
+        setError(me.data);
       }
     } else {
       setError(

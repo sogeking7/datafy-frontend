@@ -11,11 +11,13 @@ import {
 import { User } from "@/types";
 import { AuthService } from "../api/auth.service";
 export interface AuthContext {
+  error: string;
   user: User | null;
   setUser: Dispatch<SetStateAction<User | null>>;
 }
 
 type UseAuth<T = User | null> = () => {
+  error: string;
   user: T;
   login: (user: User) => void;
   logout: () => void;
@@ -28,7 +30,7 @@ export const useAuth: UseAuth = () => {
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
-  const { user, setUser } = context;
+  const { user, setUser, error } = context;
   function logout() {
     setUser(null);
   }
@@ -36,21 +38,23 @@ export const useAuth: UseAuth = () => {
     setUser(user);
   }
   const updateUser = (user: User) => setUser(user);
-  return { user, logout, login, updateUser };
+  return { error, user, logout, login, updateUser };
 };
 
 export const ProviderAuth: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const fetchMe = async () => {
       const { success, data } = await AuthService().getMe();
       if (success) {
-        // console.log('user', data);
+        setError("");
         setUser(data);
       } else {
+        setError(data);
         setUser(null);
       }
     };
@@ -60,6 +64,7 @@ export const ProviderAuth: React.FC<{
   return (
     <ContextAuth.Provider
       value={{
+        error,
         user,
         setUser,
       }}

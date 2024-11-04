@@ -1,13 +1,31 @@
 import { apiPayload } from "@/lib/axios";
 import { isAxiosError } from "axios";
-import { UpdateUserById } from "./users.service.types";
+import { UpdateUserData, UpdateUserPassword } from "./users.service.types";
 
 export const UsersService = () => {
   const url = "/users";
 
-  const updateUser: UpdateUserById = async (id, body) => {
+  const updateUserData: UpdateUserData = async (body) => {
     try {
-      const { data } = await apiPayload().patch<any>(`${url}/${id}`, body);
+      const { data } = await apiPayload().post<any>(`${url}/me`, body);
+      return {
+        success: true,
+        data,
+      };
+    } catch (e: unknown) {
+      return {
+        success: false,
+        data: isAxiosError(e) ? e.message : (e as Error).message,
+      };
+    }
+  };
+
+  const updateUserPassword: UpdateUserPassword = async (body) => {
+    try {
+      const { data } = await apiPayload().post<any>(
+        `${url}/change_password`,
+        body
+      );
       return {
         success: true,
         data,
@@ -21,6 +39,7 @@ export const UsersService = () => {
   };
 
   return {
-    updateUser,
+    updateUserData,
+    updateUserPassword,
   };
 };

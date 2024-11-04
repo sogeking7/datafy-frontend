@@ -1,7 +1,5 @@
 import { User } from "@/types";
 import { Response } from "@/types/api";
 
-export type UpdateUserById = (
-  id: string | number,
-  body: Partial<User>
-) => Promise<Response<User>>;
+export type UpdateUserData = (body: Partial<User>) => Promise<Response<User>>;
+export type UpdateUserPassword = (body: Partial<User>) => Promise<Response<User>>;

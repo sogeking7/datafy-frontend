@@ -78,11 +78,7 @@ export const AccountForm: React.FC = () => {
   const onSubmit = useCallback(
     async (values: FormData) => {
       if (user) {
-        const { data, success } = await UsersService().updateUser(
-          // user.id,
-          "example-id",
-          values
-        );
+        const { data, success } = await UsersService().updateUserData(values);
         if (success) {
           const updated_user = data;
           updateUser(updated_user);
@@ -90,7 +86,6 @@ export const AccountForm: React.FC = () => {
           setError("");
           setChangePassword(false);
           reset({
-            // username: updated_user.username,
             password: "",
             passwordConfirm: "",
           });
