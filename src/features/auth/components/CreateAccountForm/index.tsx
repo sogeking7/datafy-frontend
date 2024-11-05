@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -39,10 +39,13 @@ const createAccountSchema = z
     email: z.string().email("Неверный адрес электронной почты"),
     password: z
       .string()
-      .min(6, { message: "Пароль должен содержать минимум 6 символов" }),
+      .min(8, { message: "Пароль должен содержать минимум 8 символов" })
+      .regex(/[A-Z]/, {
+        message: "Пароль должен содержать хотя бы одну заглавную букву",
+      }),
     passwordConfirm: z
       .string()
-      .min(6, { message: "Пароль должен содержать минимум 6 символов" }),
+      .min(8, { message: "Пароль должен содержать минимум 8 символов" }),
   })
   .refine((data) => data.password === data.passwordConfirm, {
     path: ["passwordConfirm"],
@@ -56,7 +59,7 @@ export const CreateAccountForm: React.FC = () => {
   const allParams = searchParams.toString()
     ? `?${searchParams.toString()}`
     : "";
-  const { login } = useAuth();
+  const { updateUser } = useAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -72,50 +75,41 @@ export const CreateAccountForm: React.FC = () => {
     },
   });
 
-  const onSubmit = useCallback(
-    async (values: FormData) => {
-      const { passwordConfirm, ...restValues } = values;
-      const { success, data } = await AuthService().create({
-        ...restValues,
-        about: "",
-        city: "",
-      });
+  const onSubmit = async (values: FormData) => {
+    const { passwordConfirm, ...restValues } = values;
+    const { success, data } = await AuthService().create({
+      ...restValues,
+      about: "",
+      city: "",
+    });
 
-      if (!success) {
-        const message = data || "Произошла ошибка при создании аккаунта.";
-        setError(message);
-        return;
-      }
+    if (!success) {
+      setError("Произошла ошибка при создании аккаунта.");
+      return;
+    }
 
-      const redirect = searchParams.get("redirect");
-      const timer = setTimeout(() => {
-        setLoading(true);
-      }, 1000);
+    const formData = new FormData();
+    formData.append("email", values.email);
+    formData.append("password", values.password);
 
-      const formData = new FormData();
-      formData.append("email", values.email);
-      formData.append("password", values.password);
-
-      const res = await AuthService().login(formData);
-      if (res.success) {
-        localStorage.setItem("access-token", res.data.access_token);
-        // clearTimeout(timer);
-        window.location.reload();
-        router.push("/account");
-        if (redirect) router.push(redirect as string);
-        else
-          router.push(
-            `/account?success=${encodeURIComponent("Аккаунт успешно создан")}`
-          );
-      } else {
-        clearTimeout(timer);
-        setError(
-          "Произошла ошибка с указанными данными. Пожалуйста, попробуйте снова."
+    const res = await AuthService().login(formData);
+    if (res.success) {
+      localStorage.setItem("access-token", res.data.access_token);
+      localStorage.setItem("refresh-token", res.data.refresh_token);
+      const me = await AuthService().getMe();
+      if (me.success) {
+        setError("");
+        updateUser(me.data);
+        router.push(
+          `/account?success=${encodeURIComponent("Аккаунт успешно создан")}`
         );
+      } else {
+        setError(me.data);
       }
-    },
-    [login, router, searchParams]
-  );
+    } else {
+      setError("Неправильное имя пользователя или пароль");
+    }
+  };
 
   return (
     <Card className="max-w-md w-full">

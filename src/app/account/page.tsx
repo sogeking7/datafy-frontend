@@ -1,6 +1,5 @@
 "use client";
 
-import { AccountForm } from "@/features/users/components/AccountForm";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,6 +11,8 @@ import { Suspense } from "react";
 import { useAuth } from "@/features/auth/providers/client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { LogoutBtn } from "@/features/auth/components/LogoutBtn";
+import { AccountForm } from "@/features/users/components/AccountForm";
 
 export default function Account() {
   const router = useRouter();
@@ -43,8 +44,9 @@ export default function Account() {
         </BreadcrumbList>
       </Breadcrumb>
       <Suspense>
-        <AccountForm />
+        <AccountForm/>
       </Suspense>
+      <LogoutBtn />
     </>
   );
 }

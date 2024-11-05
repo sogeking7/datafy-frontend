@@ -30,7 +30,10 @@ const loginSchema = z.object({
   email: z.string().email("Неверный адрес электронной почты"),
   password: z
     .string()
-    .min(6, { message: "Пароль должен содержать минимум 6 символов" }),
+    .min(8, { message: "Пароль должен содержать минимум 8 символов" })
+    .regex(/[A-Z]/, {
+      message: "Пароль должен содержать хотя бы одну заглавную букву",
+    }),
 });
 
 type FormData = z.infer<typeof loginSchema>;
@@ -71,9 +74,7 @@ export const LoginForm: React.FC = () => {
         setError(me.data);
       }
     } else {
-      setError(
-        "Произошла ошибка при вводе данных. Пожалуйста, попробуйте еще раз."
-      );
+      setError("Неправильное имя пользователя или пароль");
     }
   };
 
@@ -91,7 +92,7 @@ export const LoginForm: React.FC = () => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-2 items-end"
           >
-            <FormMessage className="mb-2">{error}</FormMessage>
+            <FormMessage className="mb-2 text-left w-full">{error}</FormMessage>
             <FormField
               control={form.control}
               name="email"

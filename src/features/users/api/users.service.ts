@@ -3,7 +3,7 @@ import { isAxiosError } from "axios";
 import { UpdateUserData, UpdateUserPassword } from "./users.service.types";
 
 export const UsersService = () => {
-  const url = "/users";
+  const url = "/user";
 
   const updateUserData: UpdateUserData = async (body) => {
     try {

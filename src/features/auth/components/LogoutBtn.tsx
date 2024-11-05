@@ -9,7 +9,8 @@ export const LogoutBtn = () => {
   const { logout } = useAuth();
 
   return (
-    <Button
+  <Button
+      variant={'destructive'}
       onClick={() => {
         localStorage.removeItem("access-token");
         logout();
