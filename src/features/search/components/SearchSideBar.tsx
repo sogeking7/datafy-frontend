@@ -93,8 +93,8 @@ export const SearchSideBar = ({ className }: { className?: string }) => {
   const { id } = useParams();
 
   return (
-    <div className={cn("bg-white h-full rounded-xl p-6", className)}>
-      <nav className="flex flex-col gap-2">
+    <div className={cn("bg-white h-full rounded-2xl p-6", className)}>
+      <nav className="flex flex-col gap-3">
         {links.map(({ title, link, light, bold }, idx) => (
           <Link key={link} href={`/search/${id}` + link} className="w-full">
             <Button

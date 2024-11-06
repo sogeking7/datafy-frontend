@@ -1,3 +1,9 @@
+import { MainInfoCard } from "./components/MainInfoCard";
+
 export default function Page() {
-  return <div>Main Info</div>;
+  return (
+    <>
+      <MainInfoCard />
+    </>
+  );
 }

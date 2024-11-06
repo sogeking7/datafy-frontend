@@ -6,12 +6,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React, { useState } from "react";
+import { cn } from "@/lib/utils";
 
 type FormType = {
   q: string;
 };
 
-export const SearchForm = () => {
+export const SearchForm = ({ tabsActive = true }: { tabsActive?: boolean }) => {
   const params = useSearchParams();
   const router = useRouter();
 
@@ -45,7 +46,10 @@ export const SearchForm = () => {
           />
           <input
             {...form.register("q")}
-            className="pl-10 md:pl-12 text-accent-foreground h-9 md:h-11 font-medium text-sm md:text-base bg-transparent border-none ring-none outline-none w-full"
+            className={cn(
+              "pl-10 md:pl-12 placeholder:text-[#ABACAE] h-9 md:h-11  bg-transparent border-none ring-none outline-none w-full",
+              !tabsActive ? "text-sm" : "md:text-base text-sm"
+            )}
             placeholder="Введите ИИН, БИН, ФИО, название компании"
           />
         </div>
@@ -54,20 +58,22 @@ export const SearchForm = () => {
         </Button>
       </div>
 
-      <Tabs
-        value={activeTab}
-        onValueChange={(value) => handleTabChange(value)}
-        className="mt-5 md:w-[605px] max-md:overflow-x-scroll "
-      >
-        <TabsList className="">
-          <TabsTrigger value="all">Все</TabsTrigger>
-          <TabsTrigger value="legal-entity">Юр. лицо</TabsTrigger>
-          <TabsTrigger value="individual-entrepreneur">
-            Индивидуальный предприниматель
-          </TabsTrigger>
-          <TabsTrigger value="individual">Физ. лицо</TabsTrigger>
-        </TabsList>
-      </Tabs>
+      {tabsActive && (
+        <Tabs
+          value={activeTab}
+          onValueChange={(value) => handleTabChange(value)}
+          className="mt-5 md:w-[605px] max-md:overflow-x-scroll "
+        >
+          <TabsList className="">
+            <TabsTrigger value="all">Все</TabsTrigger>
+            <TabsTrigger value="legal-entity">Юр. лицо</TabsTrigger>
+            <TabsTrigger value="individual-entrepreneur">
+              Индивидуальный предприниматель
+            </TabsTrigger>
+            <TabsTrigger value="individual">Физ. лицо</TabsTrigger>
+          </TabsList>
+        </Tabs>
+      )}
     </form>
   );
 };
