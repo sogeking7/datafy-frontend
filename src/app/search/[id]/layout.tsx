@@ -12,7 +12,7 @@ export default function SearchPageLayout({
       variant={"largePadded"}
       className="grid grid-cols-[340px_1fr] grid-rows-1 gap-6 my-5"
     >
-      <SearchSideBar />
+      <SearchSideBar className="self-start" />
       <div className="flex flex-col gap-6">
         <SearchForm tabsActive={false} />
         {children}
