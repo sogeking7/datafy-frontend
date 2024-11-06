@@ -1,63 +1,64 @@
 import React from "react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Counterparty } from "@/types";
-import EgovIcon from "@/../public/iconly/egov.svg";
-import BookmarkIcon from "@/../public/iconly/Light/Bookmark.svg";
-import EditSquareIcon from "@/../public/iconly/Light/Edit Square.svg";
-import DownloadIcon from "@/../public/iconly/Light/Download.svg";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tab } from "./Tab";
 
-const mockData: Partial<Counterparty> = {
-  name: "АО “KASPI BANK”",
+const mockData = {
+  bin: "971240001315",
+  registrationDate: "04-12-1997",
+  legalAddress: "",
+  contacts: "",
+  director: "МИРОНОВ ПАВЕЛ ВЛАДИМИРОВИЧ",
+  registeringAuthority:
+    "Управление регистрации филиала НАО ГК «Правительство для граждан» по городу Алматы",
+  vatPayer: "Да",
+  activityType: 3,
+  lastRegistrationDate: "04-12-1997",
+  requisites: "",
+  companySize: "Крупные предприятия (>1000)",
+  ownershipType: "Частная собственность",
+  taxOfficeCode: "НК МФ РК — 0101",
+  hasBlockedAccounts: "Нет",
+  bankruptcyInfo: "Нет",
+  inDishonestSuppliersRegistry: "Нет",
 } as const;
+
+const keyLabels = {
+  bin: "БИН",
+  registrationDate: "Дата регистрации",
+  legalAddress: "Юридический адрес",
+  contacts: "Контакты",
+  director: "Руководитель",
+  registeringAuthority: "Регистрирующий орган",
+  vatPayer: "Плательщик НДС",
+  activityType: "Вид деятельности",
+  lastRegistrationDate: "Дата последней регистрации",
+  requisites: "Реквизиты",
+  companySize: "Размер предприятия",
+  ownershipType: "Форма собственности",
+  taxOfficeCode: "Код налогового органа",
+  hasBlockedAccounts: "Наличие заблокированных счетов",
+  bankruptcyInfo: "Сведения о банкротстве",
+  inDishonestSuppliersRegistry:
+    "Попадание компании в реестр недобросовестных поставщиков",
+} as const;
+
 export const MainInfoCard = ({ data }: { data?: Counterparty }) => {
   return (
     <Card className="bg-white !rounded-2xl flex flex-col border-none">
-      <CardHeader className="flex flex-col gap-3">
-        <h1 className="font-bold text-2xl">{mockData.name}</h1>
-        <Badge variant={"current"} className="w-max">
-          Нет проблем
-        </Badge>
+      <CardHeader>
+        <CardTitle>Основная информация</CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-col gap-3">
-        <div className="flex flex-wrap justify-between">
-          <Button size={"sm"} className="gap-3 ">
-            <DownloadIcon className="full-current stroke-white stroke-[1.5]" />
-            Скачать отчет
-          </Button>
-          <div className="flex items-center gap-3">
-            <Button size={"sm"} variant={"secondary"} className="gap-3">
-              Справка <EgovIcon />
-            </Button>
-            <Button size={"sm"} variant={"secondary"} className="gap-3">
-              <EditSquareIcon />
-              Заметки
-            </Button>
-            <Button variant={"secondary"} size={"icon-sm"}>
-              <BookmarkIcon />
-            </Button>
-          </div>
-        </div>
-        <div className="font-medium text-sm flex flex-col gap-2">
-          <h2 className="text-info">Рейтинг компании:</h2>
-          <div className="w-full h-[10px] bg-gradient-to-r from-[#FF6E4E] via-[#FFEB4F] to-[#77BD8B] rounded-full"></div>
-          <p className="text-info font-semibold text-base">
-            <span className="text-green-600">6 место</span> на рынке из 2 827
-          </p>
-        </div>
+      <CardContent className="flex flex-col gap-3 !pt-0">
+        {Object.entries(mockData).map((item, id) => (
+          <Tab
+            action={false}
+            key={id}
+            keyv={keyLabels[item[0] as keyof Object]}
+            value={item[1].toString()}
+          />
+        ))}
       </CardContent>
-      <CardFooter>
-        <p className="text-info text-sm">
-          Рейтинг компании лучше, чем у 99.8% компаний с аналогичным видом
-          деятельности
-        </p>
-      </CardFooter>
     </Card>
   );
 };

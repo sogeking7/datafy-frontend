@@ -40,13 +40,13 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export const EstimatedRevenue = () => {
+export const EstimatedRevenueCard = () => {
   return (
     <Card className="bg-white !rounded-2xl flex flex-col border-none">
       <CardHeader>
         <CardTitle>Оценочная выручка</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="!pt-0">
         <ChartContainer className="h-[250px] !aspect-auto" config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />

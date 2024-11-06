@@ -10,10 +10,10 @@ export default function SearchPageLayout({
   return (
     <Container
       variant={"largePadded"}
-      className="grid grid-cols-[340px_1fr] grid-rows-1 gap-6 my-5"
+      className="grid grid-cols-[320px_1fr] grid-rows-1 gap-6 my-5"
     >
       <SearchSideBar className="self-start" />
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-3">
         <SearchForm tabsActive={false} />
         {children}
       </div>
