@@ -1,5 +1,4 @@
 import DangerCirlcle from "@/../public/iconly/Light/Danger Circle.svg";
-import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 
 type TabProps = {
