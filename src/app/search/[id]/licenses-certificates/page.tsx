@@ -1,3 +1,3 @@
 export default function Page() {
-  return <div>Licenses Certificates</div>;
+  return <div></div>;
 }

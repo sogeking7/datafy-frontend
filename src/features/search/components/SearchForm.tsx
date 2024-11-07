@@ -25,12 +25,12 @@ export const SearchForm = ({ tabsActive = true }: { tabsActive?: boolean }) => {
   });
 
   function onSubmit(values: FormType) {
-    router.push(`?q=${values.q}&sort=${activeTab}`);
+    router.push(`/search?q=${values.q}&sort=${activeTab}`);
   }
 
   function handleTabChange(value: string) {
     setActiveTab(value);
-    router.push(`?q=${form.getValues("q")}&sort=${value}`);
+    router.push(`/search?q=${form.getValues("q")}&sort=${value}`);
   }
 
   return (

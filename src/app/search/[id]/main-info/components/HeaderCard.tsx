@@ -17,12 +17,14 @@ export const HeaderCard = ({ data }: { data: FindByBinResponse }) => {
   return (
     <Card className="bg-white !rounded-2xl flex flex-col border-none">
       <CardHeader className="flex flex-col gap-3">
-        <h1 className="font-bold text-2xl">{data.company_info.name}</h1>
-        <Badge variant={"current"} className="w-max">
+        <h1 className="font-semibold text-lg md:text-2xl">
+          {data.company_info.name}
+        </h1>
+        {/* <Badge variant={"current"} className="w-max">
           Нет проблем
-        </Badge>
+        </Badge> */}
       </CardHeader>
-      <CardContent className="flex flex-col gap-3 !py-0">
+      {/* <CardContent className="flex flex-col gap-3 !py-0">
         <div className="flex flex-wrap justify-between">
           <Button size={"sm"} className="gap-3 ">
             <DownloadIcon className="full-current stroke-white stroke-[1.5]" />
@@ -54,7 +56,7 @@ export const HeaderCard = ({ data }: { data: FindByBinResponse }) => {
           Рейтинг компании лучше, чем у 99.8% компаний с аналогичным видом
           деятельности
         </p>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 };

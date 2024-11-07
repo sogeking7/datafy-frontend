@@ -41,7 +41,7 @@ export const SupervisorCard = ({ data }: { data?: Counterparty }) => {
               action={false}
               key={id}
               keyv={keyLabels[item[0] as keyof Object]}
-              value={item[1].toString()}
+              value={""}
             />
           );
         })}

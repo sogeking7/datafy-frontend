@@ -1,3 +1,3 @@
 export default function Page() {
-  return <div>Court Cases</div>;
+  return <div></div>;
 }

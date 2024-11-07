@@ -44,25 +44,25 @@ export default function Page() {
 
   return (
     <>
-      <div className="grid grid-cols-[1fr_33%] gap-3">
-        <div className="grid grid-cols-1 gap-3">
+      <div className="grid  grid-cols-1 xl:grid-cols-[1fr_33%] gap-3">
+        <div className="grid grid-cols-1 self-start gap-3">
           <HeaderCard data={data.data} />
-          <EstimatedRevenueCard />
+          {/* <EstimatedRevenueCard /> */}
           <MainInfoCard data={data.data} />
-          <SupervisorCard />
+          {/* <SupervisorCard />
           <FoundersCard />
           <FamilyTiesCard />
           <ConnectionsCard />
-          <OtherParticipantsCard />
+          <OtherParticipantsCard /> */}
         </div>
         <div className="grid grid-cols-1 gap-3 self-start">
-          <ReliabilityIndex />
+          {/* <ReliabilityIndex />
           <EnterpriseSize />
           <TaxDeductions />
           <Vacancies />
           <Publications />
           <History />
-          <TradeMarks />
+          <TradeMarks /> */}
         </div>
       </div>
     </>
