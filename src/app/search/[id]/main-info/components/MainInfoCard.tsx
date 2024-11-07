@@ -1,63 +1,81 @@
 import React from "react";
-import { Counterparty } from "@/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tab } from "./Tab";
-
-const mockData = {
-  bin: "971240001315",
-  registrationDate: "04-12-1997",
-  legalAddress: "",
-  contacts: "",
-  director: "МИРОНОВ ПАВЕЛ ВЛАДИМИРОВИЧ",
-  registeringAuthority:
-    "Управление регистрации филиала НАО ГК «Правительство для граждан» по городу Алматы",
-  vatPayer: "Да",
-  activityType: 3,
-  lastRegistrationDate: "04-12-1997",
-  requisites: "",
-  companySize: "Крупные предприятия (>1000)",
-  ownershipType: "Частная собственность",
-  taxOfficeCode: "НК МФ РК — 0101",
-  hasBlockedAccounts: "Нет",
-  bankruptcyInfo: "Нет",
-  inDishonestSuppliersRegistry: "Нет",
-} as const;
+import { FindByBinResponse } from "@/features/company/api/company.service.types";
 
 const keyLabels = {
   bin: "БИН",
-  registrationDate: "Дата регистрации",
-  legalAddress: "Юридический адрес",
+  name: "Наименование",
+  date_registration: "Дата регистрации",
+  legal_address: "Юридический адрес",
   contacts: "Контакты",
-  director: "Руководитель",
+  fullname_director: "Руководитель",
   registeringAuthority: "Регистрирующий орган",
   vatPayer: "Плательщик НДС",
-  activityType: "Вид деятельности",
+  oked_name: "Вид деятельности",
   lastRegistrationDate: "Дата последней регистрации",
   requisites: "Реквизиты",
-  companySize: "Размер предприятия",
-  ownershipType: "Форма собственности",
-  taxOfficeCode: "Код налогового органа",
+  krp_name: "Размер предприятия",
+  type_of_ownership: "Наименование КФС",
+  tax_authority_name: "Код налогового органа",
   hasBlockedAccounts: "Наличие заблокированных счетов",
   bankruptcyInfo: "Сведения о банкротстве",
   inDishonestSuppliersRegistry:
     "Попадание компании в реестр недобросовестных поставщиков",
+  kse_name: "Наименование сектора экономики",
+  kse_code: "Код сектора экономики",
+  krp_code: "Код КРП (с учетом филиалов)",
+  oked_code: "Основной код ОКЭД",
+  kato_code: "КАТО",
+  additional_okeds: "Вторичный код ОКЭД",
 } as const;
 
-export const MainInfoCard = ({ data }: { data?: Counterparty }) => {
+export const MainInfoCard = ({ data }: { data: FindByBinResponse }) => {
   return (
     <Card className="bg-white !rounded-2xl flex flex-col border-none">
       <CardHeader>
         <CardTitle>Основная информация</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-3 !pt-0">
-        {Object.entries(mockData).map((item, id) => (
-          <Tab
-            action={false}
-            key={id}
-            keyv={keyLabels[item[0] as keyof Object]}
-            value={item[1].toString()}
-          />
-        ))}
+        {Object.entries({ ...data.company_info, ...data.tax_info }).map(
+          (item, id) => {
+            const keyv = keyLabels[item[0] as keyof Object];
+            if (!keyv) return null;
+            let value = item[1].toString();
+            if (item[0] === "date_registration") {
+              const date = new Date(value);
+              value = date.toLocaleDateString("kk-KZ", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+              });
+            }
+            if (item[0] === "additional_okeds") {
+              const parsedOkeds = JSON.parse(value);
+              if (parsedOkeds[0]) value = parsedOkeds[0].split(",").join(", ");
+              else value = "Нет";
+            }
+            if (item[0] === "tax_authority_name") {
+              value += " - " + data.tax_info.tax_authority_code;
+            }
+            if (item[0] === "legal_address") {
+              value += ", " + data.company_info.judical_address;
+            }
+            return (
+              <Tab
+                copyToClickboard={
+                  item[0] === "bin" || item[0] === "legal_address"
+                    ? true
+                    : false
+                }
+                action={false}
+                key={id}
+                keyv={keyv}
+                value={value}
+              />
+            );
+          }
+        )}
       </CardContent>
     </Card>
   );

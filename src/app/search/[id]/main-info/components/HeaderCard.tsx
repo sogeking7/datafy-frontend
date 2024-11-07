@@ -1,7 +1,6 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Counterparty } from "@/types";
 import EgovIcon from "@/../public/iconly/egov.svg";
 import BookmarkIcon from "@/../public/iconly/Light/Bookmark.svg";
 import EditSquareIcon from "@/../public/iconly/Light/Edit Square.svg";
@@ -12,15 +11,13 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { FindByBinResponse } from "@/features/company/api/company.service.types";
 
-const mockData: Partial<Counterparty> = {
-  name: "АО “KASPI BANK”",
-} as const;
-export const HeaderCard = ({ data }: { data?: Counterparty }) => {
+export const HeaderCard = ({ data }: { data: FindByBinResponse }) => {
   return (
     <Card className="bg-white !rounded-2xl flex flex-col border-none">
       <CardHeader className="flex flex-col gap-3">
-        <h1 className="font-bold text-2xl">{mockData.name}</h1>
+        <h1 className="font-bold text-2xl">{data.company_info.name}</h1>
         <Badge variant={"current"} className="w-max">
           Нет проблем
         </Badge>

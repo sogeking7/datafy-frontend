@@ -5,6 +5,7 @@ import Image from "next/image";
 import getUnicodeFlagIcon from "country-flag-icons/unicode";
 import { Button } from "@/components/ui/button";
 import { cn, createGoogleMapsLink, createYandexMapsLink } from "@/lib/utils";
+import Link from "next/link";
 
 const cardType = {
   individual: "ФЛ",
@@ -120,9 +121,11 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
             <Image alt="map" src="/iconly/yandex.svg" width={20} height={20} />
           </a>
         </ul>
-        <Button size={"sm"} className="self-bottom">
-          Подробнее
-        </Button>
+        <Link href={`/search/${data.bin}/main-info`}>
+          <Button size={"sm"} className="self-bottom">
+            Подробнее
+          </Button>
+        </Link>
       </div>
     </Card>
   );

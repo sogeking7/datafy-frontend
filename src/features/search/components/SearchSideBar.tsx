@@ -24,6 +24,7 @@ import Chart from "@/../public/iconly/Light/Chart.svg";
 import ChartBold from "@/../public/iconly/Bold/Chart.svg";
 import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
 
 const links = [
   {
@@ -93,8 +94,13 @@ export const SearchSideBar = ({ className }: { className?: string }) => {
   const { id } = useParams();
 
   return (
-    <div className={cn("bg-white rounded-2xl p-6", className)}>
-      <nav className="flex flex-col gap-3">
+    <Card
+      className={cn(
+        "bg-white !rounded-2xl flex flex-col border-none",
+        className
+      )}
+    >
+      <CardContent className="flex flex-col gap-3">
         {links.map(({ title, link, light, bold }, idx) => (
           <Link key={link} href={`/search/${id}` + link} className="w-full">
             <Button
@@ -111,7 +117,7 @@ export const SearchSideBar = ({ className }: { className?: string }) => {
             </Button>
           </Link>
         ))}
-      </nav>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
