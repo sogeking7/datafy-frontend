@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { LoginBtn, RegisterBtn } from "@/features/auth/components/Buttons";
 import { useAuth } from "@/features/auth/providers/client";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,11 +23,12 @@ export const UserBtn = () => {
 
   return (
     <Link href="/account">
-      <Button variant={"light"} className="gap-3 pl-2 pr-4">
-        <div className="bg-[#f4f4f4] rounded-md p-1">
-          <Image src="/iconly/user.svg" width={20} height={20} alt="user" />
+      <Button variant={"light"} className="gap-2 !px-2">
+        <div className="bg-[#f4f4f4] font-semibold leading-none rounded-md p-1 w-7 flex items-center justify-center h-7 py-0">
+          {user.fullname[0].toUpperCase()}
         </div>
-        Личный кабинет
+        {user.email}
+        <ChevronRight className="w-4 h-4" />
       </Button>
     </Link>
   );

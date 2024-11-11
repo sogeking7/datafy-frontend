@@ -16,8 +16,7 @@ export const LoginBtn = () => {
       <div className="bg-[#f4f4f4] md:hidden rounded-md p-1">
         <Image src="/iconly/user.svg" width={18} height={18} alt="user" />
       </div>
-      <span className="max-md:hidden">Войти</span>
-      <span className="md:hidden">Вход</span>
+      <span>Войти</span>
     </Button>
   );
 };
