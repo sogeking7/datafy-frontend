@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
+import { SearchIcon } from "lucide-react";
 
 type FormType = {
   q: string;
@@ -35,7 +36,7 @@ export const SearchForm = ({ tabsActive = true }: { tabsActive?: boolean }) => {
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
-      <div className="w-full bg-white p-2 md:p-2.5 rounded-xl md:rounded-2xl flex justify-between gap-2 md:gap-10">
+      <div className="w-full bg-white p-2 md:p-2.5 rounded-xl md:rounded-2xl flex justify-between gap-3 md:gap-10">
         <div className="w-full relative">
           <Image
             alt="search"
@@ -53,8 +54,9 @@ export const SearchForm = ({ tabsActive = true }: { tabsActive?: boolean }) => {
             placeholder="Введите ИИН, БИН, ФИО, название компании"
           />
         </div>
-        <Button type="submit" className="max-md:hidden min-w-44">
-          Найти
+        <Button type="submit" className="max-md:w-10 max-md:h-10 md:min-w-44">
+          <span className="max-md:hidden">Найти</span>
+          <SearchIcon className="md:hidden" />
         </Button>
       </div>
 
