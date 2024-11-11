@@ -34,7 +34,7 @@ export const Tab = ({
     >
       <div className="flex gap-3 items-center">
         {variant === "default" && (
-          <CircleAlert className="text-gray-400 md:size-6 size-5" />
+          <CircleAlert className="text-gray-400  min-w-5 min-h-5 w-5 h-5" />
         )}
         <p className="text-left text-balance">{keyv}</p>
       </div>
