@@ -5,7 +5,7 @@ import { SalesSearch } from "./SalesSearch";
 
 export const SalesFooter = () => {
   return (
-    <footer className="absolute bottom-0 max-sm:bottom-[90px] w-full bg-[#151515] py-12">
+    <footer className="absolute bottom-0 max-sm:bottom-[64px] w-full bg-[#151515] py-12">
       <Container>
         <div className=" flex gap-10 items-center">
           <Link href="/">
