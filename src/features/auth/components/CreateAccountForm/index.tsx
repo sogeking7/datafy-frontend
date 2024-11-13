@@ -101,7 +101,7 @@ export const CreateAccountForm: React.FC = () => {
         setError("");
         updateUser(me.data);
         router.push(
-          `/account?success=${encodeURIComponent("Аккаунт успешно создан")}`
+          `/account/profile?success=${encodeURIComponent("Аккаунт успешно создан")}`
         );
       } else {
         setError(me.data);

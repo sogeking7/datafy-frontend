@@ -1,16 +1,17 @@
 "use client";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/features/auth/providers/client";
 import { AccountPasswordForm } from "@/features/users/components/AccountForm/AccountPasswordForm";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const router = useRouter();
   const { error, user } = useAuth();
 
   if (!user) {
     if (error) {
-      redirect("/auth/login");
+      router.push("/auth/login");
     }
     return <div className="my-20 text-center font-medium">Загрузка...</div>;
   }

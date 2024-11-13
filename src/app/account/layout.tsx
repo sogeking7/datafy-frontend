@@ -31,7 +31,7 @@ export default function AccountLayout({
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
                   <BreadcrumbLink asChild>
-                    <Link href="/account">Личный кабинет</Link>
+                    <Link href="/account/profile">Личный кабинет</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>

@@ -69,7 +69,7 @@ export const LoginForm: React.FC = () => {
       if (me.success) {
         setError("");
         updateUser(me.data);
-        router.push("/account");
+        router.push("/account/profile");
       } else {
         setError(me.data);
       }

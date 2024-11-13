@@ -22,7 +22,7 @@ export const UserBtn = () => {
   }
 
   return (
-    <Link href="/account">
+    <Link href="/account/profile">
       <Button variant={"light"} className="gap-2 !px-2">
         <div className="bg-[#f4f4f4] font-semibold leading-none rounded-md p-1 w-7 flex items-center justify-center h-7 py-0">
           {user.fullname[0].toUpperCase()}

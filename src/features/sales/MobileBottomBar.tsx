@@ -47,17 +47,17 @@ export default function MobileBottomBar() {
       </Link>
 
       <Link
-        href="/account"
+        href="/account/profile"
         className="flex flex-col items-center w-full text-center py-2"
         prefetch={false}
       >
         <UserIcon
-          fill={isActive("/account") ? "#403df0" : "#E9E9E9"}
+          fill={isActive("/account/profile") ? "#403df0" : "#E9E9E9"}
           className="size-5"
         />
         <span
           className={`text-xs mt-1 font-semibold ${
-            isActive("/account") ? "text-primary" : "text-[#999]"
+            isActive("/account/profile") ? "text-primary" : "text-[#999]"
           }`}
         >
           Профиль
