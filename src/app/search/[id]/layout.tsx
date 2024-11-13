@@ -1,5 +1,5 @@
 import { SearchForm } from "@/features/search/components/SearchForm";
-import { SearchSideBar } from "@/features/search/components/SearchSideBar";
+import { SearchSideBar } from "@/features/search/components/SearchSideBar/SearchSideBar";
 import { Container } from "@/ui/Container";
 import {
   Breadcrumb,
@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { SearchTabs } from "@/features/search/components/SearchTabs/SearchTabs";
 
 export default async function SearchPageLayout({
   params,
@@ -43,14 +44,13 @@ export default async function SearchPageLayout({
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href={`/search/${id}/main-info`}>
-                    {id}
-                  </Link>
+                  <Link href={`/search/${id}/main-info`}>{id}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
           <SearchForm tabsActive={false} />
+          <SearchTabs className="md:hidden self-start" />
         </div>
         {children}
       </div>

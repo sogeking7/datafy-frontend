@@ -20,3 +20,5 @@ export function createYandexMapsLink(address: string): string {
   const formattedAddress = encodeURIComponent(address);
   return `https://yandex.com/maps/?text=${formattedAddress}`;
 }
+
+export const getLastPathname = (s: string) => "/" + s.split("/").pop();
