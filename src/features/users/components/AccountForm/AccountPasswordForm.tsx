@@ -33,9 +33,7 @@ const passwordSchema = z
 
 type FormData = z.infer<typeof passwordSchema>;
 
-export const AccountPasswordForm: React.FC<{
-  setChangePassword: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ setChangePassword }) => {
+export const AccountPasswordForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const { user, updateUser } = useAuth();
@@ -77,23 +75,12 @@ export const AccountPasswordForm: React.FC<{
     <Form {...form}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="my-5 gap-6 flex flex-col items-start bg-white p-6 md:rounded-xl rounded-md"
+        className="gap-6 flex flex-col items-start"
       >
         {error && <FormMessage>{error}</FormMessage>}
         {success && (
           <FormMessage className="text-green-500">{success}</FormMessage>
         )}
-        <p className="text-sm">
-          {"Измените свой пароль ниже, или "}
-          <button
-            type="button"
-            className="text-blue-500 underline"
-            onClick={() => setChangePassword(false)}
-          >
-            отмена
-          </button>
-          .
-        </p>
         <div className="space-y-2 max-w-md w-full">
           <FormField
             control={form.control}

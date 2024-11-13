@@ -1,7 +1,10 @@
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import MobileBottomBar from "@/features/sales/MobileBottomBar";
 import { SalesFooter } from "@/features/sales/SalesFooter";
 import { SalesHeader } from "@/features/sales/SalesHeader";
+import { ProfileSideBar } from "@/features/users/components/ProfileSideBar";
 import { Container } from "@/ui/Container";
+import Link from "next/link";
 
 export default function AccountLayout({
   children,
@@ -12,7 +15,30 @@ export default function AccountLayout({
     <div className="relative flex min-h-screen pb-[690px] md:pb-[calc(470px)] lg:pb-[calc(430px)] flex-col bg-background">
       <SalesHeader variant="largePadded" className="bg-white" />
       <div className="bg-background md:min-h-[calc(100vh-74px)] min-h-[calc(100vh-64px)]">
-        <Container>{children}</Container>
+        <Container
+          variant={"largePadded"}
+          className="grid grid-cols-1 md:grid-cols-[320px_1fr] grid-rows-1 gap-6 my-5"
+        >
+          <ProfileSideBar className="self-start max-md:hidden" />
+          <div className="flex flex-col gap-3">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link href="/">Главная</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link href="/account">Личный кабинет</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+            {children}
+          </div>
+        </Container>
       </div>
       <SalesFooter />
       <MobileBottomBar />
