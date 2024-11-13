@@ -41,8 +41,8 @@ const links = [
   {
     title: "Мои отчеты",
     link: "/reports",
-    light: <Chart strokeWidth={1.5} />,
-    bold: <ChartBold className="" strokeWidth={1.5} />,
+    light: <Chart />,
+    bold: <ChartBold className="fill-current" />,
   },
   {
     title: "История просмотров",
