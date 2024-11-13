@@ -1,7 +1,3 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import Profile from "@/../public/iconly/Light/Profile.svg";
 import ProfileBold from "@/../public/iconly/Bold/Profile.svg";
 import Lock from "@/../public/iconly/Light/Lock.svg";
@@ -15,11 +11,7 @@ import EditSquareBold from "@/../public/iconly/Bold/Edit Square.svg";
 import Chart from "@/../public/iconly/Light/Chart.svg";
 import ChartBold from "@/../public/iconly/Bold/Chart.svg";
 
-import { useParams, usePathname } from "next/navigation";
-import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
-
-const links = [
+export const profile_sidebar_links = [
   {
     title: "Личная информация",
     link: "/profile",
@@ -57,36 +49,3 @@ const links = [
     bold: <EditSquareBold className="fill-current" />,
   },
 ] as const;
-
-export const ProfileSideBar = ({ className }: { className?: string }) => {
-  const pathname = usePathname();
-  const { id } = useParams();
-
-  return (
-    <Card
-      className={cn(
-        "bg-white !rounded-2xl flex flex-col border-none",
-        className
-      )}
-    >
-      <CardContent className="flex flex-col gap-3">
-        {links.map(({ title, link, light, bold }, idx) => (
-          <Link key={link} href={"/account" + link} className="w-full">
-            <Button
-              className={cn(
-                pathname.includes(link)
-                  ? "bg-primary fill-current font-semibold text-white stroke-none"
-                  : "hover:bg-accent",
-                "w-full"
-              )}
-              variant={"search-side-bar"}
-            >
-              {pathname.includes(link) ? bold : light}
-              {title}
-            </Button>
-          </Link>
-        ))}
-      </CardContent>
-    </Card>
-  );
-};

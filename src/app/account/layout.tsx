@@ -8,7 +8,8 @@ import {
 import MobileBottomBar from "@/features/sales/MobileBottomBar";
 import { SalesFooter } from "@/features/sales/SalesFooter";
 import { SalesHeader } from "@/features/sales/SalesHeader";
-import { ProfileSideBar } from "@/features/users/components/ProfileSideBar";
+import { ProfileSideBar } from "@/features/users/components/ProfileSideBar/ProfileSideBar";
+import { ProfileTabs } from "@/features/users/components/ProfileTabs/ProfileTabs";
 import { Container } from "@/ui/Container";
 import Link from "next/link";
 
@@ -42,7 +43,8 @@ export default function AccountLayout({
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
-            <div className="flex flex-col gap-4">{children}</div>
+            <ProfileTabs className="self-start md:hidden mb-4" />
+            <div className="flex gap-4 flex-col">{children}</div>
           </div>
         </Container>
       </div>
