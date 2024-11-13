@@ -1,3 +1,9 @@
+import { CardTitle } from "@/components/ui/card";
+
 export default function Page() {
-  return <div></div>;
+  return (
+    <>
+      <CardTitle>Мои отчеты</CardTitle>
+    </>
+  );
 }

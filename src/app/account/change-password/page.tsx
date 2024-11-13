@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/features/auth/providers/client";
 import { AccountPasswordForm } from "@/features/users/components/AccountForm/AccountPasswordForm";
 import { useRouter } from "next/navigation";
@@ -17,10 +17,13 @@ export default function Page() {
   }
 
   return (
-    <Card className="bg-white !rounded-2xl flex flex-col border-none">
-      <CardContent className="p-4 sm:p-6">
-        <AccountPasswordForm />
-      </CardContent>
-    </Card>
+    <>
+      <CardTitle>Смена пароля</CardTitle>
+      <Card className="bg-white !rounded-2xl flex flex-col border-none">
+        <CardContent className="p-4 sm:p-6">
+          <AccountPasswordForm />
+        </CardContent>
+      </Card>
+    </>
   );
 }

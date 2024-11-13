@@ -1,4 +1,10 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import MobileBottomBar from "@/features/sales/MobileBottomBar";
 import { SalesFooter } from "@/features/sales/SalesFooter";
 import { SalesHeader } from "@/features/sales/SalesHeader";
@@ -20,7 +26,7 @@ export default function AccountLayout({
           className="grid grid-cols-1 md:grid-cols-[320px_1fr] grid-rows-1 gap-6 my-5"
         >
           <ProfileSideBar className="self-start max-md:hidden" />
-          <div className="flex flex-col gap-3">
+          <div>
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
@@ -36,7 +42,7 @@ export default function AccountLayout({
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
-            {children}
+            <div className="flex flex-col gap-4">{children}</div>
           </div>
         </Container>
       </div>

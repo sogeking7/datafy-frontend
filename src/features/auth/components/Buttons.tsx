@@ -13,7 +13,7 @@ export const LoginBtn = () => {
       className="px-6 font-sans max-md:gap-3 max-md:pl-2 max-md:pr-4"
       variant={"light"}
     >
-      <div className="bg-[#f4f4f4] md:hidden rounded-md p-1">
+      <div className="bg-[#f4f4f4] md:hidden rounded-lg p-1">
         <Image src="/iconly/user.svg" width={18} height={18} alt="user" />
       </div>
       <span>Войти</span>
@@ -29,7 +29,7 @@ export const RegisterBtn = ({ className }: { className?: string }) => {
       variant={"light"}
       className={cn("gap-3 pl-2 pr-4", className)}
     >
-      <div className="bg-[#f4f4f4] rounded-md p-1">
+      <div className="bg-[#f4f4f4] rounded-lg  p-1">
         <Image src="/iconly/user.svg" width={20} height={20} alt="user" />
       </div>
       Регистрация
