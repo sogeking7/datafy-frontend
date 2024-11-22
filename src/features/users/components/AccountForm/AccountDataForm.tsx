@@ -19,6 +19,7 @@ import { useAuth } from "@/features/auth/providers/client";
 import { User } from "@/types";
 
 const accountSchema = z.object({
+  email: z.string().email(),
   fullname: z
     .string()
     .trim()
@@ -53,8 +54,9 @@ export const AccountDataForm = () => {
     if (success) {
       const updated_user: User = {
         ...user,
-        fullname: values.fullname,
-        username: values.username,
+        email: values.email,
+        // fullname: values.fullname,
+        // username: values.username,
       };
       updateUser(updated_user);
       setSuccess("Аккаунт успешно обновлен.");
@@ -67,8 +69,9 @@ export const AccountDataForm = () => {
   useEffect(() => {
     if (user) {
       reset({
-        username: user.username,
-        fullname: user.fullname,
+        email: user.email,
+        // username: user.username,
+        // fullname: user.fullname,
       });
     }
   }, [user, reset]);
@@ -85,6 +88,20 @@ export const AccountDataForm = () => {
         )}
         <div className="space-y-2 max-w-md w-full">
           <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input disabled {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* <FormField
             control={form.control}
             name="fullname"
             render={({ field }) => (
@@ -113,11 +130,11 @@ export const AccountDataForm = () => {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
         </div>
-        <Button size="sm" type="submit" disabled={isSubmitting}>
+        {/* <Button size="sm" type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Обработка..." : "Обновить профиль"}
-        </Button>
+        </Button> */}
       </form>
     </Form>
   );

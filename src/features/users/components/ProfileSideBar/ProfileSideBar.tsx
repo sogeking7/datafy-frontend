@@ -6,6 +6,7 @@ import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { profile_sidebar_links } from "./list";
+import { LogoutBtn } from "@/features/auth/components/LogoutBtn";
 
 export const ProfileSideBar = ({ className }: { className?: string }) => {
   const pathname = usePathname();
@@ -37,6 +38,10 @@ export const ProfileSideBar = ({ className }: { className?: string }) => {
             </Button>
           </Link>
         ))}
+        <div className="mt-20">
+          <hr className="border-gray-200 mb-3" />
+          <LogoutBtn />
+        </div>
       </CardContent>
     </Card>
   );
