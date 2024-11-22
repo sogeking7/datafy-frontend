@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CompanyService } from "@/features/company/api/company.service";
 import { useSearchParams } from "next/navigation";
 import { PaginationWithLinks } from "@/components/ui/pagination-with-links";
-import { Skeleton } from "@/components/ui/skeleton";
+import { MySkelet } from "@/ui/MySkelet";
 
 export const SearchResults = () => {
   const params = useSearchParams();
@@ -27,21 +27,9 @@ export const SearchResults = () => {
   if (isPending) {
     return (
       <div className="max-md:my-5 mt-5 mb-20 flex gap-6 flex-col">
-        <div className="w-full h-[200px] p-6 bg-white rounded-md md:rounded-xl">
-          <Skeleton className="w-1/2 h-5 md:h-7" />
-          <Skeleton className="w-full h-3 md:h-5 mt-3" />
-          <Skeleton className="w-4/5 h-3 md:h-5 mt-3" />
-        </div>
-        <div className="w-full h-[200px] p-6 bg-white rounded-md md:rounded-xl">
-          <Skeleton className="w-1/2 h-5 md:h-7" />
-          <Skeleton className="w-full h-3 md:h-5 mt-3" />
-          <Skeleton className="w-4/5 h-3 md:h-5 mt-3" />
-        </div>
-        <div className="w-full h-[200px] p-6 bg-white rounded-md md:rounded-xl">
-          <Skeleton className="w-1/2 h-5 md:h-7" />
-          <Skeleton className="w-full h-3 md:h-5 mt-3" />
-          <Skeleton className="w-4/5 h-3 md:h-5 mt-3" />
-        </div>
+        <MySkelet className="h-[200px]" />
+        <MySkelet className="h-[200px]" />
+        <MySkelet className="h-[200px]" />
       </div>
     );
   }
