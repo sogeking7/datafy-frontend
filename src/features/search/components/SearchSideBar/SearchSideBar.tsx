@@ -7,6 +7,8 @@ import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { search_sidebar_links } from "./list";
+import Lock from "@/../public/iconly/Light/Lock.svg";
+import LockBold from "@/../public/iconly/Bold/Lock.svg";
 
 export const SearchSideBar = ({ className }: { className?: string }) => {
   const pathname = usePathname();
@@ -20,22 +22,32 @@ export const SearchSideBar = ({ className }: { className?: string }) => {
       )}
     >
       <CardContent className="flex flex-col gap-3">
-        {search_sidebar_links.map(({ title, link, light, bold }, idx) => (
-          <Link key={link} href={`/search/${id}` + link} className="w-full">
-            <Button
-              className={cn(
-                pathname.includes(link)
-                  ? "bg-primary fill-current font-semibold text-white stroke-none"
-                  : "hover:bg-accent",
-                "w-full"
-              )}
-              variant={"search-side-bar"}
-            >
-              {pathname.includes(link) ? bold : light}
-              {title}
-            </Button>
-          </Link>
-        ))}
+        {search_sidebar_links.map(
+          ({ title, link, light, bold, locked }, idx) => (
+            <Link key={link} href={`/search/${id}` + link} className="w-full">
+              <Button
+                className={cn(
+                  pathname.includes(link)
+                    ? "bg-primary fill-current font-semibold text-white stroke-none"
+                    : "hover:bg-accent",
+                  "w-full"
+                )}
+                variant={"search-side-bar"}
+              >
+                <span className="flex gap-3 items-center">
+                  {pathname.includes(link) ? bold : light}
+                  {title}
+                </span>
+                {locked &&
+                  (pathname.includes(link) ? (
+                    <LockBold className="fill-info" />
+                  ) : (
+                    <Lock className="stroke-info  stroke-[1.5]" />
+                  ))}
+              </Button>
+            </Link>
+          )
+        )}
       </CardContent>
     </Card>
   );
