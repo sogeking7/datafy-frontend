@@ -30,8 +30,10 @@ export const ProfileSideBar = ({ className }: { className?: string }) => {
               )}
               variant={"search-side-bar"}
             >
-              {pathname.includes(link) ? bold : light}
-              {title}
+              <span className="flex gap-3 items-center">
+                {pathname.includes(link) ? bold : light}
+                {title}
+              </span>
             </Button>
           </Link>
         ))}
