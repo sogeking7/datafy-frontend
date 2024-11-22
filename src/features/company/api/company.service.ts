@@ -37,7 +37,7 @@ export const CompanyService = () => {
   const findByBin: FindByBin = async (company_bin) => {
     try {
       const { data } = await apiPayload().get<FindByBinResponse>(
-        `${url}/company`,
+        `${url}/details`,
         {
           params: {
             company_bin,
