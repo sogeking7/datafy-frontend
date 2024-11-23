@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./provider";
+import TopLoader from "@/components/TopLoader";
 
 export const metadata: Metadata = {
   title: "Data FY",
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-gilroy">
+        <TopLoader />
         <Providers>{children}</Providers>
       </body>
     </html>
