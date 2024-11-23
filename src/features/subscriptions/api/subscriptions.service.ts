@@ -3,7 +3,7 @@ import { isAxiosError } from "axios";
 import { GetSub, SetSub } from "./subscriptions.service.types";
 
 export const SubscriptionService = () => {
-  const url = "/user";
+  const url = "/subscription";
 
   const get: GetSub = async () => {
     try {
@@ -15,7 +15,7 @@ export const SubscriptionService = () => {
     } catch (e: unknown) {
       return {
         success: false,
-        data: isAxiosError(e) ? e.message : (e as Error).message,
+        data: isAxiosError(e) ? e.response?.data.detail : (e as Error).message,
       };
     }
   };
@@ -30,7 +30,7 @@ export const SubscriptionService = () => {
     } catch (e: unknown) {
       return {
         success: false,
-        data: isAxiosError(e) ? e.message : (e as Error).message,
+        data: isAxiosError(e) ? e.response?.data.detail : (e as Error).message,
       };
     }
   };

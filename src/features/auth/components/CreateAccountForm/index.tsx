@@ -70,8 +70,8 @@ export const CreateAccountForm: React.FC = () => {
       email: "",
       password: "",
       passwordConfirm: "",
-      fullname: "",
-      username: "",
+      fullname: "-",
+      username: "-",
     },
   });
 
@@ -79,8 +79,8 @@ export const CreateAccountForm: React.FC = () => {
     const { passwordConfirm, ...restValues } = values;
     const { success, data } = await AuthService().create({
       ...restValues,
-      about: "",
-      city: "",
+      about: "-",
+      city: "-",
     });
 
     if (!success) {
@@ -101,7 +101,9 @@ export const CreateAccountForm: React.FC = () => {
         setError("");
         updateUser(me.data);
         router.push(
-          `/account/profile?success=${encodeURIComponent("Аккаунт успешно создан")}`
+          `/account/profile?success=${encodeURIComponent(
+            "Аккаунт успешно создан"
+          )}`
         );
       } else {
         setError(me.data);
@@ -127,7 +129,7 @@ export const CreateAccountForm: React.FC = () => {
           >
             <FormMessage className="mb-2">{error}</FormMessage>
 
-            <FormField
+            {/* <FormField
               control={form.control}
               name="fullname"
               render={({ field }) => (
@@ -139,9 +141,9 @@ export const CreateAccountForm: React.FC = () => {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
-            <FormField
+            {/* <FormField
               control={form.control}
               name="username"
               render={({ field }) => (
@@ -156,7 +158,7 @@ export const CreateAccountForm: React.FC = () => {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             <FormField
               control={form.control}
