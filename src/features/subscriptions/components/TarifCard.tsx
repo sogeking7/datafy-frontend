@@ -4,11 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
 import { SubscriptionService } from "../api/subscriptions.service";
 import { MySkelet } from "@/ui/MySkelet";
-import Calendar from "@/../public/iconly/Light/Calendar.svg";
+import CalendarIcon from "@/../public/iconly/Light/Calendar.svg";
 import { useEffect, useState } from "react";
 import { SubType } from "../api/subscriptions.service.types";
 import { formatDate } from "@/lib/utils";
 
+// Define subscription types with strong typing
 type SubscriptionType = {
   to: string;
   title: string;
@@ -17,7 +18,7 @@ type SubscriptionType = {
   period: string;
 };
 
-const types: Record<SubType, SubscriptionType> = {
+const SUBSCRIPTION_TYPES: Record<SubType, SubscriptionType> = {
   basic: {
     to: "Для всех пользователей",
     title: "Суточный тариф",
@@ -42,29 +43,51 @@ const types: Record<SubType, SubscriptionType> = {
   annualy: {
     to: "Для юридических лиц",
     title: "Тариф “1 год” ",
-    description: "Полный доступ на год,до 200 запросов в день",
+    description: "Без ограничений",
     days: 365,
     period: "365 дней",
   },
 } as const;
 
+/**
+ * Calculate the end date based on the last payment and subscription days.
+ * @param lastPayment - The starting date (ISO string)
+ * @param days - Number of days to add
+ */
+const calculateEndDate = (
+  lastPayment: string,
+  days: number | null
+): string | null => {
+  if (!lastPayment || days === null || days === 0) return null;
+
+  const paymentDate = new Date(lastPayment);
+  paymentDate.setDate(paymentDate.getDate() + days);
+
+  return formatDate(String(paymentDate));
+};
+
 export const TarifCard = () => {
-  const [curTarif, curTarifSet] = useState<SubscriptionType>(types.basic);
-  const [lastPayment, lastPaymentSet] = useState("");
-  const { data, status, isPending, error } = useQuery({
+  const [subscription, setSubscription] = useState<SubscriptionType>(
+    SUBSCRIPTION_TYPES.basic
+  );
+  const [endDate, setEndDate] = useState<string | null>(null);
+
+  const { data, status, error, isPending } = useQuery({
     queryKey: ["get-sub"],
-    queryFn: async () => await SubscriptionService().get(),
+    queryFn: SubscriptionService().get,
     refetchOnWindowFocus: false,
-    refetchIntervalInBackground: false,
-    refetchInterval: false,
+    retry: 1,
   });
 
   useEffect(() => {
-    if (status === "success") {
-      const d = data.data.info;
-      const subscription_type: SubType = d.subscription_type;
-      lastPaymentSet(d.last_payment);
-      curTarifSet(types[subscription_type]);
+    if (status === "success" && data?.data?.info) {
+      const info = data.data.info;
+      const subscriptionType =
+        SUBSCRIPTION_TYPES[info.subscription_type as SubType] ??
+        SUBSCRIPTION_TYPES.basic;
+
+      setSubscription(subscriptionType);
+      setEndDate(calculateEndDate(info.last_payment, subscriptionType.days));
     }
   }, [status, data]);
 
@@ -72,47 +95,44 @@ export const TarifCard = () => {
     return <MySkelet className="h-full" />;
   }
 
-  if (error) return "An error has occurred: " + error.message;
-
-  if (data.success) {
-    console.log(data.data.info);
+  if (error) {
     return (
-      <Card className="col-span-1 relative bg-white !rounded-2xl flex flex-col border-none">
-        <div
-          className={`bg-[#77BD8B] absolute left-0 top-0 rounded-l-xl w-1 md:w-[10px] h-full`}
-        ></div>
-        <CardContent className="flex-col flex gap-6 h-full">
-          <h2 className="font-semibold">Тариф</h2>
-          <div className=" flex justify-between flex-wrap gap-3 items-center">
-            <h1 className="text-3xl font-semibold">{curTarif.title}</h1>
-            <div className="bg-[#f4f4f4] text-sm rounded-sm text-[#333] font-semibold px-6 py-1 w-max">
-              {curTarif.to}
-            </div>
-          </div>
-          <div>
-            <div className="flex gap-6 items-center mb-3">
-              <p className="flex gap-2 items-center">
-                <Calendar className="stroke-gray-500 stroke-[1.5]" />
-                <span className="leading-none text-gray-500 font-medium text-sm">
-                  Дата окончания
-                </span>
-              </p>
-              <div className="text-sm text-[#00848C] bg-[#f5f5f5] rounded-sm px-3 font-semibold py-1">
-                {formatDate(lastPayment)}
-              </div>
-            </div>
-            <p className="text-secondary font-medium text-sm">
-              {curTarif.description}
-            </p>
-          </div>
+      <Card className="col-span-1 bg-white !rounded-2xl flex flex-col border-none">
+        <CardContent className="p-4 sm:p-6">
+          <p className="text-red-500">Ошибка: {error.message}</p>
         </CardContent>
       </Card>
     );
   }
 
   return (
-    <Card className="col-span-1 bg-white !rounded-2xl flex flex-col border-none">
-      <CardContent className="p-4 sm:p-6">Tarpif</CardContent>
+    <Card className="col-span-1 relative bg-white !rounded-2xl flex flex-col border-none">
+      <div className="bg-[#77BD8B] absolute left-0 top-0 rounded-l-xl w-1 md:w-[10px] h-full"></div>
+      <CardContent className="flex-col flex gap-6 h-full">
+        <h2 className="font-semibold">Тариф</h2>
+        <div className="flex justify-between flex-wrap gap-3 items-center">
+          <h1 className="text-3xl font-semibold">{subscription.title}</h1>
+          <div className="bg-[#f4f4f4] text-sm rounded-sm text-[#333] font-semibold px-6 py-1 w-max">
+            {subscription.to}
+          </div>
+        </div>
+        <div>
+          <div className="flex gap-6 items-center mb-3">
+            <p className="flex gap-2 items-center">
+              <CalendarIcon className="stroke-gray-500 stroke-[1.5]" />
+              <span className="leading-none text-gray-500 font-medium text-sm">
+                Дата окончания
+              </span>
+            </p>
+            <div className="text-sm text-[#00848C] bg-[#f5f5f5] rounded-sm px-3 font-semibold py-1">
+              {endDate || "Нет срока окончания"}
+            </div>
+          </div>
+          <p className="text-secondary font-medium text-sm">
+            {subscription.description}
+          </p>
+        </div>
+      </CardContent>
     </Card>
   );
 };
