@@ -5,6 +5,8 @@ import {
   FindByBinResponse,
   FindCompany,
   FindCompanyResponse,
+  FindGoszakup,
+  FindGoszakupResponse,
 } from "./company.service.types";
 
 export const CompanyService = () => {
@@ -56,8 +58,31 @@ export const CompanyService = () => {
     }
   };
 
+  const findGoszakup: FindGoszakup = async (company_bin) => {
+    try {
+      const { data } = await apiPayload().get<FindGoszakupResponse>(
+        `${url}/goszakup`,
+        {
+          params: {
+            company_bin,
+          },
+        }
+      );
+      return {
+        success: true,
+        data,
+      };
+    } catch (e: unknown) {
+      return {
+        success: false,
+        data: isAxiosError(e) ? e.message : (e as Error).message,
+      };
+    }
+  };
+
   return {
     find,
-    findByBin
+    findByBin,
+    findGoszakup
   };
 };

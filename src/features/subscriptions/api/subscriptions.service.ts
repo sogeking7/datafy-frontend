@@ -20,9 +20,17 @@ export const SubscriptionService = () => {
     }
   };
 
-  const set: SetSub = async (body) => {
+  const set: SetSub = async (subscription_type) => {
     try {
-      const { data } = await apiPayload().post<any>(`${url}`, body);
+      const { data } = await apiPayload().post<any>(
+        `${url}`,
+        {},
+        {
+          params: {
+            subscription_type,
+          },
+        }
+      );
       return {
         success: true,
         data,

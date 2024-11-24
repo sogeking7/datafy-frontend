@@ -48,7 +48,7 @@ export default function Page() {
         <div className="grid grid-cols-1 self-start gap-3">
           <HeaderCard data={data.data} />
           {/* <EstimatedRevenueCard /> */}
-          <MainInfoCard data={data.data} />
+          <MainInfoCard data={{ ...data.data }} />
           {/* <SupervisorCard />
           <FoundersCard />
           <FamilyTiesCard />

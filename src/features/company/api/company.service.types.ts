@@ -16,6 +16,18 @@ export type FindByBin = (
   company_bin: string
 ) => Promise<Response<FindByBinResponse>>;
 
+export type FindGoszakup = (
+  company_bin: string
+) => Promise<Response<FindGoszakupResponse>>;
+
+export type FindGoszakupResponse = {
+  goszakup_info: {
+    phone: string | string[];
+    website: string | string[];
+    email: string | string[];
+  };
+};
+
 export type FindByBinResponse = {
   company_info: {
     id: number;

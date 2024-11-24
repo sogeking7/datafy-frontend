@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tab } from "./Tab";
 import { FindByBinResponse } from "@/features/company/api/company.service.types";
+import { Goszakup } from "./Goszakup";
 
 const keyLabels = {
   bin: "БИН",
@@ -37,45 +38,45 @@ export const MainInfoCard = ({ data }: { data: FindByBinResponse }) => {
         <CardTitle>Основная информация</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-3 !pt-0">
-        {Object.entries({ ...data.company_info, ...data.tax_info }).map(
-          (item, id) => {
-            const keyv = keyLabels[item[0] as keyof Object];
-            if (!keyv) return null;
-            let value = item[1]?.toString();
-            if (item[0] === "date_registration") {
-              const date = new Date(value);
-              value = date.toLocaleDateString("kk-KZ", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-              });
-            }
-            if (item[0] === "additional_okeds") {
-              const parsedOkeds = JSON.parse(value);
-              if (parsedOkeds[0]) value = parsedOkeds[0].split(",").join(", ");
-              else value = "Нет";
-            }
-            if (item[0] === "tax_authority_name") {
-              value += " - " + data.tax_info.tax_authority_code;
-            }
-            if (item[0] === "legal_address") {
-              value += ", " + data.company_info.judical_address;
-            }
-            return (
-              <Tab
-                copyToClickboard={
-                  item[0] === "bin" || item[0] === "legal_address"
-                    ? true
-                    : false
-                }
-                action={false}
-                key={id}
-                keyv={keyv}
-                value={value}
-              />
-            );
+        {Object.entries({
+          ...data.company_info,
+          ...data.tax_info,
+        }).map((item, id) => {
+          const keyv = keyLabels[item[0] as keyof Object];
+          if (!keyv) return null;
+          let value = item[1]?.toString();
+          if (item[0] === "date_registration") {
+            const date = new Date(value);
+            value = date.toLocaleDateString("kk-KZ", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            });
           }
-        )}
+          if (item[0] === "additional_okeds") {
+            const parsedOkeds = JSON.parse(value);
+            if (parsedOkeds[0]) value = parsedOkeds[0].split(",").join(", ");
+            else value = "Нет";
+          }
+          if (item[0] === "tax_authority_name") {
+            value += " - " + data.tax_info.tax_authority_code;
+          }
+          if (item[0] === "legal_address") {
+            value += ", " + data.company_info.judical_address;
+          }
+          return (
+            <Tab
+              copyToClickboard={
+                item[0] === "bin" || item[0] === "legal_address" ? true : false
+              }
+              action={false}
+              key={id}
+              keyv={keyv}
+              value={value}
+            />
+          );
+        })}
+        <Goszakup />
       </CardContent>
     </Card>
   );
