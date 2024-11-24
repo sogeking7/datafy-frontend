@@ -41,7 +41,7 @@ export const MainInfoCard = ({ data }: { data: FindByBinResponse }) => {
           (item, id) => {
             const keyv = keyLabels[item[0] as keyof Object];
             if (!keyv) return null;
-            let value = item[1].toString();
+            let value = item[1]?.toString();
             if (item[0] === "date_registration") {
               const date = new Date(value);
               value = date.toLocaleDateString("kk-KZ", {

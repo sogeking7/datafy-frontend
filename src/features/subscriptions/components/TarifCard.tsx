@@ -5,8 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import { SubscriptionService } from "../api/subscriptions.service";
 import { MySkelet } from "@/ui/MySkelet";
 import Calendar from "@/../public/iconly/Light/Calendar.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubType } from "../api/subscriptions.service.types";
+import { formatDate } from "@/lib/utils";
 
 type SubscriptionType = {
   to: string;
@@ -49,7 +50,8 @@ const types: Record<SubType, SubscriptionType> = {
 
 export const TarifCard = () => {
   const [curTarif, curTarifSet] = useState<SubscriptionType>(types.basic);
-  const { data, isPending, error } = useQuery({
+  const [lastPayment, lastPaymentSet] = useState("");
+  const { data, status, isPending, error } = useQuery({
     queryKey: ["get-sub"],
     queryFn: async () => await SubscriptionService().get(),
     refetchOnWindowFocus: false,
@@ -57,13 +59,23 @@ export const TarifCard = () => {
     refetchInterval: false,
   });
 
+  useEffect(() => {
+    if (status === "success") {
+      const d = data.data.info;
+      const subscription_type: SubType = d.subscription_type;
+      lastPaymentSet(d.last_payment);
+      curTarifSet(types[subscription_type]);
+    }
+  }, [status, data]);
+
   if (isPending) {
     return <MySkelet className="h-full" />;
   }
 
   if (error) return "An error has occurred: " + error.message;
 
-  if (!data.success) {
+  if (data.success) {
+    console.log(data.data.info);
     return (
       <Card className="col-span-1 relative bg-white !rounded-2xl flex flex-col border-none">
         <div
@@ -81,15 +93,15 @@ export const TarifCard = () => {
             <div className="flex gap-6 items-center mb-3">
               <p className="flex gap-2 items-center">
                 <Calendar className="stroke-gray-500 stroke-[1.5]" />
-                <span className="leading-none text-gray-500 font-medium">
+                <span className="leading-none text-gray-500 font-medium text-sm">
                   Дата окончания
                 </span>
               </p>
-              <div className="text-sm text-[#00848C] bg-[#f5f5f5] rounded-md px-3 font-semibold py-1">
-                {curTarif.period}
+              <div className="text-sm text-[#00848C] bg-[#f5f5f5] rounded-sm px-3 font-semibold py-1">
+                {formatDate(lastPayment)}
               </div>
             </div>
-            <p className="text-secondary font-medium text-base">
+            <p className="text-secondary font-medium text-sm">
               {curTarif.description}
             </p>
           </div>
