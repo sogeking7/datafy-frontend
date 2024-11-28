@@ -19,7 +19,7 @@ export type Counterparty = {
   country_code: string;
   // dash
   date: string;
-  bin: string;
+  biin: string;
   name: string;
   fullname_director: string;
   legal_address: string;

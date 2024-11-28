@@ -44,7 +44,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="grid  grid-cols-1 xl:grid-cols-[1fr_33%] gap-3">
+      <div className="grid grid-cols-1 xl:grid-cols-[1fr_33%] gap-3">
         <div className="grid grid-cols-1 self-start gap-3">
           <HeaderCard data={data.data} />
           {/* <EstimatedRevenueCard /> */}

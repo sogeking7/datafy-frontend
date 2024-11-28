@@ -31,7 +31,7 @@ export type FindGoszakupResponse = {
 export type FindByBinResponse = {
   company_info: {
     id: number;
-    bin: string;
+    biin: string;
     name: string;
     oked_code: string;
     oked_name: string;
@@ -51,5 +51,13 @@ export type FindByBinResponse = {
   tax_info: {
     tax_authority_code: string;
     tax_authority_name: string;
+    dynamic_tax_records: DynamicTaxRecords;
+  };
+};
+
+export type DynamicTaxRecords = {
+  [year: string]: {
+    summa: number;
+    percent: number;
   };
 };
