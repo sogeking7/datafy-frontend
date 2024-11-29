@@ -49,7 +49,7 @@ export const CurTarifCard = ({ data }: { data: Counterparty }) => {
                 width={20}
                 height={20}
               />
-              <span className="font-semibold text-sm">БИН: {data.bin}</span>
+              <span className="font-semibold text-sm">БИН: {data.biin}</span>
             </div>
           </li>
           <li>
@@ -121,7 +121,7 @@ export const CurTarifCard = ({ data }: { data: Counterparty }) => {
             <Image alt="map" src="/iconly/yandex.svg" width={20} height={20} />
           </a>
         </ul>
-        <Link href={`/search/${data.bin}/main-info`}>
+        <Link href={`/search/${data.biin}/main-info`}>
           <Button size={"sm"} className="self-bottom">
             Подробнее
           </Button>
