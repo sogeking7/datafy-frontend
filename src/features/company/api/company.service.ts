@@ -12,7 +12,7 @@ import {
 export const CompanyService = () => {
   const url = "/company";
 
-  const find: FindCompany = async (q, page, size) => {
+  const find: FindCompany = async (q, page, size, data_filter) => {
     try {
       const { data } = await apiPayload().get<FindCompanyResponse>(
         `${url}/search`,
@@ -21,6 +21,7 @@ export const CompanyService = () => {
             query: q || "A",
             page: page || "1",
             size: size || "10",
+            data_filter: data_filter || "all",
           },
         }
       );
@@ -83,6 +84,6 @@ export const CompanyService = () => {
   return {
     find,
     findByBin,
-    findGoszakup
+    findGoszakup,
   };
 };

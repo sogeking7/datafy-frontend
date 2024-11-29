@@ -8,30 +8,35 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { SearchIcon } from "lucide-react";
+import { CompanyFilter } from "@/features/company/api/company.service.types";
 
 type FormType = {
   q: string;
+  data_filter: CompanyFilter;
 };
 
 export const SearchForm = ({ tabsActive = true }: { tabsActive?: boolean }) => {
   const params = useSearchParams();
   const router = useRouter();
 
-  const [activeTab, setActiveTab] = useState(params.get("sort") || "all");
+  const [activeTab, setActiveTab] = useState<CompanyFilter>(
+    (params.get("data_filter") as CompanyFilter) || "all"
+  );
 
   const form = useForm<FormType>({
     defaultValues: {
       q: params.get("q") || "",
+      data_filter: (params.get("data_filter") as CompanyFilter) || "all",
     },
   });
 
   function onSubmit(values: FormType) {
-    router.push(`/search?q=${values.q}&sort=${activeTab}`);
+    router.push(`/search?q=${values.q}&data_filter=${activeTab}`);
   }
 
   function handleTabChange(value: string) {
-    setActiveTab(value);
-    router.push(`/search?q=${form.getValues("q")}&sort=${value}`);
+    setActiveTab(value as CompanyFilter);
+    router.push(`/search?q=${form.getValues("q")}&data_filter=${value}`);
   }
 
   return (
@@ -66,13 +71,13 @@ export const SearchForm = ({ tabsActive = true }: { tabsActive?: boolean }) => {
           onValueChange={(value) => handleTabChange(value)}
           className="mt-5 md:w-[605px] max-md:overflow-x-scroll "
         >
-          <TabsList className="">
+          <TabsList>
             <TabsTrigger value="all">Все</TabsTrigger>
-            <TabsTrigger value="legal-entity">Юр. лицо</TabsTrigger>
-            <TabsTrigger value="individual-entrepreneur">
+            <TabsTrigger value="companies">Юр. лицо</TabsTrigger>
+            <TabsTrigger value="individuals">
               Индивидуальный предприниматель
             </TabsTrigger>
-            <TabsTrigger value="individual">Физ. лицо</TabsTrigger>
+            {/* <TabsTrigger value="individual">Физ. лицо</TabsTrigger> */}
           </TabsList>
         </Tabs>
       )}

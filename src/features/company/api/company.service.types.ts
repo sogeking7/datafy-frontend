@@ -1,15 +1,21 @@
 import { Counterparty, User } from "@/types";
 import { Response } from "@/types/api";
 
+export type CompanyFilter = "all" | "companies" | "individuals";
+
 export type FindCompany = (
   q: string,
   page?: string,
-  size?: string
+  size?: string,
+  data_filter?: CompanyFilter
 ) => Promise<Response<FindCompanyResponse>>;
 
 export type FindCompanyResponse = {
   query: string;
   results: Counterparty[];
+  total_pages: number;
+  total_docs: number;
+  current_page: number;
 };
 
 export type FindByBin = (
