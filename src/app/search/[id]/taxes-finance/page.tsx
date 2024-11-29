@@ -25,16 +25,16 @@ export default function Page() {
   if (error) return "An error has occurred: " + error.message;
 
   // ! Uncomment
-  // if (!data.success) {
-  //   return <p className="max-md:my-5 mt-5 font-semibold">{data.data}</p>;
-  // }
+  if (!data.success) {
+    return <p className="max-md:my-5 mt-5 font-semibold">{data.data}</p>;
+  }
 
   return (
     <div className="grid grid-cols-1 self-start gap-3 w-full">
       <TaxRecordsCard
         // ! Uncomment
-        // data={data.data.tax_info.dynamic_tax_records}
-        data={{}}
+        tax_info={data.data.tax_info}
+        // data={{}}
       />
     </div>
   );

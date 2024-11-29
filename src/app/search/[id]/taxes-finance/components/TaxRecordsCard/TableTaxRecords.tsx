@@ -11,6 +11,8 @@ import { DynamicTaxRecords } from "@/features/company/api/company.service.types"
 import { formatKZT } from "@/lib/utils";
 
 export const TableTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
+  if (!data) return <></>;
+
   const chartData = Object.entries(data).map(([year, { summa, percent }]) => ({
     year,
     val: summa,
@@ -18,7 +20,7 @@ export const TableTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
   }));
 
   return (
-    <ScrollArea className="h-[360px] w-full rounded-xl">
+    <ScrollArea className="max-h-[360px] w-full rounded-xl border border-input">
       <Table>
         <TableHeader>
           <TableRow>
@@ -37,7 +39,13 @@ export const TableTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
               <TableCell className="font-medium">{v.year + " г."}</TableCell>
               <TableCell className="font-medium">{formatKZT(v.val)}</TableCell>
               <TableCell className="font-medium text-right pr-4">
-                {v.percent}
+                {v.percent < 0 && (
+                  <span className="text-destructive">{v.percent + " %"}</span>
+                )}
+                {v.percent === 0 && <span>{v.percent + " %"}</span>}
+                {v.percent > 0 && (
+                  <span className="text-green-500">{v.percent + " %"}</span>
+                )}
               </TableCell>
             </TableRow>
           ))}

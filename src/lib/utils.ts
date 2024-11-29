@@ -53,5 +53,6 @@ export function formatKZT(value: number): string {
 }
 
 export function calculateTotalSum(data: DynamicTaxRecords): number {
+  if (!data) return 0;
   return Object.values(data).reduce((total, record) => total + record.summa, 0);
 }

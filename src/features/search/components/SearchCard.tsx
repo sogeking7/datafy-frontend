@@ -26,7 +26,7 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
       ></div>
       <div className="w-full">
         <h1 className="text-xl leading-none font-semibold">{data.name}</h1>
-        <h2 className="text-base mt-2 leading-none font-semibold text-secondary">
+        <h2 className="text-base mt-2 leading-none font-medium text-secondary">
           {data.oked_name}
         </h2>
         <ul className="flex gap-2 mt-4 flex-wrap">
@@ -49,7 +49,7 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
                 width={20}
                 height={20}
               />
-              <span className="font-semibold text-sm">БИН: {data.bin}</span>
+              <span className="font-semibold text-sm">БИН: {data.biin}</span>
             </div>
           </li>
           <li>

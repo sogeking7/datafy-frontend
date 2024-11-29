@@ -21,10 +21,6 @@ export const LineGraphTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
     val: summa,
   }));
 
-  if (chartData.length === 0) {
-    return <p className="text-info">Документы не найдены</p>;
-  }
-
   return (
     <ChartContainer className="h-[250px] !aspect-auto" config={chartConfig}>
       <LineChart accessibilityLayer data={chartData}>

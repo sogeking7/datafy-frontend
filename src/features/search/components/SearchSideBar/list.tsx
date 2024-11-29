@@ -32,7 +32,7 @@ export const search_sidebar_links = [
     link: "/taxes-finance",
     light: <Graph />,
     bold: <GraphBold className="fill-current" />,
-    locked: true,
+    locked: false,
   },
   {
     title: "Лицензии и сертификаты",

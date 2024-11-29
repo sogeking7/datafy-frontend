@@ -49,6 +49,7 @@ export type FindByBinResponse = {
     type: string;
   };
   tax_info: {
+    status?: string;
     tax_authority_code: string;
     tax_authority_name: string;
     dynamic_tax_records: DynamicTaxRecords;
