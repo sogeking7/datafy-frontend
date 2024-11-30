@@ -8,9 +8,8 @@ import { cn, createGoogleMapsLink, createYandexMapsLink } from "@/lib/utils";
 import Link from "next/link";
 
 const cardType = {
-  individual: "ФЛ",
-  "individual-entrepreneur": "ИП",
-  "legal-entity": "ЮЛ",
+  individuals: "ИП",
+  companies: "ЮЛ",
 } as const;
 
 export const SearchCard = ({ data }: { data: Counterparty }) => {
@@ -22,7 +21,7 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
     "
     >
       <div
-        className={`bg-${data.type} absolute left-0 top-0 rounded-l-xl w-1 md:w-[10px] h-full`}
+        className={`bg-${data.type} absolute left-0 top-0 rounded-l-xl w-1 md:w-2 h-full`}
       ></div>
       <div className="w-full">
         <h1 className="text-xl leading-none font-semibold">{data.name}</h1>
@@ -30,7 +29,7 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
           {data.oked_name}
         </h2>
         <ul className="flex gap-2 mt-4 flex-wrap">
-          {/* <Badge variant={data.type}>{cardType[data.type]}</Badge> */}
+          <Badge variant={data.type}>{cardType[data.type]}</Badge>
           <Badge variant={"current"}>{data.krp_name}</Badge>
           <Badge variant={"country"}>
             <span className="mr-2 leading-none">

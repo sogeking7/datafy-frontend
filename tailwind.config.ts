@@ -22,16 +22,13 @@ const config = {
     },
     extend: {
       colors: {
-        "sidebar": "hsl(var(--sidebar))",
-        "info": "hsl(var(--info))",
-        "legal-entity": {
-          DEFAULT: "hsl(var(--legal-entity))",
+        sidebar: "hsl(var(--sidebar))",
+        info: "hsl(var(--info))",
+        companies: {
+          DEFAULT: "hsl(var(--individuals))",
         },
-        "individual-entrepreneur": {
-          DEFAULT: "hsl(var(--individual-entrepreneur))",
-        },
-        individual: {
-          DEFAULT: "hsl(var(--individual))",
+        individuals: {
+          DEFAULT: "hsl(var(--companies))",
         },
         prime: "hsl(var(--prime))",
         border: "hsl(var(--border))",

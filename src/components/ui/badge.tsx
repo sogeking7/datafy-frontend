@@ -11,12 +11,10 @@ const badgeVariants = cva(
         country: "border-none bg-[#F5F5F5] text-accent-foreground",
         current:
           "text-[#4AAF57] bg-[#4AAF57]/10 border-none hover:bg-[#4AAF57]/20",
-        "legal-entity":
-          "border-transparent bg-legal-entity text-white hover:bg-legal-entity/80",
-        "individual-entrepreneur":
-          "border-transparent bg-individual-entrepreneur text-white hover:bg-individual-entrepreneur/80",
-        individual:
-          "border-transparent bg-individual text-white hover:bg-individual/80",
+        companies:
+          "border-transparent bg-companies text-white hover:bg-companies/80",
+        individuals:
+          "border-transparent bg-individuals text-white hover:bg-individuals/80",
         default:
           "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
         secondary:

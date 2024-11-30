@@ -1,3 +1,5 @@
+import { CompanyFilter } from "@/features/company/api/company.service.types";
+
 export type User = {
   uui: string;
   fullname: string;
@@ -10,7 +12,7 @@ export type User = {
 
 export type Counterparty = {
   title: string;
-  type: "individual" | "individual-entrepreneur" | "legal-entity";
+  type: "companies" | "individuals";
   data: string;
   author: string;
   map: string;
