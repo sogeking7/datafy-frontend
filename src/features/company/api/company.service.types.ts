@@ -59,6 +59,7 @@ export type FindByBinResponse = {
     tax_authority_code: string;
     tax_authority_name: string;
     dynamic_tax_records: DynamicTaxRecords;
+    kbk_records: KBKRecords;
   };
 };
 
@@ -68,3 +69,11 @@ export type DynamicTaxRecords = {
     percent: number;
   };
 };
+
+export type KBKRecord = {
+  kbk: string;
+  amount: number;
+  percent: number;
+};
+
+export type KBKRecords = Record<string, KBKRecord>;

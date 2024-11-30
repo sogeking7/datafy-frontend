@@ -38,7 +38,7 @@ export const TableTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
             <TableRow key={idx}>
               <TableCell className="font-medium">{v.year + " г."}</TableCell>
               <TableCell className="font-medium">{formatKZT(v.val)}</TableCell>
-              <TableCell className="font-medium text-right pr-4">
+              <TableCell className="font-medium text-right pr-4 whitespace-nowrap">
                 {v.percent < 0 && (
                   <span className="text-destructive">{v.percent + " %"}</span>
                 )}

@@ -56,3 +56,31 @@ export function calculateTotalSum(data: DynamicTaxRecords): number {
   if (!data) return 0;
   return Object.values(data).reduce((total, record) => total + record.summa, 0);
 }
+
+export const getUniqueColor = (idx: number) => {
+  const color = colorPalette[idx];
+  return color;
+};
+
+export const colorPalette = [
+  "#28B463", // Vivid Green
+  "#FF8D1A", // Bold Orange
+  "#FFC300", // Bright Yellow
+  "#DAF7A6", // Lime Green
+  "#FF5733", // Vibrant Red-Orange
+  "#17A589", // Bold Teal
+  "#3498DB", // Bold Blue
+  "#9B59B6", // Vivid Purple
+  "#E74C3C", // Bold Coral
+  "#F39C12", // Vibrant Amber
+  "#58D68D", // Emerald Green
+  "#5DADE2", // Sky Blue
+  "#AF7AC5", // Purple Orchid
+  "#F7DC6F", // Bold Gold
+  "#45B39D", // Turquoise
+  "#EC7063", // Tomato Red
+  "#F5B041", // Orange Glow
+  "#2ECC71", // Bright Mint Green
+  "#A569BD", // Purple Jewel
+  "#2471A3", // Deep Azure
+] as const;
