@@ -49,7 +49,7 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
                 width={20}
                 height={20}
               />
-              <span className="font-semibold text-sm">БИН: {data.biin}</span>
+              <span className="font-medium text-sm">БИН: {data.biin}</span>
             </div>
           </li>
           <li>
@@ -60,7 +60,7 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
                 width={20}
                 height={20}
               />
-              <span className="font-semibold text-sm">
+              <span className="font-medium text-sm">
                 {data.date_registration}
               </span>
             </div>
@@ -75,7 +75,7 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
               />
               <span
                 className={cn(
-                  "font-semibold text-sm",
+                  "font-medium text-sm",
                   data.fullname_director ? "" : "text-secondary"
                 )}
               >
@@ -93,9 +93,7 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
                 width={20}
                 height={20}
               />
-              <span className="font-semibold text-sm">
-                {data.legal_address}
-              </span>
+              <span className="font-medium text-sm">{data.legal_address}</span>
             </div>
           </li>
         </ul>

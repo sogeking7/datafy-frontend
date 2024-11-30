@@ -50,11 +50,16 @@ export const Goszakup = () => {
 
   return (
     <Accordion collapsible type="single" className="!p-0">
-      <AccordionItem value="f" className="px-3">
-        <AccordionTrigger className="py-2">
+      <AccordionItem
+        value="f"
+        className="px-3 md:px-4 rounded-lg md:rounded-xl bg-gray-100"
+      >
+        <AccordionTrigger className="py-3">
           <div className="flex gap-3 items-center">
-            <CircleAlert className="text-gray-400  min-w-5 min-h-5 w-5 h-5" />
-            <p className="text-left text-sm text-balance">Контакты</p>
+            <CircleAlert className="text-gray-400 min-w-5 min-h-5 w-5 h-5" />
+            <p className="text-left text-sm text-balance leading-none">
+              Контакты
+            </p>
           </div>
         </AccordionTrigger>
         <AccordionContent className="flex gap-3 py-2 flex-col">

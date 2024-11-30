@@ -22,7 +22,7 @@ export function ChartKBKRecords({ data }: { data: KBKRecords }) {
       <div className="font-semibold text-lg mb-0 pl-1">
         {first.percent + " %"}
       </div>
-      <div className="flex h-10 w-full rounded-lg overflow-hidden border border-gray-200">
+      <div className="flex h-10 w-full rounded-lg overflow-hidden">
         {chartData.map((item, idx) => (
           <div
             key={idx}
