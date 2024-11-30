@@ -60,7 +60,7 @@ export const search_sidebar_links = [
     link: "/procurements",
     light: <Buy />,
     bold: <BuyBold className="fill-current" />,
-    locked: true,
+    locked: false,
   },
   {
     title: "Вакансии и сотрудники",

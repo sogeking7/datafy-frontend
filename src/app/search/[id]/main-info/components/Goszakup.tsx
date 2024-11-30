@@ -17,6 +17,7 @@ const text = {
   phone: "Телефоны:",
   email: "Электронная почта:",
   website: "Сайты:",
+  status: "",
 } as const;
 
 export const Goszakup = () => {
@@ -67,8 +68,9 @@ export const Goszakup = () => {
             const keyv = item[0] as keyof typeof text;
 
             let value = item[1];
-            if (value === "External server error!")
+            if (keyv === "status" && value === "External server error!")
               value = "Сервис временно недоступен";
+            if (keyv === "status" && value === "Success") return null;
             return (
               <div key={id}>
                 {text[keyv] && (

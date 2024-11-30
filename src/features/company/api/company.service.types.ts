@@ -26,12 +26,30 @@ export type FindGoszakup = (
   company_bin: string
 ) => Promise<Response<FindGoszakupResponse>>;
 
+type PurchaseParticipation = {
+  status?: string;
+  purchase_amount: number;
+  contract_sum: number;
+  history: {
+    finYear: number;
+    contractSum: string;
+    trdBuyNameRu: string;
+    RefSubjectType: {
+      nameRu: string;
+    };
+    RefContractType: {
+      nameRu: string;
+    };
+  }[];
+};
+
 export type FindGoszakupResponse = {
   goszakup_info: {
     phone: string | string[];
     website: string | string[];
     email: string | string[];
   };
+  purchase_participation: PurchaseParticipation;
 };
 
 export type FindByBinResponse = {

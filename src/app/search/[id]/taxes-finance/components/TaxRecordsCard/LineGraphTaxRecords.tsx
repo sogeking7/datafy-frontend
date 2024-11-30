@@ -6,11 +6,11 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { formatTenge } from "@/lib/utils";
+import { cn, formatKZT, formatTenge } from "@/lib/utils";
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  summa: {
+    label: "Сумма",
     color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
@@ -18,11 +18,14 @@ const chartConfig = {
 export const LineGraphTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
   const chartData = Object.entries(data).map(([year, { summa }]) => ({
     year,
-    val: summa,
+    summa,
   }));
 
   return (
-    <ChartContainer className="h-[250px] !aspect-auto" config={chartConfig}>
+    <ChartContainer
+      className="h-[250px] !aspect-auto z-50 relative"
+      config={chartConfig}
+    >
       <LineChart accessibilityLayer data={chartData}>
         <YAxis tickFormatter={formatTenge} />
         <XAxis
@@ -33,9 +36,8 @@ export const LineGraphTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
           tickFormatter={(value) => value}
         />
         <ChartTooltip cursor={true} content={<ChartTooltipContent />} />
-        {/* <Bar dataKey="val" fill="#77BD8B" radius={[2, 2, 0, 0]} /> */}
         <Line
-          dataKey="val"
+          dataKey="summa"
           type="natural"
           stroke="#403EF1"
           strokeWidth={2}
