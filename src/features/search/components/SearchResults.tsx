@@ -52,11 +52,13 @@ export const SearchResults = () => {
           <p className=" font-semibold">{`По вашему запросу \"${q}\"ничего не найдено`}</p>
         )}
       </div>
-      <PaginationWithLinks
-        page={+page}
-        pageSize={+size}
-        totalCount={data.data.total_docs}
-      />
+      {!!(data.success && data.data.results.length) && (
+        <PaginationWithLinks
+          page={+page}
+          pageSize={+size}
+          totalCount={data.data.total_docs}
+        />
+      )}
     </div>
   );
 };

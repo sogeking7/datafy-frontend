@@ -1,4 +1,4 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Table,
   TableBody,
@@ -18,7 +18,10 @@ export const TablePurchaseParticipation = ({
   if (!data) return <></>;
 
   return (
-    <ScrollArea className="max-h-[360px] w-full rounded-xl border border-input">
+    <ScrollArea
+      type="always"
+      className="max-h-[360px] w-full rounded-xl border border-input"
+    >
       <Table>
         <TableHeader>
           <TableRow>
@@ -55,6 +58,7 @@ export const TablePurchaseParticipation = ({
           ))}
         </TableBody>
       </Table>
+      <ScrollBar orientation="horizontal" />
     </ScrollArea>
   );
 };

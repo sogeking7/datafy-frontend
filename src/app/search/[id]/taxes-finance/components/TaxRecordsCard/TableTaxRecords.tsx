@@ -1,4 +1,4 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Table,
   TableBody,
@@ -20,7 +20,10 @@ export const TableTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
   }));
 
   return (
-    <ScrollArea className="max-h-[360px] w-full rounded-xl border border-input">
+    <ScrollArea
+      type="always"
+      className="max-h-[360px] w-full rounded-xl border border-input"
+    >
       <Table>
         <TableHeader>
           <TableRow>
@@ -51,6 +54,7 @@ export const TableTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
           ))}
         </TableBody>
       </Table>
+      <ScrollBar orientation="horizontal" />
     </ScrollArea>
   );
 };

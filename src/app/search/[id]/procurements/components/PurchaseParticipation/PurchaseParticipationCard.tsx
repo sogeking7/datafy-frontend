@@ -22,14 +22,14 @@ export const PurchaseParticipationCard = () => {
   });
 
   if (isPending) {
-    return <p className="max-md:my-5 mt-5 font-semibold">Загрузка...</p>;
+    return <p className="max-lg:my-5 mt-5 font-semibold">Загрузка...</p>;
   }
 
   if (error) return "An error has occurred: " + error.message;
 
   // ! Uncomment
   if (!data.success) {
-    return <p className="max-md:my-5 mt-5 font-semibold">{data.data}</p>;
+    return <p className="max-lg:my-5 mt-5 font-semibold">{data.data}</p>;
   }
 
   const { history, status, contract_sum, purchase_amount } =
@@ -50,8 +50,8 @@ export const PurchaseParticipationCard = () => {
         )}
         {!!history && (
           <>
-            <div className="w-full grid grid-cols-12">
-              <div className="col-span-12 md:col-span-4 flex flex-col gap-3">
+            <div className="w-full grid grid-cols-12 gap-6">
+              <div className="col-span-12 lg:col-span-4 flex flex-col gap-3">
                 <div className="bg-gray-100 rounded-xl p-3 flex items-center gap-3 text-sm font-medium">
                   <span
                     className="min-w-4 min-h-4 h-4 w-4 rounded-full"
@@ -67,7 +67,7 @@ export const PurchaseParticipationCard = () => {
                   Количество закупок: {purchase_amount}
                 </div>
               </div>
-              <div className="col-span-12 md:col-span-8">
+              <div className="col-span-12 lg:col-span-8">
                 <LineGraphPurchaseParticipation data={history} />
               </div>
             </div>
