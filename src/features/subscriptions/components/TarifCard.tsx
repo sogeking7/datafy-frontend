@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
 import { SubscriptionService } from "../api/subscriptions.service";
 import { MySkelet } from "@/ui/MySkelet";
@@ -106,10 +106,12 @@ export const TarifCard = () => {
   }
 
   return (
-    <Card className="col-span-1 relative bg-white !rounded-2xl flex flex-col border-none">
-      <div className="bg-[#77BD8B] absolute left-0 top-0 rounded-l-xl w-1 md:w-[10px] h-full"></div>
+    <Card className="col-span-1 relative bg-white rounded-lg md:rounded-xl flex flex-col border-none">
+      <div className="bg-[#77BD8B] absolute left-0 top-0 rounded-l-xl w-1 md:w-2 h-full"></div>
+      <CardHeader>
+        <CardTitle>Тариф</CardTitle>
+      </CardHeader>
       <CardContent className="flex-col flex gap-6 h-full">
-        <h2 className="font-semibold">Тариф</h2>
         <div className="flex justify-between flex-wrap gap-3 items-center">
           <h1 className="text-3xl font-semibold">{subscription.title}</h1>
           <div className="bg-[#f4f4f4] text-sm rounded-sm text-[#333] font-semibold px-6 py-1 w-max">
