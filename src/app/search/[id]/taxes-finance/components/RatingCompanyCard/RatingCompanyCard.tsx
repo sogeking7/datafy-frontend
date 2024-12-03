@@ -1,7 +1,16 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LineGraphRatingCompany } from "./LineGraphRatingCompany";
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 const data: { [year: string]: { rating: number } } = {
+  "2015": { rating: 1 },
+  "2016": { rating: 2 },
+  "2017": { rating: 4 },
+  "2018": { rating: 4 },
+  "2019": { rating: 4 },
   "2020": { rating: 4 },
   "2021": { rating: 3 },
   "2022": { rating: 5 },
@@ -11,14 +20,21 @@ const data: { [year: string]: { rating: number } } = {
 
 export const RatingCompanyCard = () => {
   return (
-    <Card className="bg-white w-full !rounded-2xl flex flex-col border-none col-span-1">
-      <CardHeader className="flex-row items-center flex justify-between">
-        <CardTitle>Рейтинг компании</CardTitle>
-      </CardHeader>
-      <CardContent className="!pt-0 flex flex-col gap-6">
-        {!!status && <p className="text-info font-medium text-sm">{status}</p>}
-        <LineGraphRatingCompany data={data} />
-      </CardContent>
-    </Card>
+    <Accordion collapsible type="single" className="!p-0">
+      <AccordionItem
+        value="f"
+        className="px-4 md:px-6 rounded-lg md:rounded-xl bg-white"
+      >
+        <AccordionTrigger className="py-4 md:py-6">
+          Рейтинг компании
+        </AccordionTrigger>
+        <AccordionContent>
+          {!!status && (
+            <p className="text-info font-medium text-sm">{status}</p>
+          )}
+          <LineGraphRatingCompany data={data} />
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 };
