@@ -5,15 +5,15 @@ import { Tab } from "./Tab";
 
 const mockData = {
   director: null,
-  founders: null,
+  founders: "Нет",
   formerDirectors: null,
-  formerFounders: null,
-  subsidiaries: null,
-  branches: null,
+  formerFounders: "Нет",
+  subsidiaries: "Нет",
+  branches: "Нет",
   phone: null,
   address: null,
   email: null,
-  website: null,
+  website: "Нет",
 } as const;
 
 const keyLabels = {
@@ -42,12 +42,10 @@ export const ConnectionsCard = ({ data }: { data?: Counterparty }) => {
             onClick={() => {}}
             key={id}
             keyv={keyLabels[item[0] as keyof Object]}
-            value={""}
+            value={item[1] || ""}
           />
         ))}
       </CardContent>
     </Card>
   );
 };
-
-

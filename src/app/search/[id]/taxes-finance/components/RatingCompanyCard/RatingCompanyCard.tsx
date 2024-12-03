@@ -1,3 +1,5 @@
+"use client";
+
 import { LineGraphRatingCompany } from "./LineGraphRatingCompany";
 import {
   Accordion,

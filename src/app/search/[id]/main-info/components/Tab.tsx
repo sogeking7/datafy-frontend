@@ -29,7 +29,8 @@ export const Tab = ({
         "bg-gray-100 flex justify-between  text-sm gap-2",
         variant === "default" &&
           "rounded-lg md:rounded-xl px-3 py-3 md:px-4 md:py-3 font-semibold ",
-        variant === "sm" && "rounded-lg py-2 px-3 font-medium"
+        variant === "sm" && "rounded-lg py-2 px-3 font-medium",
+        action && "hover:underline"
       )}
     >
       <div className="flex gap-3 items-center">
@@ -40,7 +41,7 @@ export const Tab = ({
       </div>
       {action ? (
         <button>
-          <ChevronRight className="text-primary" />
+          <ChevronRight className="text-primary h-5 w-5 shrink-0" />
         </button>
       ) : (
         <>

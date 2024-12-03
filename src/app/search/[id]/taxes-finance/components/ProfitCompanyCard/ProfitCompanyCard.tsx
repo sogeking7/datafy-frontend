@@ -1,3 +1,5 @@
+'use client';
+
 import { LineGraphProfitCompany } from "./LineGraphProfitCompany";
 import {
   Accordion,

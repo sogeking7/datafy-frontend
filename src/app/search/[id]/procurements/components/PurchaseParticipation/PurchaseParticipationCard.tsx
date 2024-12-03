@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { CompanyService } from "@/features/company/api/company.service";
 import { TablePurchaseParticipation } from "./TablePurchaseParticipation";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const PurchaseParticipationCard = () => {
   const { id } = useParams();
@@ -22,7 +23,7 @@ export const PurchaseParticipationCard = () => {
   });
 
   if (isPending) {
-    return <p className="max-lg:my-5 mt-5 font-semibold">Загрузка...</p>;
+    return <Skeleton className="h-10 w-full rounded-2xl bg-white" />;
   }
 
   if (error) return "An error has occurred: " + error.message;

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,13 +14,41 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { FindByBinResponse } from "@/features/company/api/company.service.types";
+import { useParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { CompanyService } from "@/features/company/api/company.service";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export const HeaderCard = ({ data }: { data: FindByBinResponse }) => {
+export const HeaderCard = () => {
+  const { id } = useParams();
+
+  const company_bin = id as string;
+
+  const { data, isPending, error } = useQuery({
+    queryKey: ["get-company-by-bin", { company_bin }],
+    queryFn: async () => await CompanyService().findByBin(company_bin),
+    refetchOnWindowFocus: false,
+    refetchIntervalInBackground: false,
+    refetchInterval: false,
+  });
+
+  if (isPending) {
+    return null;
+  }
+
+  if (error) return "An error has occurred: " + error.message;
+
+  if (!data.success) {
+    return <p className="max-md:my-5 mt-5 font-semibold">{data.data}</p>;
+  }
+
+  const { company_info } = data.data;
+
   return (
     <Card className="bg-white !rounded-2xl flex flex-col border-none">
       <CardHeader className="flex flex-col gap-3">
         <h1 className="font-semibold text-lg md:text-2xl">
-          {data.company_info.name}
+          {company_info.name}
         </h1>
         {/* <Badge variant={"current"} className="w-max">
           Нет проблем

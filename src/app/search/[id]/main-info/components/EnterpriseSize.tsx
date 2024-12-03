@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { formatKZT } from "@/lib/utils";
 
 function EnterpriseSize() {
   return (
@@ -10,11 +11,11 @@ function EnterpriseSize() {
       <CardContent className="flex flex-col gap-3 !pt-0">
         <div className="bg-gray-100 flex text-sm justify-between items-center rounded-lg py-2 px-3 font-medium">
           <p>Количество сотрудников</p>
-          <b>8 505</b>
+          <b>{Number(8505).toLocaleString()}</b>
         </div>
         <div className="bg-gray-100 flex text-sm justify-between items-center rounded-lg py-2 px-3 font-medium">
           <p>Средняя зарплата</p>
-          <b>435 111 KZT</b>
+          <b>{formatKZT(435111)}</b>
         </div>
       </CardContent>
     </Card>

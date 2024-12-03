@@ -1,8 +1,13 @@
+"use client";
+
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tab } from "./Tab";
-import { FindByBinResponse } from "@/features/company/api/company.service.types";
 import { Goszakup } from "./Goszakup";
+import { useParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { CompanyService } from "@/features/company/api/company.service";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const keyLabels = {
   bin: "БИН",
@@ -31,7 +36,31 @@ const keyLabels = {
   additional_okeds: "Вторичный код ОКЭД",
 } as const;
 
-export const MainInfoCard = ({ data }: { data: FindByBinResponse }) => {
+export const MainInfoCard = () => {
+  const { id } = useParams();
+
+  const company_bin = id as string;
+
+  const { data, isPending, error } = useQuery({
+    queryKey: ["get-company-by-bin", { company_bin }],
+    queryFn: async () => await CompanyService().findByBin(company_bin),
+    refetchOnWindowFocus: false,
+    refetchIntervalInBackground: false,
+    refetchInterval: false,
+  });
+
+  if (isPending) {
+    return <Skeleton className="h-10 w-full rounded-2xl bg-white" />;
+  }
+
+  if (error) return "An error has occurred: " + error.message;
+
+  if (!data.success) {
+    return <p className="max-md:my-5 mt-5 font-semibold">{data.data}</p>;
+  }
+
+  const { company_info, tax_info } = data.data;
+
   return (
     <Card className="bg-white !rounded-2xl flex flex-col border-none">
       <CardHeader>
@@ -39,8 +68,8 @@ export const MainInfoCard = ({ data }: { data: FindByBinResponse }) => {
       </CardHeader>
       <CardContent className="flex flex-col gap-3 !pt-0">
         {Object.entries({
-          ...data.company_info,
-          ...data.tax_info,
+          ...company_info,
+          ...tax_info,
         }).map((item, id) => {
           const keyv = keyLabels[item[0] as keyof Object];
           if (!keyv) return null;
@@ -59,10 +88,10 @@ export const MainInfoCard = ({ data }: { data: FindByBinResponse }) => {
             else value = "Нет";
           }
           if (item[0] === "tax_authority_name") {
-            value += " - " + data.tax_info.tax_authority_code;
+            value += " - " + tax_info.tax_authority_code;
           }
           if (item[0] === "legal_address") {
-            value += ", " + data.company_info.judical_address;
+            value += ", " + company_info.judical_address;
           }
           return (
             <Tab

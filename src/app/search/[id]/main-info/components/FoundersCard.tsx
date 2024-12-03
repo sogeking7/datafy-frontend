@@ -4,9 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tab } from "./Tab";
 
 const mockData = {
-  founders: null,
-  hasIPForFounder: null,
-  founderInOtherCompanies: null,
+  founders: "Источник не предоставил сведения по учредителю",
+  hasIPForFounder: "Нет",
+  founderInOtherCompanies: "Нет",
 } as const;
 
 const keyLabels = {
@@ -27,7 +27,7 @@ export const FoundersCard = ({ data }: { data?: Counterparty }) => {
             action={false}
             key={id}
             keyv={keyLabels[item[0] as keyof Object]}
-            value={""}
+            value={item[1]}
           />
         ))}
       </CardContent>

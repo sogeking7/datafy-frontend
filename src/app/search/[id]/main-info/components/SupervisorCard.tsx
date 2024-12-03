@@ -4,9 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tab } from "./Tab";
 
 const mockData = {
-  supervisor: null,
-  directorAppointmentDate: null,
-  hasIPForSupervisor: null,
+  supervisor: "МИРОНОВ ПАВЕЛ ВЛАДИМИРОВИЧ",
+  directorAppointmentDate: "19-11-2018 (5 лет 11 месяцев)",
+  hasIPForSupervisor: "Нет",
   supervisorInOtherCompanies: null,
 } as const;
 
@@ -24,27 +24,27 @@ export const SupervisorCard = ({ data }: { data?: Counterparty }) => {
         <CardTitle>Руководитель</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-3 !pt-0">
-        {Object.entries(mockData).map((item, id) => {
-          if (item[1] === null) {
-            return (
-              <Tab
-                action={true}
-                onClick={() => {}}
-                key={id}
-                keyv={keyLabels[item[0] as keyof Object]}
-                value={""}
-              />
-            );
-          }
-          return (
-            <Tab
-              action={false}
-              key={id}
-              keyv={keyLabels[item[0] as keyof Object]}
-              value={""}
-            />
-          );
-        })}
+        <Tab
+          action={false}
+          keyv={keyLabels.supervisor}
+          value={mockData.supervisor || "-"}
+        />
+        <Tab
+          action={false}
+          keyv={keyLabels.directorAppointmentDate}
+          value={mockData.directorAppointmentDate || "-"}
+        />
+        <Tab
+          action={false}
+          keyv={keyLabels.hasIPForSupervisor}
+          value={mockData.hasIPForSupervisor || "-"}
+        />
+        <Tab
+          action={true}
+          keyv={keyLabels.supervisorInOtherCompanies}
+          value={mockData.supervisorInOtherCompanies || "-"}
+          onClick={() => {}}
+        />
       </CardContent>
     </Card>
   );
