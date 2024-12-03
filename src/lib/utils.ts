@@ -62,6 +62,15 @@ export const getUniqueColor = (idx: number) => {
   return color;
 };
 
+export const isObjectEmpty = (objectName: Object) => {
+  if (!objectName) return true;
+  return (
+    objectName &&
+    Object.keys(objectName).length === 0 &&
+    objectName.constructor === Object
+  );
+};
+
 export const colorPalette = [
   "#28B463", // Vivid Green
   "#FF8D1A", // Bold Orange

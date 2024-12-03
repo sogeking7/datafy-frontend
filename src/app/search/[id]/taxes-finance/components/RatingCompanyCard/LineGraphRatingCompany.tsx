@@ -1,4 +1,3 @@
-import { DynamicTaxRecords } from "@/features/company/api/company.service.types";
 import { Line, LineChart, XAxis, YAxis } from "recharts";
 import {
   ChartConfig,
@@ -6,19 +5,27 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { formatTenge } from "@/lib/utils";
+import { formatTenge, isObjectEmpty } from "@/lib/utils";
 
 const chartConfig = {
-  summa: {
-    label: "Сумма",
+  rating: {
+    label: "Место",
     color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
 
-export const LineGraphTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
-  const chartData = Object.entries(data).map(([year, { summa }]) => ({
+export const LineGraphRatingCompany = ({
+  data,
+}: {
+  data: { [year: string]: { rating: number } };
+}) => {
+  if (isObjectEmpty(data)) {
+    return null;
+  }
+
+  const chartData = Object.entries(data).map(([year, { rating }]) => ({
     year,
-    summa,
+    rating,
   }));
 
   return (
@@ -37,7 +44,7 @@ export const LineGraphTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
         />
         <ChartTooltip cursor={true} content={<ChartTooltipContent />} />
         <Line
-          dataKey="summa"
+          dataKey="rating"
           type="natural"
           stroke="#403EF1"
           strokeWidth={2}

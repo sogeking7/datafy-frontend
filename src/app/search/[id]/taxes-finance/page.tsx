@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { TaxRecordsCard } from "./components/TaxRecordsCard/TaxRecordsCard";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { KBKRecordsCard } from "./components/KBKRecordsCard/KBKRecordsCard";
+import { RatingCompanyCard } from "./components/RatingCompanyCard/RatingCompanyCard";
 
 export default function Page() {
   const { id } = useParams();
@@ -46,6 +47,7 @@ export default function Page() {
         // data={{}}
       />
       <KBKRecordsCard tax_info={data.data.tax_info} />
+      <RatingCompanyCard />
     </div>
   );
 }
