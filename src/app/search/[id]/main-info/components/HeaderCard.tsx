@@ -33,7 +33,7 @@ export const HeaderCard = () => {
   });
 
   if (isPending) {
-    return null;
+    return <Skeleton className="h-[112px] w-full rounded-2xl bg-white" />;
   }
 
   if (error) return "An error has occurred: " + error.message;

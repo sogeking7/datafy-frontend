@@ -50,7 +50,7 @@ export const MainInfoCard = () => {
   });
 
   if (isPending) {
-    return <Skeleton className="h-10 w-full rounded-2xl bg-white" />;
+    return <Skeleton className="h-[600px] w-full rounded-2xl bg-white" />;
   }
 
   if (error) return "An error has occurred: " + error.message;
