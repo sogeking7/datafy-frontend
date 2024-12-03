@@ -8,6 +8,9 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { KBKRecordsCard } from "./components/KBKRecordsCard/KBKRecordsCard";
 import { RatingCompanyCard } from "./components/RatingCompanyCard/RatingCompanyCard";
 import { ProfitCompanyCard } from "./components/ProfitCompanyCard/ProfitCompanyCard";
+import { TaxImportsCard } from "./components/TaxImportsCard/TaxImportsCard";
+import { FinesPenaltyCard } from "./components/FinesPenaltyCard/FinesPenaltyCard";
+import { WageFundCard } from "./components/WageFundCard/WageFundCard";
 
 export default function Page() {
   const { id } = useParams();
@@ -50,6 +53,9 @@ export default function Page() {
       <KBKRecordsCard tax_info={data.data.tax_info} />
       <RatingCompanyCard />
       <ProfitCompanyCard />
+      <TaxImportsCard />
+      <FinesPenaltyCard />
+      <WageFundCard />
     </div>
   );
 }
