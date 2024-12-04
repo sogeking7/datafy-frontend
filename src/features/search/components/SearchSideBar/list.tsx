@@ -39,7 +39,7 @@ export const search_sidebar_links = [
     link: "/licenses-certificates",
     light: <Star />,
     bold: <StarBold className="fill-current" />,
-    locked: true,
+    locked: false,
   },
   {
     title: "Судебные дела",

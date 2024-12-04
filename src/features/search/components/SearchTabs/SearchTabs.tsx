@@ -21,7 +21,7 @@ export const SearchTabs = ({ className }: { className?: string }) => {
     setActiveTab(value);
     router.push(`/search/${id}${value}`);
   }
-  
+
   return (
     <Tabs
       value={activeTab}
