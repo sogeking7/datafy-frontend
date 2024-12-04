@@ -53,7 +53,7 @@ export const search_sidebar_links = [
     link: "/reliability",
     light: <ShieldDone />,
     bold: <ShieldDoneBold className="fill-current" />,
-    locked: true,
+    locked: false,
   },
   {
     title: "Участие в закупках",

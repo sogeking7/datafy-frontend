@@ -26,7 +26,7 @@ export const SearchTabs = ({ className }: { className?: string }) => {
     <Tabs
       value={activeTab}
       onValueChange={(value) => handleTabChange(value)}
-      className={cn("mt-5 md:w-[605px] max-md:overflow-x-scroll", className)}
+      className={cn("mt-5 md:w-[605px] overflow-x-auto", className)}
     >
       <TabsList>
         {search_tab_links.map((item) => (
