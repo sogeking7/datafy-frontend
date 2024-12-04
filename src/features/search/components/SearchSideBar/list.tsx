@@ -46,7 +46,7 @@ export const search_sidebar_links = [
     link: "/court-cases",
     light: <Work />,
     bold: <WorkBold className="fill-current" />,
-    locked: true,
+    locked: false,
   },
   {
     title: "Благонадежность",
