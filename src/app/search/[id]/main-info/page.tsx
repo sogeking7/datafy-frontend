@@ -33,7 +33,7 @@ export default function Page() {
           <Vacancies />
           <Publications />
           <History />
-          <TradeMarks />
+          {/* <TradeMarks /> */}
         </div>
       </div>
     </>

@@ -33,7 +33,7 @@ export const HeaderCard = () => {
   });
 
   if (isPending) {
-    return <Skeleton className="h-[112px] w-full rounded-2xl bg-white" />;
+    return <Skeleton className="h-[350px] w-full rounded-2xl bg-white" />;
   }
 
   if (error) return "An error has occurred: " + error.message;
@@ -50,22 +50,22 @@ export const HeaderCard = () => {
         <h1 className="font-semibold text-lg md:text-2xl">
           {company_info.name}
         </h1>
-        {/* <Badge variant={"current"} className="w-max">
+        <Badge variant={"current"} className="w-max">
           Нет проблем
-        </Badge> */}
+        </Badge>
       </CardHeader>
-      {/* <CardContent className="flex flex-col gap-3 !py-0">
-        <div className="flex flex-wrap justify-between">
+      <CardContent className="flex flex-col gap-3 !py-0">
+        <div className="flex flex-wrap justify-between gap-3">
           <Button size={"sm"} className="gap-3 ">
             <DownloadIcon className="full-current stroke-white stroke-[1.5]" />
             Скачать отчет
           </Button>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <Button size={"sm"} variant={"secondary"} className="gap-3">
               Справка <EgovIcon />
             </Button>
             <Button size={"sm"} variant={"secondary"} className="gap-3">
-              <EditSquareIcon />
+              <EditSquareIcon className="stroke-accent-foreground stroke-[1.5]" />
               Заметки
             </Button>
             <Button variant={"secondary"} size={"icon-sm"}>
@@ -86,7 +86,7 @@ export const HeaderCard = () => {
           Рейтинг компании лучше, чем у 99.8% компаний с аналогичным видом
           деятельности
         </p>
-      </CardFooter> */}
+      </CardFooter>
     </Card>
   );
 };

@@ -22,10 +22,7 @@ export const LineGraphTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
   }));
 
   return (
-    <ChartContainer
-      className="h-[250px] !aspect-auto z-50 relative"
-      config={chartConfig}
-    >
+    <ChartContainer className="h-[250px] !aspect-auto" config={chartConfig}>
       <LineChart accessibilityLayer data={chartData}>
         <YAxis tickFormatter={formatTenge} />
         <XAxis

@@ -75,12 +75,15 @@ export const MainInfoCard = () => {
           if (!keyv) return null;
           let value = item[1]?.toString();
           if (item[0] === "date_registration") {
-            const date = new Date(value);
-            value = date.toLocaleDateString("kk-KZ", {
-              day: "2-digit",
-              month: "2-digit",
-              year: "numeric",
-            });
+            if (value) {
+              value = new Date(value).toLocaleDateString("kk-KZ", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+              });
+            } else {
+              value = "-";
+            }
           }
           if (item[0] === "additional_okeds") {
             const parsedOkeds = JSON.parse(value);

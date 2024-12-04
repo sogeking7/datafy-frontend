@@ -41,7 +41,7 @@ export const SearchForm = ({ tabsActive = true }: { tabsActive?: boolean }) => {
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
-      <div className="w-full bg-white p-2 md:p-2.5 rounded-xl md:rounded-2xl flex justify-between gap-3 md:gap-10">
+      <div className="w-full bg-white shadow-sm p-2 md:p-2.5 rounded-xl md:rounded-2xl flex justify-between gap-3 md:gap-10">
         <div className="w-full relative">
           <Image
             alt="search"

@@ -45,9 +45,9 @@ export const TaxDeductions = () => {
   if (!data.success) {
     return <p className="max-md:my-5 mt-5 font-semibold">{data.data}</p>;
   }
-  const { dynamic_tax_records } = data.data.tax_info;
+  const { dynamic_tax_records, status } = data.data.tax_info;
 
-  const chartData = Object.entries(dynamic_tax_records).map(
+  const chartData = Object.entries(dynamic_tax_records || {}).map(
     ([year, { summa }]) => ({
       year,
       summa,
@@ -64,27 +64,30 @@ export const TaxDeductions = () => {
         </div>
       </CardHeader>
       <CardContent className="!pt-0">
-        <ChartContainer
-          className=" h-[250px] !aspect-auto"
-          config={chartConfig}
-        >
-          <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
-            <YAxis tickFormatter={(value) => value} />
-            <XAxis
-              dataKey="year"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) => value}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Bar dataKey="summa" fill="#77BD8B" radius={2} className="w-7" />
-          </BarChart>
-        </ChartContainer>
+        {!!status && <p className="text-info font-medium text-sm">{status}</p>}
+        {!!dynamic_tax_records && (
+          <ChartContainer
+            className=" h-[250px] !aspect-auto"
+            config={chartConfig}
+          >
+            <BarChart accessibilityLayer data={chartData}>
+              <CartesianGrid vertical={false} />
+              <YAxis tickFormatter={(value) => value} />
+              <XAxis
+                dataKey="year"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                tickFormatter={(value) => value}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+              <Bar dataKey="summa" fill="#77BD8B" radius={2} className="w-7" />
+            </BarChart>
+          </ChartContainer>
+        )}
       </CardContent>
     </Card>
   );
