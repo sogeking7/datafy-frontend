@@ -1,10 +1,18 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
-export const SearchIdTabs = ({ links }: { links: string[] }) => {
+export const SearchIdTabs = ({
+  active,
+  links,
+  comp,
+}: {
+  active?: string;
+  links: string[];
+  comp?: React.ReactNode;
+}) => {
   return (
-    <ScrollArea>
-      <Tabs>
+    <Tabs defaultValue={active}>
+      <ScrollArea>
         <TabsList>
           {links.map((item) => (
             <TabsTrigger key={item} value={item}>
@@ -12,8 +20,9 @@ export const SearchIdTabs = ({ links }: { links: string[] }) => {
             </TabsTrigger>
           ))}
         </TabsList>
-      </Tabs>
-      <ScrollBar orientation="horizontal" />
-    </ScrollArea>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
+      {comp}
+    </Tabs>
   );
 };
