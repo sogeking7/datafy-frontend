@@ -28,13 +28,13 @@ type TabProps = {
 } & (
   | {
       action: true;
-      sheetTitle: string;
-      sheetTabs: { title: string; link: string }[];
+      sheetTitle?: string | undefined;
+      sheetTabs?: { title: string; link: string }[] | undefined;
     }
   | {
       action: false;
-      sheetTitle: undefined;
-      sheetTabs: undefined;
+      sheetTitle?: undefined;
+      sheetTabs?: undefined;
     }
 );
 

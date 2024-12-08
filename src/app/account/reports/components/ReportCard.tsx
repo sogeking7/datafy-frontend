@@ -29,7 +29,7 @@ export const ReportCard = ({
             </span>
           </p>
           <div className="text-sm text-[#00848C] bg-[#f5f5f5] rounded-sm px-3 font-semibold py-1">
-            {"12.09.2024" || "Нет срока окончания"}
+            {"12.09.2024"}
           </div>
         </div>
         <Badge className="mt-3" variant={data.type}>

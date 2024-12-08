@@ -29,13 +29,16 @@ export const SearchCard = ({ data }: { data: Counterparty }) => {
           {data.oked_name}
         </h2>
         <ul className="flex gap-2 mt-4 flex-wrap">
+          {/* TODO:asdfasd
+           */}
+          {/* @ts-ignore */}
           <Badge variant={data.type}>{cardType[data.type]}</Badge>
           <Badge variant={"current"}>{data.krp_name}</Badge>
           <Badge variant={"country"}>
             <span className="mr-2 leading-none">
               {getUnicodeFlagIcon("KZ")}
             </span>
-            {data.country_name || "Казахстан"}
+            {"Казахстан"}
           </Badge>
         </ul>
         <hr className="w-full my-3 border-[#F5F5F5]" />
