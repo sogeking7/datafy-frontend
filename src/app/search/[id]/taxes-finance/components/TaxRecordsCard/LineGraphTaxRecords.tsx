@@ -1,5 +1,5 @@
 import { DynamicTaxRecords } from "@/features/company/api/company.service.types";
-import { Line, LineChart, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
   ChartConfig,
   ChartContainer,
@@ -23,7 +23,7 @@ export const LineGraphTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
 
   return (
     <ChartContainer className="h-[250px] !aspect-auto" config={chartConfig}>
-      <LineChart accessibilityLayer data={chartData}>
+      <BarChart accessibilityLayer data={chartData}>
         <YAxis tickFormatter={formatTenge} />
         <XAxis
           dataKey="year"
@@ -33,14 +33,8 @@ export const LineGraphTaxRecords = ({ data }: { data: DynamicTaxRecords }) => {
           tickFormatter={(value) => value}
         />
         <ChartTooltip cursor={true} content={<ChartTooltipContent />} />
-        <Line
-          dataKey="summa"
-          type="natural"
-          stroke="#403EF1"
-          strokeWidth={2}
-          dot={true}
-        />
-      </LineChart>
+        <Bar dataKey="summa" fill="#77BD8B" radius={2} className="w-7" />
+      </BarChart>
     </ChartContainer>
   );
 };
