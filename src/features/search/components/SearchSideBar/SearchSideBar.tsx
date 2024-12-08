@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { search_sidebar_links } from "./list";
 import Lock from "@/../public/iconly/Light/Lock.svg";
 import LockBold from "@/../public/iconly/Bold/Lock.svg";
+import { EyeIcon } from "lucide-react";
 
 export const SearchSideBar = ({ className }: { className?: string }) => {
   const pathname = usePathname();
@@ -48,6 +49,12 @@ export const SearchSideBar = ({ className }: { className?: string }) => {
             </Link>
           )
         )}
+        <div className="mt-20">
+          <hr className="border-gray-200 mb-6" />
+          <p className="flex items-center gap-2 text-sm text-gray-500">
+            <EyeIcon className="size-5" />3 876 просмотров
+          </p>
+        </div>
       </CardContent>
     </Card>
   );
