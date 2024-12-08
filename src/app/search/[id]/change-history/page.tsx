@@ -3,7 +3,7 @@ import { SearchIdHeader } from "../components/SearchIdHeader";
 import { SearchIdTabs } from "../components/SearchIdTabs";
 import { Empty } from "../components/Empty";
 
-const links = ["Основная информация", "Благонадежность"];
+const links = ["Основная информация"];
 
 export default function Page() {
   return (
@@ -15,9 +15,6 @@ export default function Page() {
         comp={
           <div className="mt-3">
             <TabsContent value="Основная информация">
-              <Empty />
-            </TabsContent>
-            <TabsContent value="Благонадежность">
               <Empty />
             </TabsContent>
           </div>

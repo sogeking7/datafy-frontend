@@ -9,8 +9,6 @@ function TradeMarks() {
         <CardTitle className="!text-xl">Товарные знаки</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-3 !pt-0">
-        <Tab variant={"sm"} action={true} keyv={"Действующие"} value={""} />
-        <Tab variant={"sm"} action={true} keyv={"Недействующие"} value={""} />
       </CardContent>
     </Card>
   );
