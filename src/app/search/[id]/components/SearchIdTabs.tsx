@@ -1,14 +1,7 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
-const links: string[] = [
-  "Все",
-  "Минусы",
-  "Обратить внимание",
-  "Индекс благонадежности",
-];
-
-export const ReliabilityTabs = () => {
+export const SearchIdTabs = ({ links }: { links: string[] }) => {
   return (
     <ScrollArea>
       <Tabs>

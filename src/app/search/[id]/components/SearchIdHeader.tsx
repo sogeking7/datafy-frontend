@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import CalendarIcon from "@/../public/iconly/Light/Calendar.svg";
 
-export const CourtHeader = () => {
+export const SearchIdHeader = ({ title }: { title: string }) => {
   const { id } = useParams();
 
   const company_bin = id as string;
@@ -35,7 +35,7 @@ export const CourtHeader = () => {
   return (
     <Card className="bg-white !rounded-2xl flex flex-col border-none">
       <CardHeader>
-        <CardTitle>Участие в судебных делах {name}</CardTitle>
+        <CardTitle>{title + " " + name}</CardTitle>
         <div className="flex gap-3 flex-wrap items-center mt-3">
           <p className="flex gap-2 items-center">
             <CalendarIcon className="stroke-gray-500 stroke-[1.5]" />
