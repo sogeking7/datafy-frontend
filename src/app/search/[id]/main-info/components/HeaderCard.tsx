@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import EgovIcon from "@/../public/iconly/egov.svg";
 import BookmarkIcon from "@/../public/iconly/Light/Bookmark.svg";
-import EditSquareIcon from "@/../public/iconly/Light/Edit Square.svg";
 import DownloadIcon from "@/../public/iconly/Light/Download.svg";
 import {
   Card,
@@ -19,6 +18,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CompanyService } from "@/features/company/api/company.service";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
+import { Notes } from "./Notes/Notes";
 
 export const HeaderCard = () => {
   const { id } = useParams();
@@ -67,10 +67,7 @@ export const HeaderCard = () => {
                 Справка <EgovIcon />
               </Button>
             </a>
-            <Button size={"sm"} variant={"secondary"} className="gap-3">
-              <EditSquareIcon className="stroke-accent-foreground stroke-[1.5]" />
-              Заметки
-            </Button>
+            <Notes />
             <Button variant={"secondary"} size={"icon-sm"}>
               <BookmarkIcon />
             </Button>
