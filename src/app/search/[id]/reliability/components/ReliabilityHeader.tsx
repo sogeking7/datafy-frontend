@@ -5,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { CompanyService } from "@/features/company/api/company.service";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
+import CalendarIcon from "@/../public/iconly/Light/Calendar.svg";
 
 export const ReliabilityHeader = () => {
   const { id } = useParams();
@@ -35,6 +36,17 @@ export const ReliabilityHeader = () => {
     <Card className="bg-white !rounded-2xl flex flex-col border-none">
       <CardHeader>
         <CardTitle>Благонадежность {name}</CardTitle>
+        <div className="flex gap-3 flex-wrap items-center mt-3">
+          <p className="flex gap-2 items-center">
+            <CalendarIcon className="stroke-gray-500 stroke-[1.5]" />
+            <span className="leading-none text-gray-500 font-medium text-sm">
+              Дата актуальности:
+            </span>
+          </p>
+          <div className="text-sm text-[#00848C] bg-[#f5f5f5] rounded-sm px-3 font-semibold py-1">
+            {"12.09.2024"}
+          </div>
+        </div>
       </CardHeader>
     </Card>
   );
