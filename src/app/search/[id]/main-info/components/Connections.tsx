@@ -29,6 +29,11 @@ const keyLabels = {
   website: "По веб-сайту",
 } as const;
 
+const formattedLinks = Object.entries(keyLabels).map(([key, value]) => ({
+  title: value,
+  link: key,
+}));
+
 export const ConnectionsCard = ({ data }: { data?: Counterparty }) => {
   return (
     <Card className="bg-white !rounded-2xl flex flex-col border-none">
@@ -39,7 +44,8 @@ export const ConnectionsCard = ({ data }: { data?: Counterparty }) => {
         {Object.entries(mockData).map((item, id) => (
           <Tab
             action={true}
-            onClick={() => {}}
+            sheetTitle="Связи"
+            sheetTabs={formattedLinks}
             key={id}
             keyv={keyLabels[item[0] as keyof Object]}
             value={item[1] || ""}

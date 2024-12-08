@@ -33,7 +33,6 @@ export const OtherParticipantsCard = ({ data }: { data?: Counterparty }) => {
         {Object.entries(mockData).map((item, id) => (
           <Tab
             action={true}
-            onClick={() => {}}
             key={id}
             keyv={keyLabels[item[0] as keyof Object]}
             value={""}

@@ -12,42 +12,21 @@ function History() {
         <Tab
           variant={"sm"}
           action={true}
-          onClick={() => {}}
           keyv={"История изменений"}
           value={""}
         />
+        <Tab variant={"sm"} action={true} keyv={"Наименование"} value={""} />
+        <Tab variant={"sm"} action={true} keyv={"Учредитель"} value={""} />
+        <Tab variant={"sm"} action={true} keyv={"Руководитель"} value={""} />
         <Tab
           variant={"sm"}
           action={true}
-          onClick={() => {}}
-          keyv={"Наименование"}
-          value={""}
-        />
-        <Tab
-          variant={"sm"}
-          action={true}
-          onClick={() => {}}
-          keyv={"Учредитель"}
-          value={""}
-        />
-        <Tab
-          variant={"sm"}
-          action={true}
-          onClick={() => {}}
-          keyv={"Руководитель"}
-          value={""}
-        />
-        <Tab
-          variant={"sm"}
-          action={true}
-          onClick={() => {}}
           keyv={"Юридический адрес"}
           value={""}
         />
         <Tab
           variant={"sm"}
           action={true}
-          onClick={() => {}}
           keyv={"Вид деятельности"}
           value={""}
         />

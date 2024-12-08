@@ -12,14 +12,12 @@ function Vacancies() {
         <Tab
           variant={"sm"}
           action={true}
-          onClick={() => {}}
           keyv={"Количество сотрудников"}
           value={""}
         />
         <Tab
           variant={"sm"}
           action={true}
-          onClick={() => {}}
           keyv={"Средняя зарплата"}
           value={""}
         />

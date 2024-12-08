@@ -43,7 +43,6 @@ export const SupervisorCard = ({ data }: { data?: Counterparty }) => {
           action={true}
           keyv={keyLabels.supervisorInOtherCompanies}
           value={mockData.supervisorInOtherCompanies || "-"}
-          onClick={() => {}}
         />
       </CardContent>
     </Card>

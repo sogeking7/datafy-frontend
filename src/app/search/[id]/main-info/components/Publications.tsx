@@ -9,34 +9,10 @@ function Publications() {
         <CardTitle className="!text-xl">Публикации в СМИ</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-3 !pt-0">
-        <Tab
-          variant={"sm"}
-          action={true}
-          onClick={() => {}}
-          keyv={"Все"}
-          value={""}
-        />
-        <Tab
-          variant={"sm"}
-          action={true}
-          onClick={() => {}}
-          keyv={"Положительные"}
-          value={""}
-        />
-        <Tab
-          variant={"sm"}
-          action={true}
-          onClick={() => {}}
-          keyv={"Отрицательные"}
-          value={""}
-        />
-        <Tab
-          variant={"sm"}
-          action={true}
-          onClick={() => {}}
-          keyv={"Нейтральные"}
-          value={""}
-        />
+        <Tab variant={"sm"} action={true} keyv={"Все"} value={""} />
+        <Tab variant={"sm"} action={true} keyv={"Положительные"} value={""} />
+        <Tab variant={"sm"} action={true} keyv={"Отрицательные"} value={""} />
+        <Tab variant={"sm"} action={true} keyv={"Нейтральные"} value={""} />
       </CardContent>
     </Card>
   );
