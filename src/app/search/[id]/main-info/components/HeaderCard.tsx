@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import EgovIcon from "@/../public/iconly/egov.svg";
 import BookmarkIcon from "@/../public/iconly/Light/Bookmark.svg";
+import BookmarkIconBold from "@/../public/iconly/Bold/Bookmark.svg";
 import DownloadIcon from "@/../public/iconly/Light/Download.svg";
 import {
   Card,
@@ -21,6 +22,8 @@ import Link from "next/link";
 import { Notes } from "./Notes/Notes";
 
 export const HeaderCard = () => {
+  const [book, setBook] = useState(false);
+
   const { id } = useParams();
 
   const company_bin = id as string;
@@ -68,8 +71,12 @@ export const HeaderCard = () => {
               </Button>
             </a>
             <Notes />
-            <Button variant={"secondary"} size={"icon-sm"}>
-              <BookmarkIcon />
+            <Button
+              onClick={() => setBook(!book)}
+              variant={"secondary"}
+              size={"icon-sm"}
+            >
+              {book ? <BookmarkIconBold className="fill-destructive" /> : <BookmarkIcon />}
             </Button>
           </div>
         </div>
