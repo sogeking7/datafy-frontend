@@ -22,7 +22,7 @@ export default function Page() {
         comp={
           <div className="mt-3">
             <TabsContent value="Лицензии">
-              <Empty />
+              
             </TabsContent>
             <TabsContent value="Сертификаты индустриальные">
               <Empty />
