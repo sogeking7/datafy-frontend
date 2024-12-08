@@ -3,10 +3,37 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { profile_tab_links } from "./list";
-import { cn, getLastPathname } from "@/lib/utils";
+import { getLastPathname } from "@/lib/utils";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
-export const ProfileTabs = ({ className }: { className?: string }) => {
+const links = [
+  {
+    title: "Личная информация",
+    link: "/profile",
+  },
+  {
+    title: "Смена пароля",
+    link: "/change-password",
+  },
+  {
+    title: "История платежей",
+    link: "/payment-history",
+  },
+  {
+    title: "Мои отчеты",
+    link: "/reports",
+  },
+  {
+    title: "История просмотров",
+    link: "/view-history",
+  },
+  {
+    title: "Заметки",
+    link: "/notes",
+  },
+] as const;
+
+export const ProfileTabs = () => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -22,18 +49,17 @@ export const ProfileTabs = ({ className }: { className?: string }) => {
   }
 
   return (
-    <Tabs
-      value={activeTab}
-      onValueChange={(value) => handleTabChange(value)}
-      className={cn("md:w-[605px] max-md:overflow-x-scroll", className)}
-    >
-      <TabsList>
-        {profile_tab_links.map((item) => (
-          <TabsTrigger key={item.link} value={item.link}>
-            {item.title}
-          </TabsTrigger>
-        ))}
-      </TabsList>
-    </Tabs>
+    <ScrollArea className="md:hidden mb-4">
+      <Tabs value={activeTab} onValueChange={(value) => handleTabChange(value)}>
+        <TabsList>
+          {links.map((item) => (
+            <TabsTrigger key={item.link} value={item.link}>
+              {item.title}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   );
 };

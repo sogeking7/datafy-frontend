@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { SearchIcon } from "lucide-react";
 import { CompanyFilter } from "@/features/company/api/company.service.types";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 type FormType = {
   q: string;
@@ -66,20 +67,21 @@ export const SearchForm = ({ tabsActive = true }: { tabsActive?: boolean }) => {
       </div>
 
       {tabsActive && (
-        <Tabs
-          value={activeTab}
-          onValueChange={(value) => handleTabChange(value)}
-          className="mt-5 md:w-[605px] max-md:overflow-x-scroll "
-        >
-          <TabsList>
-            <TabsTrigger value="all">Все</TabsTrigger>
-            <TabsTrigger value="companies">Юр. лицо</TabsTrigger>
-            <TabsTrigger value="individuals">
-              Индивидуальный предприниматель
-            </TabsTrigger>
-            {/* <TabsTrigger value="individual">Физ. лицо</TabsTrigger> */}
-          </TabsList>
-        </Tabs>
+        <ScrollArea className="mt-5">
+          <Tabs
+            value={activeTab}
+            onValueChange={(value) => handleTabChange(value)}
+          >
+            <TabsList>
+              <TabsTrigger value="all">Все</TabsTrigger>
+              <TabsTrigger value="companies">Юр. лицо</TabsTrigger>
+              <TabsTrigger value="individuals">
+                Индивидуальный предприниматель
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       )}
     </form>
   );

@@ -40,9 +40,9 @@ export const SupervisorCard = ({ data }: { data?: Counterparty }) => {
           value={mockData.hasIPForSupervisor || "-"}
         />
         <Tab
-          action={true}
+          action={false}
           keyv={keyLabels.supervisorInOtherCompanies}
-          value={mockData.supervisorInOtherCompanies || "-"}
+          value={mockData.supervisorInOtherCompanies || "Нет"}
         />
       </CardContent>
     </Card>

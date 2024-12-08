@@ -18,6 +18,7 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { CompanyService } from "@/features/company/api/company.service";
 import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
 
 export const HeaderCard = () => {
   const { id } = useParams();
@@ -61,9 +62,11 @@ export const HeaderCard = () => {
             Скачать отчет
           </Button>
           <div className="flex items-center gap-3 flex-wrap">
-            <Button size={"sm"} variant={"secondary"} className="gap-3">
-              Справка <EgovIcon />
-            </Button>
+            <a target="_blank" href={"https://egov.kz"}>
+              <Button size={"sm"} variant={"secondary"} className="gap-3">
+                Справка <EgovIcon />
+              </Button>
+            </a>
             <Button size={"sm"} variant={"secondary"} className="gap-3">
               <EditSquareIcon className="stroke-accent-foreground stroke-[1.5]" />
               Заметки

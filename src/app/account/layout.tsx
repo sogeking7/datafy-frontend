@@ -43,7 +43,7 @@ export default function AccountLayout({
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
-            <ProfileTabs className="self-start md:hidden mb-4" />
+            <ProfileTabs />
             <div className="flex gap-4 flex-col">{children}</div>
           </div>
         </Container>

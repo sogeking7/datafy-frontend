@@ -49,7 +49,7 @@ export default async function SearchPageLayout({
             </BreadcrumbList>
           </Breadcrumb>
           <SearchForm tabsActive={false} />
-          <SearchTabs className="md:hidden self-start" />
+          <SearchTabs />
         </div>
         {children}
       </div>

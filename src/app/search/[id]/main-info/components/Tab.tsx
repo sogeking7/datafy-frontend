@@ -3,38 +3,31 @@
 import CopyToClipboard from "@/components/ui/copy-to-clickboard";
 import { cn } from "@/lib/utils";
 import { ChevronRight, CircleAlert } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  useParams,
-  useRouter,
-  usePathname,
-  useSearchParams,
-} from "next/navigation";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 type TabProps = {
   variant?: "default" | "sm";
   copyToClickboard?: boolean;
   keyv: string | any;
-  value: string;
   action: boolean;
 } & (
   | {
       action: true;
-      sheetTitle?: string | undefined;
-      sheetTabs?: { title: string; link: string }[] | undefined;
+      sheetTitle: string;
+      comp: React.ReactNode;
+      value?: undefined;
     }
   | {
       action: false;
       sheetTitle?: undefined;
-      sheetTabs?: undefined;
+      comp?: undefined;
+      value: string;
     }
 );
 
@@ -45,25 +38,9 @@ export const Tab = ({
   value,
   action,
   sheetTitle,
-  sheetTabs,
+  comp,
 }: TabProps) => {
   const [open, setOpen] = useState(false);
-
-  const router = useRouter();
-  const pathname = usePathname();
-  const { id } = useParams();
-  const q = useSearchParams().get("sheet_tab") || "";
-
-  const [activeTab, setActiveTab] = useState(() => q);
-
-  useEffect(() => {
-    setActiveTab(q);
-  }, [pathname]);
-
-  function handleTabChange(value: string) {
-    setActiveTab(value);
-    // router.push(`/search/${id}/main-info?sheet_tab=${value}`);
-  }
 
   return (
     <>
@@ -77,19 +54,7 @@ export const Tab = ({
             <SheetHeader className="">
               <SheetTitle>{sheetTitle || ""}</SheetTitle>
             </SheetHeader>
-            <Tabs
-              value={activeTab}
-              onValueChange={(value) => handleTabChange(value)}
-              className="overflow-x-auto w-full"
-            >
-              <TabsList className="w-full">
-                {sheetTabs?.map((item) => (
-                  <TabsTrigger className="" key={item.link} value={item.link}>
-                    {item.title}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </Tabs>
+            {comp}
           </SheetContent>
         </Sheet>
       )}

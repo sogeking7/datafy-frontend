@@ -1,17 +1,17 @@
-import { ConnectionsCard } from "./components/Connections";
+import { ConnectionsCard } from "./components/Connections/Connections";
 import EnterpriseSize from "./components/EnterpriseSize";
-import { FamilyTiesCard } from "./components/FamilyTies";
+import { FamilyTiesCard } from "./components/FamilyTies/FamilyTies";
 import { FoundersCard } from "./components/FoundersCard";
 import { HeaderCard } from "./components/HeaderCard";
-import History from "./components/History";
 import { MainInfoCard } from "./components/MainInfoCard";
-import { OtherParticipantsCard } from "./components/OtherParticipants";
-import Publications from "./components/Publications";
+import { OtherParticipantsCard } from "./components/OtherParticipants/OtherParticipants";
 import { SupervisorCard } from "./components/SupervisorCard";
 import { TaxDeductions } from "./components/TaxDeductions";
 import TradeMarks from "./components/Trademarks";
-import Vacancies from "./components/Vacancies";
 import ReliabilityIndex from "./components/ReliabilityIndex";
+import { Vacancies } from "./components/Vacancies/Vacancies";
+import { Publications } from "./components/Publications/Publications";
+import { History } from "./components/History/History";
 
 export default function Page() {
   return (
