@@ -36,7 +36,7 @@ export const CurTarifCard = ({ data }: { data: Counterparty }) => {
             <span className="mr-2 leading-none">
               {getUnicodeFlagIcon("KZ")}
             </span>
-            {data.country_name || "Казахстан"}
+            {"Казахстан"}
           </Badge>
         </ul>
         <hr className="w-full my-3 border-[#F5F5F5]" />

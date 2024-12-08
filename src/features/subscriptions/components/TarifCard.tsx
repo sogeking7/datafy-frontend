@@ -10,7 +10,7 @@ import { SubType } from "../api/subscriptions.service.types";
 import { formatDate } from "@/lib/utils";
 
 // Define subscription types with strong typing
-type SubscriptionType = {
+export type SubscriptionType = {
   to: string;
   title: string;
   description: string;
@@ -18,7 +18,7 @@ type SubscriptionType = {
   period: string;
 };
 
-const SUBSCRIPTION_TYPES: Record<SubType, SubscriptionType> = {
+export const SUBSCRIPTION_TYPES: Record<SubType, SubscriptionType> = {
   basic: {
     to: "Для всех пользователей",
     title: "Суточный тариф",
@@ -54,7 +54,7 @@ const SUBSCRIPTION_TYPES: Record<SubType, SubscriptionType> = {
  * @param lastPayment - The starting date (ISO string)
  * @param days - Number of days to add
  */
-const calculateEndDate = (
+export const calculateEndDate = (
   lastPayment: string,
   days: number | null
 ): string | null => {

@@ -50,20 +50,22 @@ export const Tariffs = () => {
   );
 
   return (
-    <div className="grid grid-cols-3 gap-8 md:gap-10 max-lg:max-w-sm m-auto">
+    <div className="grid grid-cols-3 gap-6 max-lg:max-w-sm m-auto">
       <div className="lg:col-span-1 col-span-full">
         <div className="relative bg-white p-4 rounded-lg border border-gray-200">
           <div className="gap-6 flex flex-col p-4">
             <div className="bg-[#f4f4f4] text-sm rounded-sm text-[#333] font-semibold px-6 py-1 w-max">
               Для физических лиц
             </div>
-            <h1 className="font-semibold text-3xl">Тариф “7 дней”</h1>
-            <p className="text-secondary font-medium text-base text-balance">
+            <h1 className="font-semibold text-3xl whitespace-nowrap">
+              Тариф “7 дней”
+            </h1>
+            <p className="text-secondary font-medium text-base line-clamp-4 ">
               Тарифный план предназначен для краткосрочного доступа к системе.
               Подходит для тех пользователей, которым требуется временный доступ
               к расширенному функционалу.
             </p>
-            <div className="bg-[#f5f5f5] w-full rounded-md font-semibold text-lg py-2 flex justify-center">
+            <div className="bg-[#f5f5f5] whitespace-nowrap w-full rounded-md font-semibold text-lg py-2 flex justify-center">
               7 дней
             </div>
             <hr className="h-[1px] border-none w-full bg-gradient-to-r from-secondary " />
@@ -78,12 +80,14 @@ export const Tariffs = () => {
             <div className="bg-[#f4f4f4] text-sm rounded-sm text-[#333] font-semibold px-6 py-1 w-max">
               Для юридических лиц
             </div>
-            <h1 className="font-semibold text-3xl text-white">Тариф “1 год”</h1>
-            <p className="text-[#f6f6f6] font-medium text-base">
+            <h1 className="font-semibold text-3xl text-white whitespace-nowrap">
+              Тариф “1 год”
+            </h1>
+            <p className="text-[#f6f6f6] font-medium text-base line-clamp-4">
               Тарифный план, разработанный специально для юридических лиц,
               которым требуется долгосрочный доступ к системе.
             </p>
-            <div className="text-accent-foreground bg-[#f4f4f4] w-full rounded-md font-semibold text-lg py-2 flex justify-center">
+            <div className="whitespace-nowrap text-accent-foreground bg-[#f4f4f4] w-full rounded-md font-semibold text-lg py-2 flex justify-center">
               365 дней
             </div>
             <hr className="h-[1px] border-none w-full bg-gradient-to-r from-secondary " />
@@ -100,8 +104,10 @@ export const Tariffs = () => {
             <div className="bg-[#f4f4f4] text-sm rounded-sm text-[#333] font-semibold px-6 py-1 w-max">
               Для физических лиц
             </div>
-            <h1 className="font-semibold text-3xl">Тариф “30 дней”</h1>
-            <p className="text-secondary font-medium text-base text-balance">
+            <h1 className="font-semibold text-3xl whitespace-nowrap">
+              Тариф “30 дней”
+            </h1>
+            <p className="text-secondary font-medium text-base line-clamp-4">
               Оптимальный тарифный план для компаний, которым необходим
               регулярный доступ к системе на протяжении месяца.
             </p>
