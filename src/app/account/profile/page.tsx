@@ -1,6 +1,8 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { LogoutBtn } from "@/features/auth/components/LogoutBtn";
+import { LogoutMobile } from "@/features/auth/components/LogoutMobile";
 import { useAuth } from "@/features/auth/providers/client";
 import { Tariffs } from "@/features/sales/Tariffs";
 import { TarifCard } from "@/features/subscriptions/components/TarifCard";
@@ -33,6 +35,9 @@ export default function Page() {
           <AccountDataForm />
         </CardContent>
       </Card>
+      <div className="flex justify-center my-3 md:hidden w-full">
+        <LogoutMobile />
+      </div>
       <Card className="lg:col-span-2 bg-white !rounded-2xl flex flex-col border-none">
         <CardHeader>
           <CardTitle>Обновите/Продлите свой тариф</CardTitle>
