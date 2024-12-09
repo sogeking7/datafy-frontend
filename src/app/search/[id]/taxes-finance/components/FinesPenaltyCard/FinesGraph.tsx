@@ -40,7 +40,7 @@ export const FineGraph = () => {
 
   return (
     <ChartContainer
-      className="h-[250px] !aspect-auto z-50 relative"
+      className="h-[250px] !aspect-auto relative"
       config={chartConfig}
     >
       <LineChart accessibilityLayer data={chartData}>

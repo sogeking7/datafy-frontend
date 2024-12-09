@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PersonCard } from "./components/PersonCard";
 
 const links = [
-  "Открытый вакансии",
+  "Открытые вакансии",
   "История вакансии",
   "Действующие сотрудники",
   "Ранее работавшие сотрудники",
@@ -19,10 +19,10 @@ export default function Page() {
       <SearchIdHeader title="Вакансии и сотрудники" />
       <SearchIdTabs
         links={links}
-        active="Открытый вакансии"
+        active="Открытые вакансии"
         comp={
           <div className="mt-3">
-            <TabsContent value="Открытый вакансии">
+            <TabsContent value="Открытые вакансии">
               <Card className="border-none !rounded-2xl">
                 <CardHeader>
                   <CardTitle>KASPI GID</CardTitle>

@@ -5,7 +5,7 @@ import { GlobeIcon } from "lucide-react";
 const data = {
   positive: {
     title: "Крупнейшие работодатели Казахстана ищут сотрудников",
-    body: "Жоламан Жумабекович АО Kaspi Bank CASPKZKA KZ41722C000031813479     Подписывайтесь на наш Х     Обложка",
+    body: "Жоламан Жумабекович АО Kaspi Bank CASPKZKA KZ41722C000031813479 Подписывайтесь на наш Х     Обложка",
     source: "kz-reporter.com",
     color: "#77BD8B",
   },
