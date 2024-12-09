@@ -6,23 +6,24 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { LineGraphRatingCompany } from "../RatingCompanyCard/LineGraphRatingCompany";
 
-const data: { [year: string]: { summa: number } } = {
-  "2015": { summa: 10000 },
-  "2016": { summa: 41110000 },
-  "2017": { summa: 31002300 },
-  "2018": { summa: 51000099 },
-  "2019": { summa: 11003400 },
-  "2020": { summa: 41000990 },
-  "2021": { summa: 31007000 },
-  "2022": { summa: 71004099 },
-  "2023": { summa: 11009900 },
-  "2024": { summa: 21000000 },
+const data: { [year: string]: { rating: number } } = {
+  "2015": { rating: 1 },
+  "2016": { rating: 2 },
+  "2017": { rating: 4 },
+  "2018": { rating: 4 },
+  "2019": { rating: 4 },
+  "2020": { rating: 4 },
+  "2021": { rating: 3 },
+  "2022": { rating: 5 },
+  "2023": { rating: 1 },
+  "2024": { rating: 2 },
 };
 
 export const WageFundCard = () => {
   return (
-    <Accordion collapsible type="single" className="!p-0">
+    <Accordion collapsible defaultValue="f" type="single" className="!p-0">
       <AccordionItem
         value="f"
         className="px-4 md:px-6 rounded-lg md:rounded-xl bg-white"
@@ -34,7 +35,7 @@ export const WageFundCard = () => {
           {!!status && (
             <p className="text-info font-medium text-sm">{status}</p>
           )}
-          {/* <LineGraphProfitCompany data={data} /> */}
+          <LineGraphRatingCompany data={data} />
         </AccordionContent>
       </AccordionItem>
     </Accordion>

@@ -19,21 +19,21 @@ export const LicenCard = ({
       </CardHeader>
       <div className="p-4 lg:p-6 lg:flex-shrink-0">
         <div className="lg:border-l-[1px] lg:pl-6 h-full md:border-l-gray-300  gap-3  flex lg:flex-col lg:items-center w-full max-lg:justify-end">
+          <Button
+            size={"sm"}
+            variant={"outline"}
+            className="md:w-full max-lg:max-w-min"
+          >
+            Подробнее
+          </Button>
           {a ? (
             <></>
           ) : (
-            <Button
-              size={"sm"}
-              variant={"outline"}
-              className="md:w-full max-lg:max-w-min"
-            >
-              Подробнее
+            <Button size={"sm"} className="gap-3 md:w-full max-w-min ">
+              <DownloadIcon className="full-current stroke-white stroke-[1.5]" />
+              Скачать
             </Button>
           )}
-          <Button size={"sm"} className="gap-3 md:w-full max-w-min ">
-            <DownloadIcon className="full-current stroke-white stroke-[1.5]" />
-            Скачать
-          </Button>
         </div>
       </div>
     </Card>

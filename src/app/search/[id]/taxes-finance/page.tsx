@@ -17,10 +17,10 @@ export default function Page() {
       <SearchIdTabs links={links} />
       <TaxRecordsCard />
       <KBKRecordsCard />
+      <FinesPenaltyCard />
       <RatingCompanyCard />
       <ProfitCompanyCard />
       <TaxImportsCard />
-      <FinesPenaltyCard />
       <WageFundCard />
     </div>
   );

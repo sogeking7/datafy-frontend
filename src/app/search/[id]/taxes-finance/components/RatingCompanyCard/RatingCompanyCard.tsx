@@ -22,7 +22,7 @@ const data: { [year: string]: { rating: number } } = {
 
 export const RatingCompanyCard = () => {
   return (
-    <Accordion collapsible type="single" className="!p-0">
+    <Accordion  collapsible defaultValue="f" type="single" className="!p-0">
       <AccordionItem
         value="f"
         className="px-4 md:px-6 rounded-lg md:rounded-xl bg-white"
