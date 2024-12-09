@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,12 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { PasswordInput } from "@/components/ui/password-input";
 import { AuthService } from "../../api/auth.service";
 import { useAuth } from "../../providers/client";
@@ -114,114 +108,62 @@ export const CreateAccountForm: React.FC = () => {
   };
 
   return (
-    <Card className="max-w-md w-full">
-      <CardHeader>
-        <h1 className="text-2xl sm:text-3xl font-semibold">Авторизация</h1>
-        <p className="text-secondary text-sm mt-2 text-balance leading-tight">
-          Введите свои данные ниже, чтобы создать учетную запись
-        </p>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-2 items-end"
-          >
-            <FormMessage className="mb-2">{error}</FormMessage>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-2 items-end"
+      >
+        <FormMessage className="mb-2">{error}</FormMessage>
 
-            {/* <FormField
-              control={form.control}
-              name="fullname"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>ФИО</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Введите ваше ФИО" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="Введите ваш email" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-            {/* <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Имя пользователя</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Введите ваше имя пользователя"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormLabel>Пароль</FormLabel>
+              <FormControl>
+                <PasswordInput placeholder="Введите ваш пароль" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Введите ваш email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <FormField
+          control={form.control}
+          name="passwordConfirm"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormLabel>Подтверждение пароля</FormLabel>
+              <FormControl>
+                <PasswordInput
+                  placeholder="Подтвердите ваш пароль"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Пароль</FormLabel>
-                  <FormControl>
-                    <PasswordInput
-                      placeholder="Введите ваш пароль"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="passwordConfirm"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Подтверждение пароля</FormLabel>
-                  <FormControl>
-                    <PasswordInput
-                      placeholder="Подтвердите ваш пароль"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Button type="submit" className="mt-4" size={"sm"}>
-              {loading ? "Обработка" : "Создать аккаунт"}
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-      <CardFooter>
-        <div className="text-sm">
-          {"Уже есть аккаунт? "}
-          <Link className="hover:underline" href={`/auth/login${allParams}`}>
-            Войти
-          </Link>
-        </div>
-      </CardFooter>
-    </Card>
+        <Button type="submit" className="mt-4" size={"sm"}>
+          {loading ? "Обработка" : "Создать аккаунт"}
+        </Button>
+      </form>
+    </Form>
   );
 };

@@ -14,12 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+
 import { PasswordInput } from "@/components/ui/password-input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -79,73 +74,49 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <Card className="max-w-md w-full">
-      <CardHeader>
-        <h1 className="text-2xl sm:text-3xl font-semibold">Вход</h1>
-        <p className="text-secondary text-sm mt-2 text-balance leading-tight">
-          Введите свой адрес электронной почты ниже, чтобы войти
-        </p>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-2 items-end"
-          >
-            <FormMessage className="mb-2 text-left w-full">{error}</FormMessage>
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Введите ваш email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-2 items-end"
+      >
+        <FormMessage className="mb-2 text-left w-full">{error}</FormMessage>
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="Введите ваш email" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Пароль</FormLabel>
-                  <FormControl>
-                    <PasswordInput
-                      placeholder="Введите ваш пароль"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormLabel>Пароль</FormLabel>
+              <FormControl>
+                <PasswordInput placeholder="Введите ваш пароль" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-            <Button
-              type="submit"
-              disabled={form.formState.isSubmitting}
-              className="mt-4"
-              size={"sm"}
-            >
-              {form.formState.isSubmitting ? "В процессе..." : "Войти"}
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-      <CardFooter>
-        <div>
-          <Link
-            className="text-sm hover:underline"
-            href={`/auth/create-account${allParams}`}
-          >
-            Создать аккаунт
-          </Link>
-          <br />
-        </div>
-      </CardFooter>
-    </Card>
+        <Button
+          type="submit"
+          disabled={form.formState.isSubmitting}
+          className="mt-4"
+          size={"sm"}
+        >
+          {form.formState.isSubmitting ? "В процессе..." : "Войти"}
+        </Button>
+      </form>
+    </Form>
   );
 };

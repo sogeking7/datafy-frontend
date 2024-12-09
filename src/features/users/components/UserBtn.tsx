@@ -6,9 +6,14 @@ import { useAuth } from "@/features/auth/providers/client";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { UserSubBtn } from "./UserSubBtn";
+import { usePathname } from "next/navigation";
 
 export const UserBtn = () => {
+  const pathname = usePathname();
+
   const { user, error } = useAuth();
+
+  if (pathname === "/auth/login") return null;
 
   if (!user) {
     return (

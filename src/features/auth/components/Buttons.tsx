@@ -25,7 +25,7 @@ export const RegisterBtn = ({ className }: { className?: string }) => {
   const router = useRouter();
   return (
     <Button
-      onClick={() => router.push("/auth/create-account")}
+      onClick={() => router.push("/auth/login?tab=register")}
       variant={"light"}
       className={cn("gap-3 pl-2 pr-4", className)}
     >
