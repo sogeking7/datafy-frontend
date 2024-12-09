@@ -1,7 +1,10 @@
-"use client";
-
+import { Suspense } from "react";
 import { TabForm } from "../components/TabForm";
 
-export default function Login() {
-  return <TabForm />;
+export default async function Login() {
+  return (
+    <Suspense>
+      <TabForm />
+    </Suspense>
+  );
 }
