@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -30,17 +29,16 @@ const loginSchema = z.object({
     .regex(/[A-Z]/, {
       message: "Пароль должен содержать хотя бы одну заглавную букву",
     }),
+  rememberMe: z.boolean().optional(),
 });
 
 type FormData = z.infer<typeof loginSchema>;
 
 export const LoginForm: React.FC = () => {
   const searchParams = useSearchParams();
-  const allParams = searchParams.toString()
-    ? `?${searchParams.toString()}`
-    : "";
   const router = useRouter();
   const [error, setError] = React.useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
 
   const { user, updateUser } = useAuth();
 
@@ -49,8 +47,48 @@ export const LoginForm: React.FC = () => {
     defaultValues: {
       email: "",
       password: "",
+      rememberMe: false,
     },
   });
+
+  useEffect(() => {
+    // Client-side initialization
+    setIsClient(true);
+
+    // Check for saved credentials on component mount
+    const rememberedEmail = localStorage.getItem("rememberedEmail");
+    const rememberMe = localStorage.getItem("rememberMe") === "true";
+
+    if (rememberedEmail) {
+      form.setValue("email", rememberedEmail);
+      form.setValue("rememberMe", rememberMe);
+    }
+
+    // Auto-login check
+    const autoLogin = async () => {
+      const accessToken = localStorage.getItem("access-token");
+
+      if (accessToken) {
+        try {
+          const me = await AuthService().getMe();
+          if (me.success) {
+            updateUser(me.data);
+            router.push("/account/profile");
+          }
+        } catch (err) {
+          // Clear invalid tokens
+          [
+            "access-token",
+            "refresh-token",
+            "rememberedEmail",
+            "rememberMe",
+          ].forEach((key) => localStorage.removeItem(key));
+        }
+      }
+    };
+
+    autoLogin();
+  }, []);
 
   const onSubmit = async (values: FormData) => {
     const formData = new FormData();
@@ -59,8 +97,20 @@ export const LoginForm: React.FC = () => {
 
     const { success, data } = await AuthService().login(formData);
     if (success) {
+      // Handle Remember Me functionality
+      if (values.rememberMe) {
+        localStorage.setItem("rememberedEmail", values.email);
+        localStorage.setItem("rememberMe", "true");
+      } else {
+        localStorage.removeItem("rememberedEmail");
+        localStorage.removeItem("rememberMe");
+      }
+
+      // Store tokens
       localStorage.setItem("access-token", data.access_token);
       localStorage.setItem("refresh-token", data.refresh_token);
+
+      // Fetch user details
       const me = await AuthService().getMe();
       if (me.success) {
         setError("");
@@ -73,6 +123,11 @@ export const LoginForm: React.FC = () => {
       setError("Неправильное имя пользователя или пароль");
     }
   };
+
+  // Prevent hydration errors by checking if we're on the client
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <Form {...form}>
@@ -109,23 +164,27 @@ export const LoginForm: React.FC = () => {
           )}
         />
 
-        <div className="flex w-full justify-between items-center mt-3">
-          <div className="flex items-center space-x-2 ">
-            <Checkbox id="terms" />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Запомнить меня
-            </label>
-          </div>
-          {/* <Link
-            href={"#"}
-            className="text-sm font-medium text-primary leading-none hover:underline"
-          >
-            Забыл пароль
-          </Link> */}
-        </div>
+        <FormField
+          control={form.control}
+          name="rememberMe"
+          render={({ field }) => (
+            <div className="flex w-full justify-between items-center mt-3">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="rememberMe"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+                <label
+                  htmlFor="rememberMe"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Запомнить меня
+                </label>
+              </div>
+            </div>
+          )}
+        />
 
         <Button
           type="submit"

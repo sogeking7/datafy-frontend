@@ -1,11 +1,7 @@
-import { LoginForm } from "@/features/auth/components/LoginForm";
-import { Suspense } from "react";
+"use client";
+
 import { TabForm } from "../components/TabForm";
 
-export default async function Login() {
-  return (
-    <Suspense>
-      <TabForm />
-    </Suspense>
-  );
+export default function Login() {
+  return <TabForm />;
 }
