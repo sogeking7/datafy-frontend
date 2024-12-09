@@ -20,6 +20,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthService } from "../../api/auth.service";
 import { useAuth } from "../../providers/client";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const loginSchema = z.object({
   email: z.string().email("Неверный адрес электронной почты"),
@@ -77,7 +78,7 @@ export const LoginForm: React.FC = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-2 items-end"
+        className="flex flex-col gap-2"
       >
         <FormMessage className="mb-2 text-left w-full">{error}</FormMessage>
         <FormField
@@ -87,7 +88,7 @@ export const LoginForm: React.FC = () => {
             <FormItem className="w-full">
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="Введите ваш email" {...field} />
+                <Input placeholder="Введите email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -101,12 +102,30 @@ export const LoginForm: React.FC = () => {
             <FormItem className="w-full">
               <FormLabel>Пароль</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="Введите ваш пароль" {...field} />
+                <PasswordInput placeholder="Введите пароль" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+
+        <div className="flex w-full justify-between items-center mt-3">
+          <div className="flex items-center space-x-2 ">
+            <Checkbox id="terms" />
+            <label
+              htmlFor="terms"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Запомнить меня
+            </label>
+          </div>
+          {/* <Link
+            href={"#"}
+            className="text-sm font-medium text-primary leading-none hover:underline"
+          >
+            Забыл пароль
+          </Link> */}
+        </div>
 
         <Button
           type="submit"

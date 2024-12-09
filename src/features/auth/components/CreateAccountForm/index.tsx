@@ -111,7 +111,7 @@ export const CreateAccountForm: React.FC = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-2 items-end"
+        className="flex flex-col gap-2"
       >
         <FormMessage className="mb-2">{error}</FormMessage>
 
@@ -122,7 +122,7 @@ export const CreateAccountForm: React.FC = () => {
             <FormItem className="w-full">
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="Введите ваш email" {...field} />
+                <Input placeholder="Введите email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -136,7 +136,7 @@ export const CreateAccountForm: React.FC = () => {
             <FormItem className="w-full">
               <FormLabel>Пароль</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="Введите ваш пароль" {...field} />
+                <PasswordInput placeholder="Введите пароль" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -150,10 +150,7 @@ export const CreateAccountForm: React.FC = () => {
             <FormItem className="w-full">
               <FormLabel>Подтверждение пароля</FormLabel>
               <FormControl>
-                <PasswordInput
-                  placeholder="Подтвердите ваш пароль"
-                  {...field}
-                />
+                <PasswordInput placeholder="Повторите пароль" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -161,7 +158,7 @@ export const CreateAccountForm: React.FC = () => {
         />
 
         <Button type="submit" className="mt-4" size={"sm"}>
-          {loading ? "Обработка" : "Создать аккаунт"}
+          {loading ? "Обработка" : "Зарегистрироваться"}
         </Button>
       </form>
     </Form>
