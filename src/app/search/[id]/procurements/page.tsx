@@ -13,16 +13,17 @@ export default function Page() {
       <SearchIdTabs
         links={links}
         active="Сводная информация"
-        comp={
-          <div className="mt-3">
-            <TabsContent value="Сводная информация">
-              <Empty />
-            </TabsContent>
-            <TabsContent value="Контракты">
-              <Empty />
-            </TabsContent>
-          </div>
-        }
+        // comp={
+          // <div className="mt-3">
+          //   <TabsContent value="Сводная информация">
+          //     {/* <Empty /> */}
+          //   </TabsContent>
+          //   <TabsContent value="Контракты">
+          //     {/* <Empty /> */}
+          //   </TabsContent>
+          // </div>
+        // }
+        comp={<div></div>}
       />
       <PurchaseParticipationCard />
     </div>
