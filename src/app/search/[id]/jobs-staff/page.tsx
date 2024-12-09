@@ -2,6 +2,9 @@ import { TabsContent } from "@radix-ui/react-tabs";
 import { SearchIdHeader } from "../components/SearchIdHeader";
 import { SearchIdTabs } from "../components/SearchIdTabs";
 import { Empty } from "../components/Empty";
+import { JobCard } from "./components/JobCard";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PersonCard } from "./components/PersonCard";
 
 const links = [
   "Открытый вакансии",
@@ -20,16 +23,57 @@ export default function Page() {
         comp={
           <div className="mt-3">
             <TabsContent value="Открытый вакансии">
-              <Empty />
+              <Card className="border-none !rounded-2xl">
+                <CardHeader>
+                  <CardTitle>KASPI GID</CardTitle>
+                </CardHeader>
+                <CardContent className="md:pt-0 flex gap-3 flex-col">
+                  <JobCard />
+                  <JobCard />
+                  <JobCard />
+                  <JobCard />
+                </CardContent>
+              </Card>
             </TabsContent>
+
             <TabsContent value="История вакансии">
-              <Empty />
+              <Card className="border-none !rounded-2xl">
+                <CardHeader>
+                  <CardTitle>KASPI GID</CardTitle>
+                </CardHeader>
+                <CardContent className="md:pt-0 flex gap-3 flex-col">
+                  <JobCard a={true} />
+                  <JobCard a={true} />
+                  <JobCard a={true} />
+                  <JobCard a={true} />
+                </CardContent>
+              </Card>
             </TabsContent>
             <TabsContent value="Действующие сотрудники">
-              <Empty />
+              <Card className="border-none !rounded-2xl">
+                <CardHeader>
+                  <CardTitle>KASPI GID</CardTitle>
+                </CardHeader>
+                <CardContent className="md:pt-0 flex gap-3 flex-col">
+                  <PersonCard />
+                  <PersonCard />
+                  <PersonCard />
+                  <PersonCard />
+                </CardContent>
+              </Card>
             </TabsContent>
             <TabsContent value="Ранее работавшие сотрудники">
-              <Empty />
+              <Card className="border-none !rounded-2xl">
+                <CardHeader>
+                  <CardTitle>KASPI GID</CardTitle>
+                </CardHeader>
+                <CardContent className="md:pt-0 flex gap-3 flex-col">
+                  <PersonCard a={true} />
+                  <PersonCard a={true} />
+                  <PersonCard a={true} />
+                  <PersonCard a={true} />
+                </CardContent>
+              </Card>
             </TabsContent>
           </div>
         }
