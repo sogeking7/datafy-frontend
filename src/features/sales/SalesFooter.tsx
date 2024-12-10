@@ -2,6 +2,7 @@ import { Container } from "@/ui/Container";
 import Image from "next/image";
 import Link from "next/link";
 import { SalesSearch } from "./SalesSearch";
+import { SalesForm } from "./SalesForm";
 
 export const SalesFooter = () => {
   return (
@@ -19,7 +20,7 @@ export const SalesFooter = () => {
             Проспект Нұрсұлтан Назарбаев, Дом 223, Н.П. 404 © 2024. Все права
             защищены
           </p>
-          <ul className="gap-3 text-[#838383] col-span-full md:col-span-2 flex flex-col justify-center">
+          <ul className="gap-3 text-[#838383] col-span-full md:col-span-4 flex flex-col justify-center">
             <h1 className="text-white font-semibold text-2xl md:text-lg">
               Главная
             </h1>
@@ -54,8 +55,8 @@ export const SalesFooter = () => {
               </Link>
             </li>
           </ul>
-          <div className="col-span-full max-md:hidden md:col-span-4">
-            <SalesSearch size="small" />
+          <div className="col-span-full md:col-span-2">
+            <SalesForm />
           </div>
         </nav>
       </Container>
