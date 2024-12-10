@@ -17,6 +17,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export const description = "A bar chart";
 
@@ -47,24 +48,30 @@ export const EstimatedRevenueCard = () => {
         <CardTitle>Оценочная выручка</CardTitle>
       </CardHeader>
       <CardContent className="!pt-0">
-        <ChartContainer className="h-[250px] !aspect-auto" config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
-            <YAxis tickFormatter={(value) => value} />
-            <XAxis
-              dataKey="year"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) => value}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Bar dataKey="val" fill="#77BD8B" radius={8} className="w-10" />
-          </BarChart>
-        </ChartContainer>
+        <ScrollArea>
+          <ChartContainer
+            className="h-[250px] !aspect-auto"
+            config={chartConfig}
+          >
+            <BarChart accessibilityLayer data={chartData}>
+              <CartesianGrid vertical={false} />
+              <YAxis tickFormatter={(value) => value} />
+              <XAxis
+                dataKey="year"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                tickFormatter={(value) => value}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+              <Bar dataKey="val" fill="#77BD8B" radius={2} />
+            </BarChart>
+          </ChartContainer>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </CardContent>
     </Card>
   );

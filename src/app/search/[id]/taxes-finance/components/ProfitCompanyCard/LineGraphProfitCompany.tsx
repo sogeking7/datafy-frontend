@@ -7,6 +7,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { cn, formatTenge, isObjectEmpty } from "@/lib/utils";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const chartConfig = {
   summa: {
@@ -41,25 +42,28 @@ export const LineGraphProfitCompany = ({
   }));
 
   return (
-    <ChartContainer className={cn(className)} config={chartConfig}>
-      <LineChart accessibilityLayer data={chartData}>
-        <YAxis tickFormatter={formatTenge} />
-        <XAxis
-          dataKey="year"
-          tickLine={false}
-          tickMargin={10}
-          axisLine={false}
-          tickFormatter={(value) => value}
-        />
-        <ChartTooltip cursor={true} content={<ChartTooltipContent />} />
-        <Line
-          dataKey="summa"
-          type="natural"
-          stroke={color}
-          strokeWidth={2}
-          dot={true}
-        />
-      </LineChart>
-    </ChartContainer>
+    <ScrollArea>
+      <ChartContainer className={cn(className)} config={chartConfig}>
+        <LineChart accessibilityLayer data={chartData}>
+          <YAxis tickFormatter={formatTenge} />
+          <XAxis
+            dataKey="year"
+            tickLine={false}
+            tickMargin={10}
+            axisLine={false}
+            tickFormatter={(value) => value}
+          />
+          <ChartTooltip cursor={true} content={<ChartTooltipContent />} />
+          <Line
+            dataKey="summa"
+            type="natural"
+            stroke={color}
+            strokeWidth={2}
+            dot={true}
+          />
+        </LineChart>
+      </ChartContainer>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   );
 };

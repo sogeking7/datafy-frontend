@@ -18,7 +18,7 @@ export const LicenCard = ({
         </div>
       </CardHeader>
       <div className="p-4 lg:p-6 lg:flex-shrink-0">
-        <div className="lg:border-l-[1px] lg:pl-6 h-full md:border-l-gray-300  gap-3  flex lg:flex-col lg:items-center w-full max-lg:justify-end">
+        <div className="lg:border-l-[1px] lg:pl-6 h-full md:border-l-gray-300  gap-3  flex flex-wrap lg:flex-col lg:items-center w-full max-lg:justify-end">
           <Button
             size={"sm"}
             variant={"outline"}

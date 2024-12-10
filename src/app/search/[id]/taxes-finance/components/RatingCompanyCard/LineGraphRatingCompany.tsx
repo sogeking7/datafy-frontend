@@ -6,6 +6,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { formatTenge, isObjectEmpty } from "@/lib/utils";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const chartConfig = {
   rating: {
@@ -29,28 +30,31 @@ export const LineGraphRatingCompany = ({
   }));
 
   return (
-    <ChartContainer
-      className="h-[250px] !aspect-auto relative"
-      config={chartConfig}
-    >
-      <LineChart accessibilityLayer data={chartData}>
-        <YAxis tickFormatter={formatTenge} />
-        <XAxis
-          dataKey="year"
-          tickLine={false}
-          tickMargin={10}
-          axisLine={false}
-          tickFormatter={(value) => value}
-        />
-        <ChartTooltip cursor={true} content={<ChartTooltipContent />} />
-        <Line
-          dataKey="rating"
-          type="natural"
-          stroke="#403EF1"
-          strokeWidth={2}
-          dot={true}
-        />
-      </LineChart>
-    </ChartContainer>
+    <ScrollArea>
+      <ChartContainer
+        className="h-[250px] !aspect-auto relative"
+        config={chartConfig}
+      >
+        <LineChart accessibilityLayer data={chartData}>
+          <YAxis tickFormatter={formatTenge} />
+          <XAxis
+            dataKey="year"
+            tickLine={false}
+            tickMargin={10}
+            axisLine={false}
+            tickFormatter={(value) => value}
+          />
+          <ChartTooltip cursor={true} content={<ChartTooltipContent />} />
+          <Line
+            dataKey="rating"
+            type="natural"
+            stroke="#403EF1"
+            strokeWidth={2}
+            dot={true}
+          />
+        </LineChart>
+      </ChartContainer>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   );
 };

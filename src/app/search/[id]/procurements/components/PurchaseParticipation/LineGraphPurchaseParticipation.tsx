@@ -9,6 +9,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { cn, formatKZT, formatTenge } from "@/lib/utils";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const chartConfig = {
   totalSum: {
@@ -52,50 +53,53 @@ export const LineGraphPurchaseParticipation = ({
   const totalSumByYear = getTotalSumByYear(data);
 
   return (
-    <ChartContainer className="h-[250px] !aspect-auto" config={chartConfig}>
-      <LineChart accessibilityLayer data={totalSumByYear}>
-        <YAxis
-          yAxisId="right"
-          orientation="right"
-          tickFormatter={formatTenge}
-          axisLine={true}
-        />
-        <YAxis
-          tickFormatter={(value) => value}
-          yAxisId="left"
-          orientation="left"
-          axisLine={true}
-        />
-        <XAxis
-          dataKey="finYear"
-          tickLine={false}
-          tickMargin={10}
-          axisLine={false}
-          tickFormatter={(value) => value}
-        />
-        <ChartTooltip
-          cursor={true}
-          content={<ChartTooltipContent labelKey="finYear" />}
-        />
-        <Line
-          yAxisId="right"
-          dataKey="totalSum"
-          type="natural"
-          stroke="#403EF1"
-          strokeWidth={2}
-          dot={true}
-        />
-        <Line
-          strokeDasharray="5 5"
-          yAxisId="left"
-          dataKey="count"
-          type="natural"
-          stroke="#77BD8B"
-          strokeWidth={2}
-          dot={true}
-        />
-        <ChartLegend content={<ChartLegendContent />} />
-      </LineChart>
-    </ChartContainer>
+    <ScrollArea>
+      <ChartContainer className="h-[250px] !aspect-auto" config={chartConfig}>
+        <LineChart accessibilityLayer data={totalSumByYear}>
+          <YAxis
+            yAxisId="right"
+            orientation="right"
+            tickFormatter={formatTenge}
+            axisLine={true}
+          />
+          <YAxis
+            tickFormatter={(value) => value}
+            yAxisId="left"
+            orientation="left"
+            axisLine={true}
+          />
+          <XAxis
+            dataKey="finYear"
+            tickLine={false}
+            tickMargin={10}
+            axisLine={false}
+            tickFormatter={(value) => value}
+          />
+          <ChartTooltip
+            cursor={true}
+            content={<ChartTooltipContent labelKey="finYear" />}
+          />
+          <Line
+            yAxisId="right"
+            dataKey="totalSum"
+            type="natural"
+            stroke="#403EF1"
+            strokeWidth={2}
+            dot={true}
+          />
+          <Line
+            strokeDasharray="5 5"
+            yAxisId="left"
+            dataKey="count"
+            type="natural"
+            stroke="#77BD8B"
+            strokeWidth={2}
+            dot={true}
+          />
+          <ChartLegend content={<ChartLegendContent />} />
+        </LineChart>
+      </ChartContainer>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   );
 };

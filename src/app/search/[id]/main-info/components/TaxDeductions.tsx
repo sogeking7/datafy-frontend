@@ -14,6 +14,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { CompanyService } from "@/features/company/api/company.service";
 import { useQuery } from "@tanstack/react-query";
 import { calculateTotalSum, formatKZT } from "@/lib/utils";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const chartConfig = {
   summa: {
@@ -66,27 +67,30 @@ export const TaxDeductions = () => {
       <CardContent className="!pt-0">
         {!!status && <p className="text-info font-medium text-sm">{status}</p>}
         {!!dynamic_tax_records && (
-          <ChartContainer
-            className=" h-[250px] !aspect-auto"
-            config={chartConfig}
-          >
-            <BarChart accessibilityLayer data={chartData}>
-              <CartesianGrid vertical={false} />
-              <YAxis tickFormatter={(value) => value} />
-              <XAxis
-                dataKey="year"
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
-                tickFormatter={(value) => value}
-              />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <Bar dataKey="summa" fill="#77BD8B" radius={2} className="w-7" />
-            </BarChart>
-          </ChartContainer>
+          <ScrollArea>
+            <ChartContainer
+              className=" h-[250px] !aspect-auto"
+              config={chartConfig}
+            >
+              <BarChart accessibilityLayer data={chartData}>
+                <CartesianGrid vertical={false} />
+                <YAxis tickFormatter={(value) => value} />
+                <XAxis
+                  dataKey="year"
+                  tickLine={false}
+                  tickMargin={10}
+                  axisLine={false}
+                  tickFormatter={(value) => value}
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel />}
+                />
+                <Bar dataKey="summa" fill="#77BD8B" radius={2} />
+              </BarChart>
+            </ChartContainer>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
         )}
       </CardContent>
     </Card>

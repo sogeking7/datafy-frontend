@@ -11,6 +11,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const chartData = [
   { year: 2019, active: 186, inactive: 80 },
@@ -39,24 +40,30 @@ export default function LicenGraph() {
         <CardTitle>График лицензий</CardTitle>
       </CardHeader>
       <CardContent className="!pt-0 flex flex-col gap-6">
-        <ChartContainer className="h-[250px]" config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
-            <XAxis
-              dataKey="year"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              // tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
-            />
-            <Bar width={20} dataKey="active" fill="#77BD8B" radius={4} />
-            <Bar width={20} dataKey="inactive" fill="#FF6E4E" radius={4} />
-            <ChartLegend content={<ChartLegendContent />} />
-          </BarChart>
-        </ChartContainer>
+        <ScrollArea>
+          <ChartContainer
+            className="w-full h-[250px] aspect-auto"
+            config={chartConfig}
+          >
+            <BarChart accessibilityLayer data={chartData}>
+              <XAxis
+                dataKey="year"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                // tickFormatter={(value) => value.slice(0, 3)}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="dashed" />}
+              />
+              <Bar dataKey="active" fill="#77BD8B" radius={2} />
+              <Bar dataKey="inactive" fill="#FF6E4E" radius={2} />
+              <ChartLegend content={<ChartLegendContent />} />
+            </BarChart>
+          </ChartContainer>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </CardContent>
     </Card>
   );

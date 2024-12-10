@@ -8,6 +8,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const chartData = [
   { year: 2019, desktop: 186, mobile: 80, ipad: 100, mac: 40 },
@@ -39,24 +40,26 @@ const chartConfig = {
 
 export default function CourtGraph() {
   return (
-    <ChartContainer config={chartConfig}>
-      <BarChart accessibilityLayer data={chartData}>
-        <XAxis
-          dataKey="year"
-          tickLine={false}
-          tickMargin={10}
-          axisLine={false}
-          // tickFormatter={(value) => value.slice(0, 3)}
-        />
-        <ChartTooltip
-          cursor={false}
-          content={<ChartTooltipContent indicator="dashed" />}
-        />
-        <Bar dataKey="desktop" fill="#1A96F0" radius={4} />
-        <Bar dataKey="mobile" fill="#FACC15" radius={4} />
-        <Bar dataKey="ipad" fill="#FF981F" radius={4} />
-        <Bar dataKey="mac" fill="#FF6E4E" radius={4} />
-      </BarChart>
-    </ChartContainer>
+    <ScrollArea>
+      <ChartContainer config={chartConfig}>
+        <BarChart accessibilityLayer data={chartData}>
+          <XAxis
+            dataKey="year"
+            tickLine={false}
+            tickMargin={10}
+            axisLine={false}
+          />
+          <ChartTooltip
+            cursor={false}
+            content={<ChartTooltipContent indicator="dashed" />}
+          />
+          <Bar dataKey="desktop" fill="#1A96F0" radius={2} />
+          <Bar dataKey="mobile" fill="#FACC15" radius={2} />
+          <Bar dataKey="ipad" fill="#FF981F" radius={2} />
+          <Bar dataKey="mac" fill="#FF6E4E" radius={2} />
+        </BarChart>
+      </ChartContainer>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   );
 }
