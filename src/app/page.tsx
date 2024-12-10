@@ -11,7 +11,7 @@ import { SalesTariffs } from "@/features/sales/SalesTariffs";
 export default function Home() {
   return (
     <>
-      <div className=" relative flex min-h-[100svh] pb-[600px] md:pb-[calc(470px)] lg:pb-[calc(430px)] flex-col bg-white">
+      <div className=" relative flex min-h-[100svh] flex-col bg-white">
         <section id="start" className="background-image">
           <SalesHeader variant="constrainedPadded" />
           <div className="bg-background-gray pb-[250px] pt-[100px] md:pt-[150px]">

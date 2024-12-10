@@ -1,12 +1,11 @@
 import { Container } from "@/ui/Container";
 import Image from "next/image";
 import Link from "next/link";
-import { SalesSearch } from "./SalesSearch";
 import { SalesForm } from "./SalesForm";
 
 export const SalesFooter = () => {
   return (
-    <footer className="absolute bottom-0 max-sm:bottom-[64px] w-full bg-[#151515] py-12">
+    <footer className="relative bottom-0 max-sm: w-full bg-[#151515] pt-12 sm:pb-12 pb-[calc(48px+84px)]">
       <Container>
         <div className=" flex gap-10 items-center">
           <Link href="/">
